@@ -1,4 +1,4 @@
-<div class="container wow fadeIn animated" style="padding-top: 5%;">
+<div class="container wow fadeIn animated" style="padding-top: 3%;">
   <div class="row text-center">
     <p class="s-light" id="ques">You've got question? We've got answers</p>
     <button type="button" name="button" class="mont btn-border-blue" style="border-radius:30px;">Click here to view answers</button>

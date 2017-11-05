@@ -11,6 +11,7 @@
         </div>
       </div></li>
     <li><a href="#" id="btn_profile" style="padding-left: 23%"><span class="showopacity glyphicon glyphicon-th-list"></span> PROFILE</a></li>
+    <li><a href="#" id="btn_history" style="padding-left: 23%"><span class="showopacity glyphicon glyphicon-tags"></span> HISTORY</a></li>
     <li><a href="#" id="btn_sched" style="padding-left: 23%"><span class="showopacity glyphicon glyphicon-time"></span> SCHEDULE</a></li>
     <li><a href="#" id="btn_grade" style="padding-left: 23%"><span class="showopacity glyphicon glyphicon-list-alt"></span> GRADES</a></li>
     <li><a href="#" id="btn_linked" style="padding-left: 23%;"><span><img src="" id="linked_logo" height="15" width="15"/></span>LINKED</a></li>

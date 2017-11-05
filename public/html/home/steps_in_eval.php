@@ -24,7 +24,6 @@
   </div>
   <hr>
   <div class="row text-center">
-
     <button type="button" name="button" class="btn-border-gray wow bounceIn animated">Read More</button>
   </div>
 </div>

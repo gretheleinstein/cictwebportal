@@ -54,8 +54,8 @@ function load_student_app(){
 
 function load_free_browsing(){
   $("#container-offline-webs").load("{{ asset('html/home/free_browsing.php') }}",function(){
-    $("#w3s_link").attr('href',"{{ asset('offline/w3schools/W3School/www.w3schools.com/index.html') }}");
-    $("#tp_link").attr('href', "{{ asset('offline/tutorialspoint/Tutorialspoint/www.Tutorialspoint.com/index.html') }}");
+    $("#w3s_link").attr('href',"localhost/offline/w3schools/W3School/www.w3schools.com/index.html");
+    $("#tp_link").attr('href', "localhost/offline/tutorialspoint/Tutorialspoint/www.Tutorialspoint.com/index.html");
     $("#w3s").attr('src', "{{ asset('/img/wsh.png') }}");
     $("#tp").attr('src', "{{ asset('/img/tp.png') }}");
   });

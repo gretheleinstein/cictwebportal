@@ -43,7 +43,7 @@ class Media extends Controller
     public function get_app()
     {
         $profile_dir = "application";
-        $photo_file = $profile_dir . "/Linked-com.jhmvin.linked-4-4.0.apk";
+        $photo_file = $profile_dir . "/com.jhmvin.linked-5.2.apk";
 
         // check if the file is existing.
         $exists = Storage::disk('ftp')->exists($photo_file);

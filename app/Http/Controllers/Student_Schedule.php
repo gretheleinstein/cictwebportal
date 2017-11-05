@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use App\LoadGroupSchedule;
 use App\LoadSubject;
 use App\Subject;
+use App\Evaluation;
+use App\AcademicTerm;
 
 class Student_Schedule extends Controller
 {
@@ -43,4 +45,28 @@ class Student_Schedule extends Controller
   // send result
   echo $array_result;
   }
+
+  public function view_eval(Request $request){
+    $collection = array();
+    $id = $request->session()->get('SES_CICT_ID');
+
+    $eval = Evaluation::where('STUDENT_id', '=', $id)
+    ->get();
+
+    foreach ($eval as $each){
+      $acad = AcademicTerm::where('id','=',$each->ACADTERM_id)
+      ->first();
+
+      $single_row = [];
+      $single_row['eval'] = $each;
+      $single_row['acad'] = $acad;
+
+      array_push($collection,$single_row);
+    }
+  // format collection
+  $array_result = json_encode($collection,JSON_OBJECT_AS_ARRAY);
+  // send result
+  echo $array_result;
+  }
+
 }

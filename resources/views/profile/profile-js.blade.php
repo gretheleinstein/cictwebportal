@@ -5,7 +5,8 @@ var get_photo = "{{ route('get-photo','') }}/";
 
 $(document).ready(function() {
   load_nav();
-  load_popups();
+  //load_popups();
+  student_profile();
   load_footer();
   request_profile_values();
 });
@@ -49,12 +50,14 @@ function request_profile_values(){
 function load_profile_values(data){
   info = data['info'];
   if(info['has_profile']=="1"){
+  $("#btn_history").unbind('click');
   $("#btn_sched").unbind('click');
   $("#btn_grade").unbind('click');
   $("#btn_linked").unbind('click');
   $("#btn_settings").unbind('click');
   $("#btn_help").unbind('click');
 
+  $("#btn_history_sub").unbind('click');
   $("#btn_sched_sub").unbind('click');
   $("#btn_grade_sub").unbind('click');
   $("#btn_linked_sub").unbind('click');
@@ -70,6 +73,12 @@ function load_profile_values(data){
     clearTimeout(startup_popup);clearInterval(mymy);
     loader('#container');
     student_profile('#container');
+  });
+
+  $("#btn_history").click(function(event) {
+    clearTimeout(startup_popup);clearInterval(mymy);
+    loader('#container');
+    student_history();
   });
 
   $("#btn_sched").click(function(event) {
@@ -106,6 +115,12 @@ function load_profile_values(data){
     clearTimeout(startup_popup);clearInterval(mymy);
     loader('#container');
     student_profile('#container');
+  });
+
+  $("#btn_history_sub").click(function(event) {
+    clearTimeout(startup_popup);clearInterval(mymy);
+    loader('#container');
+    student_history();
   });
 
   $("#btn_sched_sub").click(function(event) {
@@ -1220,7 +1235,8 @@ function student_sched(){
    // success
    request.done = function(data, textStatus, xhr){
     //   alert(JSON.stringify(data));
-       load_sched(data);
+    //   load_sched(data);
+       load_table_sched(data);
    }
    // failed
    request.fail = function(xhr, textStatus, errorThrown){
@@ -1238,6 +1254,18 @@ function student_sched(){
    request.send(); // start the ajax request
 }// end of function
 
+function load_table_sched(data){
+    $.each(data, function(key,value) {
+      subject = value['subject'];
+      schedule = value['load_group_schedule'];
+      if(value['load_group_schedule'] !=null ){
+        $("#tbl_sched").append("<tr class='text-center'><td>"+schedule['class_day']+"</td> <td>"+subject['code']+"</td> <td>"+schedule['class_start']+"</td> <td>"+schedule['class_end']+"</td> <td>"+schedule['class_room']+"</td><td>"+""+"</td><tr/>");
+      }else {
+      }
+
+    });
+}
+
 function load_sched(data){
 //  $("[id='Sunday-7:00']").append('Some text');
     var n = 1;
@@ -1252,7 +1280,7 @@ function load_sched(data){
       var rowspan =  end - start;
       //alert(rowspan);
       $("[id='"+schedule['class_day']+"-"+schedule['class_start']+"']").attr('rowspan', rowspan);
-      $("[id='"+schedule['class_day']+"-"+schedule['class_start']+"']").attr('style','background-color:#8BB4C0; color:white; border:0px solid transparent');
+      $("[id='"+schedule['class_day']+"-"+schedule['class_start']+"']").attr('style','background-color:#8BB4C0; color:white;');
       $("[id='"+schedule['class_day']+"-"+schedule['class_start']+"']").append(subject['code'] +"<br/>"+schedule['class_room']);
 
   //    $("[id='SUNDAY-08:00']").remove();
@@ -1277,4 +1305,59 @@ function load_sched(data){
       n++;
     });// each
 }
+
+function student_history(){
+  $( "#container" ).load("{{ asset( 'html/profile/student_eval.php' ) }}", function(){
+    request_eval();
+    });
+  }
+
+  function request_eval(){
+    // settings
+    request = new Request();
+    request.url = "{{ route('eval-get') }}";
+    request.type = 'GET';
+    request.replyType = 'json';
+    // start
+    request.begin = function(){
+     // alert("start");
+    }
+    // success
+    request.done = function(data, textStatus, xhr){
+     //   alert(JSON.stringify(data));
+     //   load_sched(data);
+        load_table_eval(data);
+    }
+    // failed
+    request.fail = function(xhr, textStatus, errorThrown){
+      //  alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
+      //  alert("JQUERY TEXT STATUS: " + textStatus);
+      //  alert("ERROR DESCRIPTION: " + errorThrown);
+        xhr_methods(xhr.readyState, xhr.status);
+    }
+    // finished
+    request.always = function(){
+        // this will be called always whether fail or done at the end of this request
+        //alert("alwa");
+    }
+    // send
+    request.send(); // start the ajax request
+ }// end of function
+
+
+ function load_table_eval(data){
+   var n = 1;
+     $.each(data, function(key,value) {
+       eval = value['eval'];
+       acad = value['acad'];
+       if(value['eval'] !=null ){
+         $("#tbl_eval").append("<tr id='"+n+"'class='text-center'><td>"+acad['school_year']+" "+acad['semester']+"</td> <td>"+eval['id']+"</td> <td>"+eval['evaluation_date']+"</td> <td>"+""+"</td> <td>"+""+"</td><td>"+""+"</td><td>"+eval['year_level']+"</td><td>"+eval['remarks']+"</td><tr/>");
+         if(eval['active'] == 1){
+           $("#"+n+"").attr('style', 'background-color:#8DCF8C');
+         }
+       }else {
+       }
+       n++;
+     });
+ }
 </script>

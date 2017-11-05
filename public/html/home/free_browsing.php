@@ -1,4 +1,4 @@
-<div class="container wow fadeIn animated" style="margin-top: 5%; margin-bottom: 5%">
+<div class="container wow fadeIn animated" style="margin-top: 5%; margin-bottom: 5%; border-bottom: 35px solid #1A4D57;">
   <div class="row" style="border-bottom: 3px solid #3F724F">
     <div class="container col-lg-12 wow flipInX animated" >
     <p class="s-light" id="ques"></span>Get Free Browsing</p>
@@ -15,5 +15,5 @@
       <p class="mont">The biggest online tutorials library having a collection of the most acclaimed tutorials on various technical and non technical subjects</p>
     </div>
   </div>
-  <hr>
+  <hr><br>
 </div>

@@ -7,11 +7,29 @@ use App\Subject;
 use App\Grade;
 use App\CurriculumSubject;
 use App\Curriculum;
+use App\Evaluation;
+use App\AcademicTerm;
 
 class Student_Grade extends Controller
 {
   public function get_grade(Request $request){
     $id = $request->session()->get('SES_CICT_ID');
+
+    $eval = Evaluation::where('STUDENT_id', '=', $id)
+    ->where('active','=','1')
+    ->get();
+
+    foreach ($eval as $each){
+      $acad = AcademicTerm::where('id','=',$each->ACADTERM_id)
+      ->where('active','=','1')
+      ->first();
+
+      $single_row = [];
+      $single_row['eval'] = $each;
+      $single_row['acad'] = $acad;
+
+    }
+
 
       $student = Student::where('active', '=', '1')
       ->where('cict_id', '=', $id)

@@ -13,7 +13,16 @@
     </tr>
   </table>
 <br>
-  <table border="1" class="table table-striped table-responsive table-bordered text-center" cellspacing="0" style="padding: 5%" width="100%">
+  <table border="1" id="tbl_sched" class="table table-striped table-responsive table-bordered text-left" cellspacing="0" style="padding: 5%" width="100%" >
+    <th class="text-center">Class Day</th>
+    <th class="text-center">Subject Code</th>
+    <th class="text-center">Class Time In</th>
+    <th class="text-center">Class Time Out</th>
+    <th class="text-center">Room</th>
+    <th class="text-center">Faculty</th>
+  </table>
+
+  <table border="1" class="table table-striped table-responsive table-bordered text-center" cellspacing="0" style="padding: 5%" width="100%" hidden>
   <tr>
     <th class="text-center">Time</th>
     <th class="text-center">SUNDAY</th>
