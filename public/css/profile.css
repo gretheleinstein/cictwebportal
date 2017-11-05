@@ -1,0 +1,18 @@
+body{ background-color:#F4F8F9;font-family: Montserrat; font-size: 9pt;}
+.navbar-fixed-side{ border: none; padding-bottom: 5%}
+.navbar-fixed-side span{ padding-right: 10%; padding-left: 10%;}
+.span_grey{ color: #C6C8C7; background-color: transparent; outline: none; border: none;}
+.form-control{ border-radius: 0; font-size: 9pt;}
+.btn-blue:focus{ color: white; }
+.btn-blue{ background-color: white;border-radius: 0; border: 1px solid #CCCCCC; font-size: 9pt; }
+.active{ color: white; background-color: #1A4D57; }
+.profile-li{ border-left: 20px solid #1A4D57; border-bottom: 1px solid #F0F1F3; padding: 10%; font-size:7pt; }
+.profile-pic{ color: #556970; width:100px; margin: 0 auto; }
+.white-bg{ background-color: white; }
+.alert-msg{ font-size: 9pt; }
+.btn-options{ -webkit-transition-duration: 0.4s; transition-duration: 0.4s;
+  color: white; background-color:#1A4D57;  border-radius: 0; padding:1%;  margin-bottom: 2%; margin-top: 2%;  border: 1px solid transparent}
+.btn-options:hover{ background-color: transparent; border: 1px solid #1A4D57; color: #1A4D57; }
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+   background-color: #F4F8F9;
+}
