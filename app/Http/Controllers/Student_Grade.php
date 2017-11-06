@@ -15,7 +15,7 @@ class Student_Grade extends Controller
   public function get_grade(Request $request){
     $id = $request->session()->get('SES_CICT_ID');
 
-    $eval = Evaluation::where('STUDENT_id', '=', $id)
+  /*  $eval = Evaluation::where('STUDENT_id', '=', $id)
     ->where('active','=','1')
     ->get();
 
@@ -28,7 +28,7 @@ class Student_Grade extends Controller
       $single_row['eval'] = $each;
       $single_row['acad'] = $acad;
 
-    }
+    } */
 
 
       $student = Student::where('active', '=', '1')

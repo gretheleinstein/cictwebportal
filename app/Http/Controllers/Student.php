@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use App\LinkedPila;
 use App\LinkedFloorFour;
 use App\LinkedFloorThree;
-use App\LinkedSetting;
-
 
 class Student extends Controller
 {
@@ -45,17 +43,14 @@ class Student extends Controller
         } else {
             $floor_info['id'] = "NO_ROOM_ASSIGNED";
             $floor_info['pila_id'] = "NONE";
-        }
 
-        $linked_settings = LinkedSetting::where('id', $student_pila->SETTINGS_id)
-            ->first();
+        }
 
         //$pila_reference =
         $reply['pila_status'] = "yes";
         $reply['pila_info'] = $student_pila;
         $reply['reference'] = $floor_info;
         $reply['called'] = $current_called;
-        $reply['settings'] = $linked_settings;
         echo json_encode($reply, JSON_FORCE_OBJECT);
     }
 

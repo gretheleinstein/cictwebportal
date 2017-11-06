@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Http\RedirectResponse;
+
 Route::get('/r', function () {
   return view('java.register');
 });
@@ -72,7 +74,7 @@ Route::group(['middleware' => ['cict.auth']], function () {
   Route::get('media/photo/{photo}','Media@get_photo')->name('get-photo');
   Route::get('media/app','Media@get_app')->name('get-app');
   Route::post('media/upload','Media@upload_photo')->name('upload-photo');
-  Route::get('linked/check_number/{cict_id}','Student@check_number')->name('check-number');
+  Route::get('linked/check_number/{cict_id}','Student@check_number')->name('check-numberz');
 //
 // Route::get('linked/check_number/{cict_id}', function($cict_id){
 // $ch = curl_init();
@@ -92,9 +94,9 @@ Route::group(['middleware' => ['cict.auth']], function () {
 
 	Route::get('linked/api/{cict_id}', function($cict_id){
 		ini_set("allow_url_fopen",1);
-		$json = file_get_contents('http://192.168.254.151/laravel/linked/public/linked/check_number/'.$cict_id);
+		$json = file_get_contents('http://10.10.10.10/laravel/linked/public/linked/check_number/'.$cict_id);
 		$obj = json_decode($json, true);
 		var_dump($obj);
 		echo "<br>";
 		echo $obj['pila_status'];
-	})->name('huhu');
+	})->name('check-number');
