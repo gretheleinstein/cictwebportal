@@ -19,7 +19,9 @@ $(document).ready(function() {
           rules: {
             stud_id: {
               required: true,
-              minlength: 4
+              alphanumeric: true,
+			        minlength: 4,
+              maxlength: 20
             },
           },
           messages: {
@@ -146,17 +148,20 @@ $(document).ready(function() {
           rules: {
             last_name: {
               required: true,
+              letterswithbasicpunc: true,
               minlength: 2,
-              letterswithbasicpunc: true
+        			maxlength: 25
             },
             first_name: {
               required: true,
+              letterswithbasicpunc: true,
               minlength: 2,
-              letterswithbasicpunc: true
+        			maxlength: 25
             },
             middle_name: {
-              minlength: 2,
-              letterswithbasicpunc: true
+              letterswithbasicpunc: true,
+              minlength: 1,
+        			maxlength: 25
             },
           },
           messages: {
@@ -317,11 +322,11 @@ $(document).ready(function() {
             rules: {
               recovery_answer: {
                 required: true,
-                minlength: 4
+                minlength: 2
               },
               confirm_recovery_answer: {
                 required: true,
-                minlength: 4,
+                minlength: 2,
                 equalTo: "#recovery_answer"
               },
             },
@@ -347,6 +352,7 @@ $(document).ready(function() {
 
     function floor_assignment(final_account_data){
         $( "#container" ).load("{{ asset( 'html/registration/step_five_floor_assignment.php' ) }}", function(){
+          get_floor_name();
             $("#frm_floor_assignment").validate({
               rules: {
                 floor_assignment: {
@@ -370,6 +376,39 @@ $(document).ready(function() {
             }); //end of btn click
             onKeyPress('#floor_assignment','#btn_register');
         });
+    }
+
+    function get_floor_name(){
+      request = new Request();
+      request.url = "{{ route('register-floor-name') }}";
+      request.type = 'GET';
+      request.replyType = 'json';
+      // start
+      request.begin = function(){
+      }
+      // success
+      request.done = function(data, textStatus, xhr){
+          //alert(JSON.stringify(data));
+          onGetFloorSuccess(data/*$.parseJSON(data)*/);
+      }
+      // failed
+      request.fail = function(xhr, textStatus, errorThrown){
+          //alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
+          //alert("JQUERY TEXT STATUS: " + textStatus);
+          //alert("ERROR DESCRIPTION: " + errorThrown);
+          xhr_methods(xhr.readyState, xhr.status);
+      }
+      // finished
+      request.always = function(){
+          // this will be called always whether fail or done at the end of this request
+      }
+      // send
+      request.send(); // start the ajax request
+    }
+
+    function onGetFloorSuccess(data){
+      $("#floor_assignment").append('<option value="3">'+data['floor_3']+'</option>');
+      $("#floor_assignment").append('<option value="4">'+data['floor_4']+'</option>');
     }
 
     function create_account_request(post_param, account_data_param){

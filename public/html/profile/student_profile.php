@@ -27,8 +27,8 @@
       <input type="text" class="span_grey" id="curriculum" value="" disabled>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-      <label for="">Admission Year</label><br>
-      <input type="text" class="span_grey" id="admission-year" value="" disabled>
+      <label for="">Floor Assignment</label><br>
+      <input type="text" class="span_grey" id="floor-assignment-lbl" value="" disabled>
     </div>
   </div>
   <div class="row white-bg" style="padding: 3%">
@@ -60,15 +60,15 @@
         <input type="text" name="" class="form-control input-sm" id="middle_name" value="" disabled>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <label for="">Contact no.</label><br>
-        <input type="text" name="contact_no" id="contact_no" class="form-control input-sm" value="">
+        <label for="">Contact no. *</label><br>
+        <input type="text" name="contact_no" id="contact_no" class="form-control input-sm" placeholder="e.g. 09437083011" value="">
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <label for="">E-mail address</label><br>
-        <input type="text" name="email" id="email" class="form-control input-sm" value="">
+        <label for="">E-mail address *</label><br>
+        <input type="text" name="email" id="email" class="form-control input-sm" placeholder="e.g. juandelacruz@gamil.com" value="">
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="margin-bottom: 10%">
-        <label for="">Gender</label><br>
+        <label for="">Gender *</label><br>
         <div class="btn-group" id="radio_gender" data-toggle="buttons">
           <label class="btn btn-blue MALE">
             <input type="radio" name="gender" id="MALE" value="MALE">Male
@@ -83,28 +83,28 @@
       <h5 class="bold">COMPLETE ADDRESS</h5><hr>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <label for="house_no" class="">House no:</label><br>
-      <input type="text" id="house_no" name="house_no" class="form-control input-sm" value="">
+      <label for="house_no" class="">House no *</label><br>
+      <input type="text" id="house_no" name="house_no" class="form-control input-sm" placeholder="e.g. 03" value="">
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <label for="street" class="">Street:</label><br>
-      <input type="text" id="street" name="street" class="form-control input-sm"  value="">
+      <label for="street" class="">Street</label><br>
+      <input type="text" id="street" name="street" class="form-control input-sm" placeholder="e.g. St. Palayan" value="">
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <label for="zipcode" class="">Zipcode:</label><br>
-      <input type="text" id="zipcode" name="zipcode" class="form-control input-sm" value="">
+      <label for="zipcode" class="">Zipcode *</label><br>
+      <input type="text" id="zipcode" name="zipcode" class="form-control input-sm" placeholder="e.g. 3005" value="">
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-      <label for="brgy" class="">Barangay:</label><br>
-      <input type="text" id="brgy" name="brgy" class="form-control input-sm"  value="">
+      <label for="brgy" class="">Barangay *</label><br>
+      <input type="text" id="brgy" name="brgy" class="form-control input-sm" placeholder="e.g. Paltao" value="">
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-      <label for="city" class="">Town/City:</label><br>
-      <input type="text" id="city" name="city" class="form-control input-sm" value="">
+      <label for="city" class="">City/District *</label><br>
+      <input type="text" id="city" name="city" class="form-control input-sm" placeholder="e.g. Pulilan" value="">
     </div>
     <div class="col-lg-12 col-xs-12">
-      <label for="province" class="">Province:</label><br>
-      <input type="text" id="province" name="province" class="form-control input-sm" value=""><br>
+      <label for="province" class="">Province *</label><br>
+      <input type="text" id="province" name="province" class="form-control input-sm" placeholder="e.g. Bulacan" value=""><br>
     </div>
 
     <div class=""><br>
@@ -112,16 +112,16 @@
       <h5 style="font-size:9pt">In case of emergency, please contact:</h5>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-      <label for="">Full name</label><br>
-      <input type="text" name="ice_name" id="ice_name" class="form-control input-sm">
+      <label for="">Full name *</label><br>
+      <input type="text" name="ice_name" id="ice_name" class="form-control input-sm" placeholder="e.g. Mario Dela Cruz">
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-      <label for="">Contact no.</label><br>
-      <input type="text" name="ice_contact" id="ice_contact" class="form-control input-sm">
+      <label for="">Contact no. *</label><br>
+      <input type="text" name="ice_contact" id="ice_contact" class="form-control input-sm" placeholder="e.g. 09228575766">
     </div>
     <div class="col-xs-12">
-      <label for="">Complete address</label><br>
-      <input type="text" name="ice_address" id="ice_address" class="form-control input-sm">
+      <label for="">Complete address *</label><br>
+      <input type="text" name="ice_address" id="ice_address" class="form-control input-sm" placeholder="e.g. #07 National Road Cut-Cot, Pulilan, Bulacan">
     </div>
     <div class="col-xs-12 text-center">
       <br><div class="alert alert-info" style="display:none">

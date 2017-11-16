@@ -6,14 +6,37 @@
       <td class="text-center" width="47%"><table class="header">
         <tr><td>BULACAN STATE UNIVERSITY</td></tr>
         <tr><td style="font-weight: bold">COLLEGE OF INFORMATION AND COMMUNICATIONS TECHNOLOGY</td></tr>
-        <tr><td id="xs-font">A.Y 2015-2016</td></tr>
-        <tr><td id="xs-font">BSIT 4A-G1</td></tr>
+        <tr><td id="acad_term"></td></tr>
+        <tr><td id="course_section"></td></tr>
       </table></td>
       <td class="text-left" width="25%"><img id="cict_logo" src="" width="70" height="70" alt=""></td>
     </tr>
   </table>
 <br>
-  <table border="1" id="tbl_sched" class="table table-striped table-responsive table-bordered text-left" cellspacing="0" style="padding: 5%" width="100%" >
+<table border="1" id="tbl_sched" class="table table-responsive table-bordered text-left" cellspacing="0" style="padding: 5%" width="100%" >
+  <tr  id="SUNDAY">
+    <td colspan="5">SUNDAY</td>
+  </tr>
+  <tr  id="MONDAY">
+    <td colspan="5">MONDAY</td>
+  </tr>
+  <tr  id="TUESDAY">
+    <td colspan="5">TUESDAY</td>
+  </tr>
+  <tr  id="WEDNESDAY">
+    <td colspan="5">WEDNESDAY</td>
+  </tr>
+  <tr  id="THURSDAY">
+    <td colspan="5">THURSDAY</td>
+  </tr>
+  <tr  id="FRIDAY">
+    <td colspan="5">FRIDAY</td>
+  </tr>
+  <tr  id="SATURDAY">
+    <td colspan="5">SATURDAY</td>
+  </tr>
+
+  <table hidden border="1" id="tbl_sched" class="table table-striped table-responsive table-bordered text-left" cellspacing="0" style="padding: 5%" width="100%" >
     <th class="text-center">Class Day</th>
     <th class="text-center">Subject Code</th>
     <th class="text-center">Class Time In</th>

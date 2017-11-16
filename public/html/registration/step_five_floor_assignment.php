@@ -13,8 +13,7 @@
           <div id = "div_floor_assignment">
                <form id="frm_floor_assignment">
                    <select name="floor_assignment" class="form-control" id="floor_assignment">
-                       <option value="3">3RD FLOOR / IT8</option>
-                       <option value="4">4TH FLOOR / CT6</option>
+                       
                    </select><br>
                   <button type="button" id="btn_register" class="btn_next" name="button">Next</button>
                  </form>

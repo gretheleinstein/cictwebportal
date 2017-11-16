@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Student;
 use App\AccountStudent;
 use App\StudentProfile;
+use App\LinkedSetting;
 
 class Registration extends Controller
 {
@@ -114,6 +115,20 @@ class Registration extends Controller
     echo json_encode($request_result,JSON_FORCE_OBJECT);
   }
 
+  public function get_floor_name(){
+    $floor = LinkedSetting::where('active','=','1')
+    ->first();
+    if($floor){
+      $request['result'] = 'true';
+      $request['floor_3'] = $floor->floor_3_name;
+      $request['floor_4'] = $floor->floor_4_name;
+    }else{
+      $request['result'] = 'false';
+    }
+
+    echo json_encode($request, JSON_FORCE_OBJECT);
+  }
+
   public function check_username(Request $request){
      $post = $request->all();
      $username = $request['username'];
@@ -151,11 +166,44 @@ class Registration extends Controller
 
     $res = $new_student->save();
 
-    $student_profile = new StudentProfile();
+    $stud_profile = StudentProfile::where('active','=','1')
+        ->where('STUDENT_id','=',$student_id)
+        ->first();
+
+        if($stud_profile){
+          $stud_profile->active = 0;
+          $profile_result = $stud_profile->save();
+
+          $student_profile = new StudentProfile();
+          $student_profile->STUDENT_id = $stud_profile->STUDENT_id;
+          $student_profile->floor_assignment = $floor_assignment;
+          $student_profile->profile_picture = $stud_profile->profile_picture;
+          $student_profile->mobile = $stud_profile->mobile;
+          $student_profile->zipcode = strtoupper($stud_profile->zipcode);
+          $student_profile->email = $stud_profile->email;
+          $student_profile->house_no = strtoupper($stud_profile->house_no);
+          $student_profile->street = strtoupper($stud_profile->street);
+          $student_profile->brgy = strtoupper($stud_profile->brgy);
+          $student_profile->city = strtoupper($stud_profile->city);
+          $student_profile->province = strtoupper($stud_profile->province);
+          $student_profile->ice_name = strtoupper($stud_profile->ice_name);
+          $student_profile->ice_contact = $stud_profile->ice_contact;
+          $student_profile->ice_address = strtoupper($stud_profile->ice_address);
+
+          $profile_result = $student_profile->save();
+        }else {
+          $student_profile = new StudentProfile();
+          $student_profile->STUDENT_id = $student_id;
+          $student_profile->floor_assignment = $floor_assignment;
+
+          $profile_result = $student_profile->save();
+        }
+
+  /*  $student_profile = new StudentProfile();
     $student_profile->STUDENT_id = $student_id;
     $student_profile->floor_assignment = $floor_assignment;
 
-    $profile_result = $student_profile->save();
+    $profile_result = $student_profile->save(); */
 
     if($res and $profile_result){
       //response object

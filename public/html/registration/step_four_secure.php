@@ -13,19 +13,17 @@
           <div id = "div_secure">
                <form id="frm_setup_acc">
                    <select name="recovery_question" class="form-control" id="recovery_question">
-                       <option>What was the name of the street you lived in as a child?</option>
-                       <option>What were the last six digits of your childhood telephone number?</option>
                        <option>What primary school did you attend?</option>
+                       <option>What is the title of your favorite movie?</option>
                        <option>In what town or city was your mother born?</option>
-                       <option>In what town or city did you meet your bestfriend?</option>
-                       <option>What is the middle name of your oldest sibling?</option>
+                       <option>What is the maiden name of your mother?</option>
                        <option>What are the last six digits of your Student ID?</option>
-                       <option>What is your grandmother's on your mother's maiden name?</option>
+                       <option>What year was your father born?</option>
                        <option>What is your favorite spot in BulSU?</option>
                        <option>Where is your dream destination?</option>
                    </select><br>
-                   <input name="recovery_answer" class="form-control" id="recovery_answer" name="recovery_answer" placeholder="Answer" /><br>
-                   <input name="confirm_recovery_answer" class="form-control" id="confirm_recovery_answer" name="confirm_recovery_answer" placeholder="Confirm Answer" /><br>
+                   <input type="password" name="recovery_answer" class="form-control" id="recovery_answer" name="recovery_answer" placeholder="Answer" /><br>
+                   <input type="password" name="confirm_recovery_answer" class="form-control" id="confirm_recovery_answer" name="confirm_recovery_answer" placeholder="Confirm Answer" /><br>
                    <button type="button" id="btn_register" class="btn_next" name="button">Next</button>
                  </form>
               </div><br>

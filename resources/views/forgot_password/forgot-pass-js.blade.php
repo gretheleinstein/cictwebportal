@@ -21,7 +21,9 @@
           rules: {
             stud_username: {
               required: true,
-              minlength: 4
+              alphanumeric: true,
+			        minlength: 4,
+              maxlength: 20
             },
           },
           messages: {
@@ -96,7 +98,7 @@
             rules: {
               recovery_answer: {
                 required: true,
-                minlength: 6
+                minlength: 2
               },
             },
             messages: {

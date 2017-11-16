@@ -18,7 +18,7 @@
             <li class="profile-li" style="border-left: 20px solid #1A4D57;">
               <div class="profile-userinfo text-center" >
                 <div class="profile-pic">
-                  <img id="profile-pic_sub" onload="onload_display_picture_sub(this.id)" class="img-responsive img-circle text-center" style="border: 1px solid #EEEEEE" width="100" height="100" alt="">
+                  <img id="profile-pic_sub" onload="onload_display_picture_sub(this.id)" class="img-responsive img-circle text-center"  width="100" height="100" alt="">
                 </div>
                 <div id ="side-bar-name_sub" class="profile-name">
                 </div>
@@ -28,7 +28,8 @@
             <li><a href="#" id="btn_profile_sub" style="padding-left: 23%"><span class="showopacity glyphicon glyphicon-th-list"></span> PROFILE</a></li>
             <li><a href="#" id="btn_history_sub" style="padding-left: 23%"><span class="showopacity glyphicon glyphicon-tags"></span> HISTORY</a></li>
             <li><a href="#" id="btn_sched_sub" style="padding-left: 23%"><span class="showopacity glyphicon glyphicon-time"></span> SCHEDULE</a></li>
-            <li><a href="#" id="btn_grade_sub" style="padding-left: 23%"><span class="showopacity glyphicon glyphicon-list-alt"></span> GRADES</a></li>
+            <li><a href="#" id="btn_grade_sub" style="padding-left: 23%"><span class="showopacity glyphicon glyphicon-credit-card"></span> GRADES</a></li>
+            <li><a href="#" id="btn_summary_sub" style="padding-left: 23%"><span class="showopacity glyphicon glyphicon-list-alt"></span> SUMMARY</a></li>
             <li><a href="#" id="btn_linked_sub" style="padding-left: 23%"><span><img src="" id="linked_logo_sub" height="15" width="15" style="margin-right: 2px" class="pull-left"/></span> LINKED</a></li>
             <li><a href="#" id="btn_settings_sub" style="padding-left: 23%"><span class="showopacity glyphicon glyphicon-cog"></span> SETTINGS</a></li>
             <li><a href="#" id="btn_help_sub" style="padding-left: 23%"><span class="showopacity glyphicon glyphicon-question-sign"></span> HELP</a></li>
