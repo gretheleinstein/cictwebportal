@@ -38,7 +38,7 @@
           <table class="sub-header">
             <tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr>
             <tr><td style="font-weight: bold">NEW STUDENT PROFILE</td></tr>
-            <tr><td width="57%"></td><td width="15%" class="info" style="font-size: 9pt; text-align:center;">{{ $sem }}</td><td width="17%">Sem S.Y.</td><td width="15%" class="info" style="font-size: 9pt; text-align:center">{{ $sy }}</td></tr>
+            <tr><td width="50%"></td><td width="20%" class="info" style="font-size: 9pt; text-align:center;">{{ $sem }}</td><td width="17%">Sem S.Y.</td><td width="20%" class="info" style="font-size: 9pt; text-align:center">{{ $sy }}</td></tr>
           </table></td>
           @if( $student_profile->profile_picture == "NONE")
           <td width="30%" align="right" ><img src="{{ asset('img/pic.png') }}" alt="" style="width:75px; height:75px"></td>

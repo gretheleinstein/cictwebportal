@@ -20,6 +20,7 @@ Route::get('show_token',function(){
   echo csrf_token();
 });
 
+//404 PAGE
 Route::get('page_not_found', function(){
   return view('errors.404');
 })->name('error-404');
@@ -27,28 +28,29 @@ Route::get('page_not_found', function(){
 // ROUTES FOR GUEST USERS
 Route::group(['middleware' => ['cict.guest']], function () {
 
+  //HOME
   Route::get('home/{type}','Home@show_home')->name('home');
   Route::post('home/verify','Home@verify_login')->name('login-verify');
-  // all routes related to registration
-  // name is required if you will use route() helper inside blade views
+
+  //REGISTRATION
   Route::get('registration/register','Registration@show_registration')->name('register');
-  // like this one i will use its route for ajax inside a <script> tag
-  // so i need to name it for ajax
   Route::post('registration/verify','Registration@verify_student')->name('register-verify');
   Route::post('registration/check_account','Registration@check_account')->name('register-check-account');
   Route::post('registration/confirm','Registration@confirm_information')->name('register-confirm');
   Route::post('registration/check_username','Registration@check_username')->name('register-check-username');
-  Route::get('registration/get_floor_name','Registration@get_floor_name')->name('register-floor-name');
   Route::post('registration/create','Registration@create_account')->name('register-create');
 
+  //FROGOT PASSWORD
   Route::get('forgot_password','Forgot_Password@show_forgot_pass')->name('forgot-pass');
   Route::post('forgot_password/verify','Forgot_Password@verify_student')->name('forgot-pass-verify');
   Route::post('forgot_password/get_question','Forgot_Password@get_question')->name('forgot-pass-get');
-  Route::post('forgot_password/check_account','Forgot_Password@verify_answer')->name('forgot-pass-check-answer');
+  Route::post('forgot_password/check_answer','Forgot_Password@verify_answer')->name('forgot-pass-check-answer');
   Route::post('forgot_password/set_new_password','Forgot_Password@reset_password')->name('forgot-pass-reset');
 
-});
+  //LINKED SETTINGS
+  Route::get('get_floor_name','Linked_Settings@get_floor_name')->name('get-floor-name'); 
 
+});
 
 // ROUTES THAT REQUIRES LOGGED IN USER
 Route::group(['middleware' => ['cict.auth']], function () {
@@ -68,11 +70,12 @@ Route::group(['middleware' => ['cict.auth']], function () {
 
 });
 
+// MEDIA ROUTES
   Route::get('media/photo/{photo}','Media@get_photo')->name('get-photo');
   Route::get('media/app','Media@get_app')->name('get-app');
   Route::post('media/upload','Media@upload_photo')->name('upload-photo');
 
-
+// EXTERNAL ROUTES
 	Route::get('linked/api/{cict_id}', function($cict_id){
 		ini_set("allow_url_fopen",1);
 		$json = file_get_contents('http://localhost/laravel/linked/public/linked/check_number/'.$cict_id);

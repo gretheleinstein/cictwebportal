@@ -7,35 +7,36 @@ use Illuminate\Http\Request;
 use App\Student;
 use App\AccountStudent;
 use App\StudentProfile;
-use App\LinkedSetting;
+use Illuminate\Support\Facades\DB;
 
 class Registration extends Controller
 {
-  /* Displays the reigstration view*/
   public function show_registration(){
     return view('registration.register');
   }
 
-  /*Verify if a student is existing*/
   public function verify_student(Request $request){
     $post = $request->all();
     $stud_number = $request['stud_id'];
-    echo "";
 
-    // find the student with the given parameters
+    #------------------------------------------------------
+    // Find the student with the given parameters
     $student = Student::where('id', '=', $stud_number)
     ->where('active', '=', '1')
     ->orderBy('id','DESC')
     ->first();
 
+    #------------------------------------------------------
+    // If the student exists
     if($student){
-      // response
       $request_result['result'] = 'true';
       $request_result['id'] = $student->cict_id;
     }else{
       $request_result['result'] = 'false';
     }
 
+    #------------------------------------------------------
+    // send response
     echo json_encode($request_result,JSON_FORCE_OBJECT);
   }
 
@@ -43,20 +44,24 @@ class Registration extends Controller
      $post = $request->all();
      $cict_id = $request['cict_id'];
 
-     // find the account student with the given parameters
+     #------------------------------------------------------
+     // Find the student with the given parameters
      $account_student = AccountStudent::where('STUDENT_id', '=', $cict_id)
      ->where('active', '=', '1')
      ->orderBy('id','DESC')
      ->first();
 
+     #------------------------------------------------------
+     // If the student has already an account
      if($account_student){
-       // response
        $request_result['result'] = 'true';
      }else{
        $request_result['result'] = 'false';
        $request_result['id'] = $cict_id;
      }
 
+     #------------------------------------------------------
+     // send response
     echo json_encode($request_result,JSON_FORCE_OBJECT);
   }
 
@@ -67,23 +72,31 @@ class Registration extends Controller
      $first_name = $request['first_name'];
      $middle_name = $request['middle_name'];
 
-     // find the student with the given parameters
+     #------------------------------------------------------
+     // Find the student with the given parameters
      $student = Student::where('cict_id', '=', $cict_id)
      ->where('active', '=', 1)
      ->orderBy('id','DESC')
      ->first();
 
+     #------------------------------------------------------
+     // If the student exists
      if($student){
+       // get the value of the column middle_name
        $request_result['orig'] = $student->middle_name;
+       // if middle_name is empty;
        if((empty($student->middle_name)) and ($request['middle_name'] == "")){
          $middle_name = "";
          $request_result['empty_md'] = $middle_name;
        }else{}
+       // if middle_name is null
        if((is_null($student->middle_name)) and ($request['middle_name'] == "")){
          $middle_name = $request['middle_name'];
          $request_result['null_md'] = $middle_name;
        }else{}
 
+      #------------------------------------------------------
+      // Find the student with the given parameters
        $student_credentials = Student::where('cict_id', '=', $student->cict_id)
        ->where('last_name', '=', $last_name)
        ->where('first_name', '=', $first_name)
@@ -91,61 +104,47 @@ class Registration extends Controller
        ->where('active', '=', 1)
        ->orderBy('id','DESC')
        ->first();
-       $request_result['results'] = $middle_name;
+
+       #------------------------------------------------------
+       // if credentials match
+       $request_result['result_md'] = $middle_name;
        if($student_credentials){
           $request_result['result'] = 'true';
        }else {
           $request_result['result'] = 'false_name';
        }
+
+     #------------------------------------------------------
+     // if student does not exists
      }else{
        $request_result['result'] = 'false';
      }
 
-
-
-/*     if($student){
-       // response
-       $request_result['result'] = 'true';
-       $request_result['r'] = $student->middle_name;
-    //   $request_result['id'] = $student->cict_id;
-     }else{
-       $request_result['result'] = 'false';
-     } */
-
+    #------------------------------------------------------
+    //send response
     echo json_encode($request_result,JSON_FORCE_OBJECT);
-  }
-
-  public function get_floor_name(){
-    $floor = LinkedSetting::where('active','=','1')
-    ->first();
-    if($floor){
-      $request['result'] = 'true';
-      $request['floor_3'] = $floor->floor_3_name;
-      $request['floor_4'] = $floor->floor_4_name;
-    }else{
-      $request['result'] = 'false';
-    }
-
-    echo json_encode($request, JSON_FORCE_OBJECT);
   }
 
   public function check_username(Request $request){
      $post = $request->all();
      $username = $request['username'];
 
+      #------------------------------------------------------
      // find the if the username is taken
      $account_student = AccountStudent::where('username', '=', $username)
      ->where('active', '=', '1')
      ->orderBy('id','DESC')
      ->first();
 
+     //if is already taken
      if($account_student){
-       // response
        $request_result['result'] = 'taken';
      }else{
        $request_result['result'] = 'available';
      }
 
+    #------------------------------------------------------
+    // send response
     echo json_encode($request_result,JSON_FORCE_OBJECT);
   }
 
@@ -157,77 +156,80 @@ class Registration extends Controller
     $answer = $request['recovery_answer'];
     $floor_assignment = $request['floor_assignment'];
 
-    $new_student = new AccountStudent();
-    $new_student->STUDENT_id = $student_id;
-    $new_student->username = $username;
-    $new_student->password = $password;
-    $new_student->recovery_question = $question;
-    $new_student->recovery_answer = $answer;
+    $student_account = AccountStudent::where('STUDENT_id', $student_id)
+    ->where('active', '1')
+    ->first();
 
-    $res = $new_student->save();
+    #---------------------------------------------------
+    // check if student already has an account
+    if(!$student_account){
+      //if there is no record, create
+        $new_student = new AccountStudent();
+        $new_student->STUDENT_id = $student_id;
+        $new_student->username = $username;
+        $new_student->password = $password;
+        $new_student->recovery_question = $question;
+        $new_student->recovery_answer = $answer;
+    }else {}
 
-    $stud_profile = StudentProfile::where('active','=','1')
-        ->where('STUDENT_id','=',$student_id)
-        ->first();
+    #---------------------------------------------------
+    // check if student record exists in table student
+    $student = Student::where('cict_id', $student_id)
+    ->where('active', '1')
+    ->orderBy('cict_id', 'desc')
+    ->first();
 
-        if($stud_profile){
-          $stud_profile->active = 0;
-          $profile_result = $stud_profile->save();
-
-          $student_profile = new StudentProfile();
-          $student_profile->STUDENT_id = $stud_profile->STUDENT_id;
-          $student_profile->floor_assignment = $floor_assignment;
-          $student_profile->profile_picture = $stud_profile->profile_picture;
-          $student_profile->mobile = $stud_profile->mobile;
-          $student_profile->zipcode = strtoupper($stud_profile->zipcode);
-          $student_profile->email = $stud_profile->email;
-          $student_profile->house_no = strtoupper($stud_profile->house_no);
-          $student_profile->street = strtoupper($stud_profile->street);
-          $student_profile->brgy = strtoupper($stud_profile->brgy);
-          $student_profile->city = strtoupper($stud_profile->city);
-          $student_profile->province = strtoupper($stud_profile->province);
-          $student_profile->ice_name = strtoupper($stud_profile->ice_name);
-          $student_profile->ice_contact = $stud_profile->ice_contact;
-          $student_profile->ice_address = strtoupper($stud_profile->ice_address);
-
-          $profile_result = $student_profile->save();
-        }else {
-          $student_profile = new StudentProfile();
-          $student_profile->STUDENT_id = $student_id;
-          $student_profile->floor_assignment = $floor_assignment;
-
-          $profile_result = $student_profile->save();
+    //if student record exists
+    if($student){
+      #---------------------------------------------------
+      //search latest student profile
+        $student_profile = StudentProfile::where('STUDENT_id', $student_id)
+            ->where('active', '1')
+            ->orderBy('id', 'desc')
+            ->first();
+        //if there is a record, clone
+        if ($student_profile) {
+            $cloned_profile = MonoUtility::cloneProfile($student_profile);
+            $cloned_profile->floor_assignment = $floor_assignment;
+            $student->has_profile = '1';
+        } else {
+        //if there is no record, create
+            $cloned_profile = new StudentProfile;
+            $cloned_profile->STUDENT_id = $student_id;
+            $cloned_profile->floor_assignment = $floor_assignment;
         }
+      //multiple insertion
+      $data['result'] = "false";
+       try {
+           DB::beginTransaction();
+           $new_student->save();
+           $student->save();
+           StudentProfile::where('STUDENT_id', $student_id)
+               ->where('active', '1')
+               ->update(['active' => '0']);
+           $cloned_profile->save();
+           DB::commit();
 
-  /*  $student_profile = new StudentProfile();
-    $student_profile->STUDENT_id = $student_id;
-    $student_profile->floor_assignment = $floor_assignment;
-
-    $profile_result = $student_profile->save(); */
-
-    if($res and $profile_result){
-      //response object
-      $data['result'] = 'saved';
-      $account_student = AccountStudent::where('active', '=', '1')
-      ->where('STUDENT_id', '=', $student_id)
-      ->orderBy('id','DESC')
-      ->first();
-
-      if($account_student) {
         //------------------------------------------------------------------------
         session()->put('SES_AUTHENTICATED','YES');
-        session()->put('SES_ACCOUNT_ID',$account_student->id);
-        session()->put('SES_CICT_ID',$account_student->STUDENT_id);
-        session()->put('SES_USERNAME',$account_student->username);
+        session()->put('SES_ACCOUNT_ID',$new_student->id);
+        session()->put('SES_CICT_ID',$new_student->STUDENT_id);
+        session()->put('SES_USERNAME',$new_student->username);
         //------------------------------------------------------------------------
-      }else{
-        $data['result'] = 'failed';
-      }
 
-    }else{
-      $data['result'] = 'failed';
+           $data['result'] = "saved";
+           $data['message'] = 'Information successfully updated.';
+       } catch (\PDOException $e) {
+           DB::rollback();
+           $data['message'] = 'Failed to update please try again.';
+       }
+    //if student record does not exists
+    }else {
+      $data['message'] = 'Cannot update information the student is not existing.';
     }
 
-    echo json_encode($data,JSON_FORCE_OBJECT);
+  #------------------------------------------------------
+  //send response
+   echo json_encode($data,JSON_FORCE_OBJECT);
   }
 }

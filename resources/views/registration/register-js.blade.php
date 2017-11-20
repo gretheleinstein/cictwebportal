@@ -380,7 +380,7 @@ $(document).ready(function() {
 
     function get_floor_name(){
       request = new Request();
-      request.url = "{{ route('register-floor-name') }}";
+      request.url = "{{ route('get-floor-name') }}";
       request.type = 'GET';
       request.replyType = 'json';
       // start
@@ -446,7 +446,7 @@ $(document).ready(function() {
     }
 
     function onCreateSuccess(data){
-      if(data['result'] == 'saved'){
+      if(data['result'] == "saved"){
         window.location.href = "{{ route('profile') }}";
       }else{
         alert("Registration Failed. Please try again after a few minutes.");

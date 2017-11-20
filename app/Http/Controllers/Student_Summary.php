@@ -15,21 +15,29 @@ class Student_Summary extends Controller
   public function get_summary(Request $request){
     $id = $request->session()->get('SES_CICT_ID');
 
+    #------------------------------------------------------
+    // Find the student with the given parameters
       $student = Student::where('active', '=', '1')
       ->where('cict_id', '=', $id)
       ->orderBy('id','DESC')
       ->first();
 
+    #------------------------------------------------------
+    // Find the student's curriculum info
       $curriculum = Curriculum::where('active', '=', '1')
       ->where('id', '=', $student->CURRICULUM_id)
       ->orderBy('id','DESC')
       ->first();
 
+    #------------------------------------------------------
+    // Look at student record if she/he has preparatory id
       $curriculum_prep = Curriculum::where('active', '=', '1')
       ->where('id', '=', $student->PREP_id)
       ->orderBy('id','DESC')
       ->first();
 
+      #------------------------------------------------------
+      //if student does not have a prep id. set out first curriculum from column CURRICULUM_id
       if($student->PREP_id == null){
         if($curriculum){
         $collection = array();
@@ -78,6 +86,8 @@ class Student_Summary extends Controller
         $data['result'] = 'curriculum_not_set';
         echo json_encode($data,JSON_FORCE_OBJECT);
       }
+      #------------------------------------------------------
+      //if prep id has a value. set it out first
     }else if($student->PREP_id !== null){
         $collection = array();
         if($curriculum_prep){
@@ -122,6 +132,8 @@ class Student_Summary extends Controller
           echo json_encode($data,JSON_FORCE_OBJECT);
         }
 
+        #------------------------------------------------------
+        //then add as the conseq the laterst curriculum id
         if($curriculum){
           $study_years = $curriculum->study_years;
           for($i=1; $i<=$study_years; $i++){
@@ -171,5 +183,5 @@ class Student_Summary extends Controller
       dd("error. wala ko makita");
     }
 
-  }
+  }//function closing
 }

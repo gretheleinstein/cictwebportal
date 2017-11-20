@@ -7,15 +7,12 @@
  */
 
 namespace App;
-
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Image;
 
 class MonoImage
 {
-
     /**
      * @param Request $request
      * @param $file_id

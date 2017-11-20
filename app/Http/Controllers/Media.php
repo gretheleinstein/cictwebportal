@@ -75,8 +75,6 @@ class Media extends Controller
 
         // get supported image formats
         $validator = Validator::make($request->all(), [
-            // in this case only jpeg,jpg and png are allowed
-            // and a max size of 512 kb
             //'image-file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5000', 5mb
             'image-file' => 'image|max:5000',
         ]);

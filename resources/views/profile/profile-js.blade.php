@@ -486,7 +486,8 @@ function load_values(data){
   }else {
     $("#year-sec-gr").val("---");
   }
-  if(info['gender']!= null){
+  if(info['gender'] == ""){
+  }else if(info['gender']!= null){
     $("#"+info['gender']+"").attr("checked", "checked");
     $("."+info['gender']+"").addClass('active');
   }
@@ -524,12 +525,13 @@ function update_profile_picture(id){
     newImg3.className = 'img-responsive img-thumbnail';
     newImg3.width="150";
     newImg3.height="150";
-  //  newImg.onload = huhu;
+    newImg3.onload = onload_profile_photo('display-pic');
 }
 
 function onload_profile_photo(id){
-      if(newImg3.src.includes("NONE")){
-        newImg3.src = 'img/img.png';
+  if(newImg3.src.includes("NONE")){
+    alert("ur here");
+    newImg3.src = "{{ asset('img/img.png') }}";
       }else{
       //  alert("1-1");
         var _img = $(id);
