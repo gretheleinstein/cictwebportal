@@ -130,12 +130,19 @@ class Student_Schedule extends Controller
       ->where('active','=','1')
       ->first();
 
+      $evaluator = Faculty::where('id','=',$each->FACULTY_id)
+      ->where('active','=','1')
+      ->first();
+
+      $faculty = Faculty::where('id','=',$each->cancelled_by)
+      ->where('active','=','1')
+      ->first();
+
       $single_row = [];
       $single_row['eval'] = $each;
       $single_row['acad'] = $acad;
-      $single_row['college'] = $student->college;
-      $single_row['cur'] = $cur->name;
-      $single_row['major'] = $cur->major;
+      $single_row['evaluator'] = $evaluator;
+      $single_row['faculty'] = $faculty;
 
       array_push($collection,$single_row);
     }

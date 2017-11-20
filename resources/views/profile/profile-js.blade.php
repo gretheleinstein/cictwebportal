@@ -1517,6 +1517,7 @@ function load_sched(data){
 function student_history(){
   $( "#container" ).load("{{ asset( 'html/profile/student_eval.php' ) }}", function(){
     request_eval();
+
     });
   }
 
@@ -1554,19 +1555,25 @@ function student_history(){
 
 
  function load_table_eval(data){
-   var n = 1;
+   $("#tbl_eval td").remove();
      $.each(data, function(key,value) {
        eval = value['eval'];
        acad = value['acad'];
+       evaluator = value['evaluator'];
+       faculty = value['faculty'];
 
+       var evaluator_name = "";
+       evaluator_name = (value['evaluator'] != null) ? (evaluator_name = evaluator['last_name']+" , "+evaluator['first_name']+" "+evaluator['middle_name']) : ("");
+       var faculty_name = "";
+       faculty_name = (value['faculty'] != null) ? (faculty_name = faculty['last_name']+" , "+faculty['first_name']+" "+faculty['middle_name']) : ("");
+       cancelled_date = (eval['cancelled_date']!=null) ? (cancelled_date=eval['cancelled_date']) : (cancelled_date="");
        if(value['eval'] !=null ){
-         $("#tbl_eval").append("<tr id='"+n+"'class='text-center'><td>"+acad['school_year']+" "+acad['semester']+"</td> <td>"+eval['id']+"</td> <td>"+eval['evaluation_date']+"</td> <td>"+value['college']+"</td> <td>"+value['cur']+"</td><td>"+value['major']+"</td><td>"+eval['year_level']+"</td><td>"+eval['remarks']+"</td><tr/>");
-         if(eval['active'] == 1){
-           $("#"+n+"").attr('style', 'background-color:#8DCF8C');
+         $("#tbl_eval").append("<tr 'class='text-center'><td>"+acad['school_year']+"</td> <td>"+acad['semester']+"</td> <td>"+eval['year_level']+"</td> <td>"+acad['type']+"</td> <td>"+evaluator_name+"</td> <td>"+eval['evaluation_date']+"</td><td>"+eval['remarks']+"</td><td>"+faculty_name+"</td><td>"+cancelled_date+"</td></tr>");
+         if(eval['active'] == "1"){
+           $("#tbl_eval tr:last").attr('style','background-color:#8DCF8C');
          }
        }else {
        }
-       n++;
      });
  }
 </script>

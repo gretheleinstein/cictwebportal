@@ -48,7 +48,7 @@ Route::group(['middleware' => ['cict.guest']], function () {
   Route::post('forgot_password/set_new_password','Forgot_Password@reset_password')->name('forgot-pass-reset');
 
   //LINKED SETTINGS
-  Route::get('get_floor_name','Linked_Settings@get_floor_name')->name('get-floor-name'); 
+  Route::get('get_floor_name','Linked_Settings@get_floor_name')->name('get-floor-name');
 
 });
 
@@ -62,7 +62,7 @@ Route::group(['middleware' => ['cict.auth']], function () {
   Route::get('student_profile/{id}/PDF/view_pdf', 'Student_Profile@view_pdf')->name('pdf-view');
   Route::get('get_grade','Student_Grade@get_grade')->name('grade-get');
   Route::get('get_summary','Student_Summary@get_summary')->name('summary-get');
-  Route::get('view_eval','Student_Schedule@view_eval')->name('eval-get');
+  Route::get('view_eval','Student_Evaluation_History@view_eval')->name('eval-get');
   Route::get('view_schedule','Student_Schedule@view_sched')->name('sched-get');
   Route::get('schedule_info','Student_Schedule@get_current_term')->name('sched-info-get');
   Route::post('student_profile/set_new_password','Settings@reset_password')->name('settings-pass-reset');
