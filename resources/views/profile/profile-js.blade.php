@@ -530,7 +530,7 @@ function update_profile_picture(id){
 
 function onload_profile_photo(id){
   if(newImg3.src.includes("NONE")){
-    alert("ur here");
+  //  alert("ur here");
     newImg3.src = "{{ asset('img/img.png') }}";
       }else{
       //  alert("1-1");
