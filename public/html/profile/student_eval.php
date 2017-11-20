@@ -1,5 +1,17 @@
 <div class="row white-bg" style="padding: 3%;">
-<h3 class="mont">Enrollment History</h3><hr>
+<table style="width:100%; border: 1px solid #EEEEEE">
+  <tr>
+    <td class="text-right" width="25%"><img id="bulsu_logo" src="" width="70" height="70" alt=""></td>
+    <td class="text-center" width="47%"><table class="header">
+      <tr><h3 class="mont">Enrollment History</h3></tr>
+      <tr><td>BULACAN STATE UNIVERSITY</td></tr>
+      <tr><td style="font-weight: bold">COLLEGE OF INFORMATION AND COMMUNICATIONS TECHNOLOGY</td></tr>
+      <tr><td id="course_section"></td></tr>
+    </table></td>
+    <td class="text-left" width="25%"><img id="cict_logo" src="" width="70" height="70" alt=""></td>
+  </tr>
+</table>
+<br>
 <table border="1" id="tbl_eval" class="table table-responsive table-bordered text-left" cellspacing="0" style="padding: 5%" width="100%" >
   <th class="text-center">School Year</th>
   <th class="text-center">Semester</th>

@@ -1517,7 +1517,8 @@ function load_sched(data){
 function student_history(){
   $( "#container" ).load("{{ asset( 'html/profile/student_eval.php' ) }}", function(){
     request_eval();
-
+    $("#bulsu_logo").attr('src', "{{ asset( 'img/logo/BULSU_LOGO.png' ) }}");
+    $("#cict_logo").attr('src', "{{ asset( 'img/logo/CICT_LOGO.png' ) }}");
     });
   }
 
