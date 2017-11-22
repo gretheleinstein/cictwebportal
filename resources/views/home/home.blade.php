@@ -17,6 +17,10 @@
   <!-- this will contain the login form -->
   <div id = "container"></div>
 
+  <div id = "container-announcement"></div>
+
+  <div id = "container-faculty-sched"></div>
+
   <div id = "container-steps-in-eval"></div>
 
   <div id = "container-student-app"></div>

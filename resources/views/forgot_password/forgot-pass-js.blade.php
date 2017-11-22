@@ -3,6 +3,9 @@
   $(document).ready(function() {
       load_nav();
   });
+
+  //----------------------------------------------------------
+  //load navbar and add attr on links
       function load_nav(){
         $( "#container-nav" ).load("{{ asset( 'html/navbar/register_nav.php' ) }}", function(){
           $(".loader").attr('style', 'display:none');
@@ -17,6 +20,8 @@
       function forgot_pass_verify(){
         $( "#container" ).load("{{ asset( 'html/forgot_password/step_one_verify.php' ) }}", function(){
         $( "#div_verify" ).hide().fadeIn("slow");
+
+      //----------------------------------------------------------
         $("#frm_verify").validate({
           rules: {
             stud_username: {
@@ -32,14 +37,15 @@
             }
           },
         }); //end of validate
+      //----------------------------------------------------------
+
         // onclick
         $( "#btn_verify" ).click(function(){
           var isValid = $("#frm_verify").valid();
           if(isValid == true){
-          var form_values = $("#frm_verify").serializeObject();
-          verify_student(form_values);
-          }else{
-          }
+            var form_values = $("#frm_verify").serializeObject();
+            verify_student(form_values);
+          }else{}
         }); //end of btn click
         onKeyPress('#stud_username','#btn_verify');
     });
@@ -57,7 +63,6 @@
       }
       // success
       request.done = function(data, textStatus, xhr){
-          //alert(data);
           btn_clicked_end("#btn_verify");
           onRequestSuccess(data/*$.parseJSON(data)*/);
       }
@@ -88,12 +93,13 @@
     }
 
     function security_question(){
-      // account_data is
       $( "#container" ).load("{{ asset( 'html/forgot_password/step_two_question.php' ) }}", function(){
         //alert(JSON.stringify(account_data));
         $(".loader").attr('style', 'display:none');
         $( "#div_confirm" ).hide().fadeIn("slow");
         request_values();
+
+        //----------------------------------------------------------
           $("#frm_confirm").validate({
             rules: {
               recovery_answer: {
@@ -107,14 +113,14 @@
               }
             }
           }); //end of validate
+       //----------------------------------------------------------
 
           $("#btn_confirm").click(function(){
             var isValid = $("#frm_confirm").valid();
             if(isValid == true){
-            var form_values = $("#frm_confirm").serializeObject();
-            check_question(form_values);
-          }else{
-            }
+              var form_values = $("#frm_confirm").serializeObject();
+              check_question(form_values);
+            }else{}
           }); //end of btn click
           onKeyPress('#recovery_answer','#btn_confirm');
       });
@@ -193,14 +199,15 @@
       if(data['result'] == 'true'){
         $("#recovery_question").val(data['question']);
       }else{
-        alert("failed");
-        alert(data['id']);
+        notify("Database Connection Failed","Failed to fetch recovery question from database. Please refresh and try again.");
       }
     }
 
     function reset_password(){
       $("#container").load("{{ asset( 'html/forgot_password/step_three_reset.php' ) }}", function(){
         $("#div_reset").hide().fadeIn("slow");
+
+        //----------------------------------------------------------
           $("#frm_reset").validate({
             rules: {
               password: {
@@ -219,19 +226,21 @@
               }
             }
           }); //end of validate
+      //----------------------------------------------------------
 
           $("#btn_reset").click(function(){
             var isValid = $("#frm_reset").valid();
             if(isValid == true){
-            var form_values = $("#frm_reset").serializeObject();
-            update_password(form_values);
-            }else{
-            }
+              var form_values = $("#frm_reset").serializeObject();
+              update_password(form_values);
+            }else{}
           }); //end of btn click
         onKeyPress('#confirm_password','#btn_reset');
       });
     }
 
+    //----------------------------------------------------------
+    //Update paswword with new password
     function update_password(post_parameters){
       request = new Request();
       request.url = "{{ route('forgot-pass-reset') }}";
@@ -265,13 +274,18 @@
       request.send(); // start the ajax request
     }
 
+    //----------------------------------------------------------
+    //On password update success
     function onUpdateSuccess(data){
       if(data['result']=="saved"){
         reset_success();
       }else{
+        notify("Database Connection Failed","Failed to save new password on database. Please refresh and try again.");
       }
     }
 
+    //----------------------------------------------------------
+    //load success view
     function reset_success(){
       $("#container").load("{{ asset('html/forgot_password/reset_success.php') }}", function(){
         $( "#container" ).hide().fadeIn("slow");

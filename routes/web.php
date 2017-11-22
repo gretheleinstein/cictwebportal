@@ -31,6 +31,9 @@ Route::group(['middleware' => ['cict.guest']], function () {
   //HOME
   Route::get('home/{type}','Home@show_home')->name('home');
   Route::post('home/verify','Home@verify_login')->name('login-verify');
+  Route::post('home/announcements','Home@get_all_announcements')->name('get-all-anno');
+  Route::post('home/faculty_name','Home@get_faculty_name')->name('get-faculty-name');
+  Route::post('home/faculty_sched/{id}','Home@get_faculty_sched')->name('get-faculty-sched');
 
   //REGISTRATION
   Route::get('registration/register','Registration@show_registration')->name('register');
@@ -40,7 +43,7 @@ Route::group(['middleware' => ['cict.guest']], function () {
   Route::post('registration/check_username','Registration@check_username')->name('register-check-username');
   Route::post('registration/create','Registration@create_account')->name('register-create');
 
-  //FROGOT PASSWORD
+  //FORGOT PASSWORD
   Route::get('forgot_password','Forgot_Password@show_forgot_pass')->name('forgot-pass');
   Route::post('forgot_password/verify','Forgot_Password@verify_student')->name('forgot-pass-verify');
   Route::post('forgot_password/get_question','Forgot_Password@get_question')->name('forgot-pass-get');

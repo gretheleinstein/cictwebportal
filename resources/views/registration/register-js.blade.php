@@ -11,10 +11,13 @@ $(document).ready(function() {
         registration_verify();
       });
     }
+
     // default view when ready
     function registration_verify(){
       $( "#container" ).load("{{ asset( 'html/registration/step_one_verify.php' ) }}", function(){
         $("#btn_login").attr('href', "{{ route('home','login') }}");
+
+        //----------------------------------------------------------
         $("#frm_verify").validate({
           rules: {
             stud_id: {
@@ -30,6 +33,8 @@ $(document).ready(function() {
             }
           },
         }); //end of validate
+        //----------------------------------------------------------
+
         // onclick
         $( "#btn_verify" ).click(function(){
           var isValid = $("#frm_verify").valid();
@@ -142,8 +147,9 @@ $(document).ready(function() {
     // when result is existing
     // pass the id
     function registration_confirm(cict_id){
-
       $( "#container" ).load("{{ asset( 'html/registration/step_two_confirm.php' ) }}", function(){
+
+        //----------------------------------------------------------
         $("#frm_confirm").validate({
           rules: {
             last_name: {
@@ -170,6 +176,8 @@ $(document).ready(function() {
             middle_name: { required: "Please fill in this field.", letterswithbasicpunc: "Please fill in with letters only.", },
           },
         }); //end of validate #frm_confirm
+        //----------------------------------------------------------
+
       // onclick
       $( "#btn_confirm" ).click(function(){
         var isValid = $("#frm_confirm").valid();
@@ -232,6 +240,8 @@ $(document).ready(function() {
 
     function registration_account(cict_id){
       $( "#container" ).load("{{ asset( 'html/registration/step_three_account.php' ) }}", function(){
+
+          //----------------------------------------------------------
           $("#frm_register").validate({
             rules: {
               username: {
@@ -255,22 +265,20 @@ $(document).ready(function() {
               }
             },
           }); //end of validate
+          //----------------------------------------------------------
 
         $( "#btn_account" ).click(function(){
           var isValid = $("#frm_register").valid();
           if(isValid == true){
-          var form_values = $("#frm_register").serializeObject();
-
-          account_details(form_values, cict_id);
-          }else{
-          }
+            var form_values = $("#frm_register").serializeObject();
+            account_details(form_values, cict_id);
+          }else{}
         }); //end of btn click
         onKeyPress('#confirm_password','#btn_account')
       });
     }
 
     function account_details(post_param, cict_id){
-
       var account_data = {};
       account_data = post_param;
       account_data['cict_id'] = cict_id;
@@ -318,7 +326,9 @@ $(document).ready(function() {
     function registration_secure(account_data){
       // account_data is json
       $( "#container" ).load("{{ asset( 'html/registration/step_four_secure.php' ) }}", function(){
-          $("#frm_setup_acc").validate({
+
+        //----------------------------------------------------------
+            $("#frm_setup_acc").validate({
             rules: {
               recovery_answer: {
                 required: true,
@@ -336,15 +346,15 @@ $(document).ready(function() {
               }
             }
           }); //end of validate
+          //----------------------------------------------------------
 
           $("#btn_register").click(function(){
             var isValid = $("#frm_setup_acc").valid();
             if(isValid == true){
-            var form_values = $("#frm_setup_acc").serializeObject();
-            var final_account_data = $.extend({}, account_data, form_values);
+              var form_values = $("#frm_setup_acc").serializeObject();
+              var final_account_data = $.extend({}, account_data, form_values);
             floor_assignment(final_account_data);
-          }else{
-            }
+           }else{}
           }); //end of btn click
           onKeyPress('#confirm_recovery_answer','#btn_register');
       });
@@ -353,6 +363,8 @@ $(document).ready(function() {
     function floor_assignment(final_account_data){
         $( "#container" ).load("{{ asset( 'html/registration/step_five_floor_assignment.php' ) }}", function(){
           get_floor_name();
+
+           //----------------------------------------------------------
             $("#frm_floor_assignment").validate({
               rules: {
                 floor_assignment: {
@@ -365,6 +377,7 @@ $(document).ready(function() {
                 }
               }
             }); //end of validate
+            //----------------------------------------------------------
 
             $("#btn_register").click(function(){
               var isValid = $("#frm_floor_assignment").valid();
@@ -407,8 +420,13 @@ $(document).ready(function() {
     }
 
     function onGetFloorSuccess(data){
-      $("#floor_assignment").append('<option value="3">'+data['floor_3']+'</option>');
-      $("#floor_assignment").append('<option value="4">'+data['floor_4']+'</option>');
+      if(data['result'] = 'true'){
+        $("#floor_assignment").append('<option value="3">'+data['floor_3']+'</option>');
+        $("#floor_assignment").append('<option value="4">'+data['floor_4']+'</option>');
+      }else{
+        notify("Database Connection Failed","Failed to fetch street floor question from database. Please refresh and try again.");
+      }
+
     }
 
     function create_account_request(post_param, account_data_param){
@@ -449,7 +467,7 @@ $(document).ready(function() {
       if(data['result'] == "saved"){
         window.location.href = "{{ route('profile') }}";
       }else{
-        alert("Registration Failed. Please try again after a few minutes.");
+        notify("Database Connection Failed","Registration Failed. Please try again after a few minutes");
       }
     }
 </script>

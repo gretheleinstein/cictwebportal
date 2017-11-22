@@ -1464,17 +1464,6 @@ function load_table_sched(data){
     });
 }
 
-function convert(hours){
-  var hrs = hours.slice(0, 2);
-  var mm = hours.slice(2, 5);
-  var hrs12 = hrs > 12 ? hrs - 12 : hrs;
-  var hr = hrs12.toString();
-  var zero = (hr.length == 1) ? (hrs12 = "0"+hrs12) : ("");
-  var mer = (hrs <= 12) ? (merridian = "AM") : (merridian = "PM");
-  var new_time = hrs12 + mm +" "+ merridian;
-  return new_time;
-}
-
 function load_sched(data){
     var n = 1;
     $.each(data,function(key,value){

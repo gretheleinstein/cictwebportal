@@ -60,6 +60,18 @@ $(id).keypress(function(e) {
 });
 }
 
+function convert(hours){
+  var hrs = hours.slice(0, 2);
+  var mm = hours.slice(2, 5);
+  var hrs12 = hrs > 12 ? hrs - 12 : hrs;
+  var hr = hrs12.toString();
+  var zero = (hr.length == 1) ? (hrs12 = "0"+hrs12) : ("");
+  var mer = (hrs <= 12) ? (merridian = "AM") : (merridian = "PM");
+  var new_time = hrs12 + mm +" "+ merridian;
+  return new_time;
+}
+
+
 function change_to_words(year_level){
   if(year_level == 1){
     year_level_word = "First"
