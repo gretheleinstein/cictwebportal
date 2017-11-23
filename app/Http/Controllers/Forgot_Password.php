@@ -42,22 +42,22 @@ class Forgot_Password extends Controller
 
     #-------------------------------------------------------
     // Find the student's account with the given parameters
-     $account_student = AccountStudent::where('STUDENT_id', '=', $id)
-     ->where('active', '=', '1')
-     ->orderBy('id','DESC')
-     ->first();
+    $account_student = AccountStudent::where('STUDENT_id', '=', $id)
+    ->where('active', '=', '1')
+    ->orderBy('id','DESC')
+    ->first();
 
-     #-------------------------------------------------------
-     // If the student's account exists
-     if($account_student){
-       $request_result['result'] = 'true';
-       $request_result['question'] = $account_student->recovery_question;
-     }else{
-       $request_result['result'] = 'false';
-     }
+    #-------------------------------------------------------
+    // If the student's account exists
+    if($account_student){
+      $request_result['result'] = 'true';
+      $request_result['question'] = $account_student->recovery_question;
+    }else{
+      $request_result['result'] = 'false';
+    }
 
-     #-------------------------------------------------------
-     // send response
+    #-------------------------------------------------------
+    // send response
     echo json_encode($request_result,JSON_FORCE_OBJECT);
   }
 
@@ -68,21 +68,21 @@ class Forgot_Password extends Controller
 
     #-------------------------------------------------------
     // Find the student's recovery answer
-     $account_student = AccountStudent::where('recovery_answer',$answer)
-     ->where('STUDENT_id', '=',  $id)
-     ->where('active', '=', '1')
-     ->orderBy('id','DESC')
-     ->first();
+    $account_student = AccountStudent::where('recovery_answer',$answer)
+    ->where('STUDENT_id', '=',  $id)
+    ->where('active', '=', '1')
+    ->orderBy('id','DESC')
+    ->first();
 
-   #-------------------------------------------------------
-   // If the student's given recovery answer and answer match
-     if($account_student){
-       $request_result['result'] = 'true';
-     }else{
-       $request_result['result'] = 'false';
-     }
-   #-------------------------------------------------------
-   // send response
+    #-------------------------------------------------------
+    // If the student's given recovery answer and answer match
+    if($account_student){
+      $request_result['result'] = 'true';
+    }else{
+      $request_result['result'] = 'false';
+    }
+    #-------------------------------------------------------
+    // send response
     echo json_encode($request_result,JSON_FORCE_OBJECT);
   }
 
@@ -93,22 +93,22 @@ class Forgot_Password extends Controller
 
     #-------------------------------------------------------
     // Find the student's account with the given parameters and update password
-      $account_student = AccountStudent::where('STUDENT_id', '=', $id)
-      ->where('active', '=', '1')
-      ->orderBy('id','DESC')
-      ->take(1)
-      ->update(['password' => $new_password,]);
+    $account_student = AccountStudent::where('STUDENT_id', '=', $id)
+    ->where('active', '=', '1')
+    ->orderBy('id','DESC')
+    ->take(1)
+    ->update(['password' => $new_password,]);
 
     #-------------------------------------------------------
     // If the student's account successfully updated
-      if($account_student){
-        $request_result['result'] = 'saved';
-      }else{
-        $request_result['result'] = 'failed';
-      }
+    if($account_student){
+      $request_result['result'] = 'saved';
+    }else{
+      $request_result['result'] = 'failed';
+    }
     #-------------------------------------------------------
     // send response
-     echo json_encode($request_result,JSON_FORCE_OBJECT);
+    echo json_encode($request_result,JSON_FORCE_OBJECT);
   }
 
 }

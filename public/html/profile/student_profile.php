@@ -16,19 +16,19 @@
   <div class="row white-bg" style="margin-bottom: 1%;  padding: 3%">
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
       <label for="">Student ID</label><br>
-      <input type="text" class="span_grey" id="stud-id" value="" disabled>
+      <span class="glyphicon glyphicon-triangle-right span_grey"></span><input type="text" class="span_grey" id="stud-id" value="" disabled>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
       <label for="">Year/Sec/Group</label><br>
-      <input type="text" class="span_grey" id="year-sec-gr" value="" disabled>
+      <span class="glyphicon glyphicon-triangle-right span_grey"></span><input type="text" class="span_grey" id="year-sec-gr" value="" disabled>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
       <label for="">Curriculum</label><br>
-      <input type="text" class="span_grey" id="curriculum" value="" disabled>
+      <span class="glyphicon glyphicon-triangle-right span_grey"></span><input type="text" class="span_grey" id="curriculum" value="" disabled>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
       <label for="">Floor Assignment</label><br>
-      <input type="text" class="span_grey" id="floor-assignment-lbl" value="" disabled>
+      <span class="glyphicon glyphicon-triangle-right span_grey"></span><input type="text" class="span_grey" id="floor-assignment-lbl" value="" disabled>
     </div>
   </div>
   <div class="row white-bg" style="padding: 3%">

@@ -50,9 +50,6 @@ Route::group(['middleware' => ['cict.guest']], function () {
   Route::post('forgot_password/check_answer','Forgot_Password@verify_answer')->name('forgot-pass-check-answer');
   Route::post('forgot_password/set_new_password','Forgot_Password@reset_password')->name('forgot-pass-reset');
 
-  //LINKED SETTINGS
-  Route::get('get_floor_name','Linked_Settings@get_floor_name')->name('get-floor-name');
-
 });
 
 // ROUTES THAT REQUIRES LOGGED IN USER
@@ -72,6 +69,9 @@ Route::group(['middleware' => ['cict.auth']], function () {
   Route::post('student_profile/change_floor_assignment','Settings@change_floor_assignment')->name('settings-change-flr');
 
 });
+
+//LINKED SETTINGS
+  Route::get('get_floor_name','Linked_Settings@get_floor_name')->name('get-floor-name');
 
 // MEDIA ROUTES
   Route::get('media/photo/{photo}','Media@get_photo')->name('get-photo');

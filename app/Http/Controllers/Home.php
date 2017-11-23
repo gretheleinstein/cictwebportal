@@ -78,7 +78,7 @@ class Home extends Controller
     ->get();
 
     #------------------------------------------------------
-    // if a announcement exists
+    // if an announcement exists
     if($all){
       foreach ($all as $each) {
       $faculty = Faculty::where('id','=',$each->announced_by)
@@ -91,6 +91,7 @@ class Home extends Controller
 
       array_push($collection, $single_row);
       }
+    //if there are no announcements
     }else{}
 
     #------------------------------------------------------
@@ -99,10 +100,13 @@ class Home extends Controller
   }
 
   public function get_faculty_name(Request $request){
+    #--------------------------------------------------------
+    //search faculty name
     $faculty = Faculty::where('last_name','like','%'. $request['txt_faculty_sched'] .'%')
     ->where('active','=',1)
     ->get();
 
+    //if faculty table does not contain a single faculty info
     if($faculty->isEmpty()){
       $request = "No data";
     }else {
@@ -110,19 +114,20 @@ class Home extends Controller
     }
 
     #--------------------------------------------------------
+    //send response
     echo json_encode($request, JSON_FORCE_OBJECT);
   }
 
   public function get_faculty_sched($id){
     $collection = array();
     #------------------------------------------------------
-    // Get students subjects
+    // Get faculty load group
     $load_group = LoadGroup::where('faculty', '=', $id)
     ->where('active', '=', '1')
     ->get();
 
     if($load_group->isEmpty()){
-      $single_row['result'] = "No load_subjects";
+      $single_row['result'] = "No load_group";
       array_push($collection,$single_row);
     }else{
     #------------------------------------------------------

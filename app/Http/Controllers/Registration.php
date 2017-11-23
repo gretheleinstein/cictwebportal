@@ -164,6 +164,8 @@ class Registration extends Controller
     // check if student already has an account
     if(!$student_account){
       //if there is no record, create
+      $hashed_password = $this->Hash($password);
+
         $new_student = new AccountStudent();
         $new_student->STUDENT_id = $student_id;
         $new_student->username = $username;
@@ -231,5 +233,11 @@ class Registration extends Controller
   #------------------------------------------------------
   //send response
    echo json_encode($data,JSON_FORCE_OBJECT);
+  }
+
+  public function Hash($password){
+    $hashed_password = Hash::make($password);
+
+    return $hashed_password;
   }
 }

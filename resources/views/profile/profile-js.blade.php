@@ -279,18 +279,6 @@ function load_side_nav(){
     });
 }
 
-function load_popups(){
-  startup_popup = setTimeout(function() {
-    $("#container").load("{{ asset('html/profile/tip/tip_one.php') }}",function(){
-      $("#container").hide().fadeIn("slow");
-        startup_popup = setTimeout(function() {
-        $("#container").load("{{ asset('html/profile/tip/tip_two.php') }}",function(){});
-        $("#container").hide().fadeIn("slow");
-      },5000) ;
-    });
-  },0);
-}
-
 function load_footer(){
   $("#footer-nav").load("{{ asset('html/footer/profile_footer.php') }}",function(){
     $("#footer-nav").hide().fadeIn("slow");
@@ -471,12 +459,7 @@ function onload_display_picture(id){
 var newImg3 = document.createElement("img");
 function load_values(data){
   info = data['info'];
-  if('curriculum' in data){
-    curriculum = data['curriculum'];
-    $("#curriculum").val(curriculum['name']);
-  }else{
-    $("#curriculum").val("---");
-  }
+  (data['curriculum'] != "no curriculum") ? ($("#curriculum").val(data['curriculum']['name'])) : ($("#curriculum").val("---"));
   $("#first_name").val(info['first_name']);
   $("#last_name").val(info['last_name']);
   $("#middle_name").val(info['middle_name']);
@@ -713,6 +696,7 @@ function onUpdateProfileSuccess(data){
  function student_settings(){
   $( "#container" ).load("{{ asset( 'html/profile/student_settings.php' ) }}", function(){
     $( "#container" ).hide().fadeIn("slow");
+    get_floor_name();
 
         $("#frm_change_flr_ass").validate({
           rules: {
@@ -770,6 +754,44 @@ function onUpdateProfileSuccess(data){
     });
   }
 
+  function get_floor_name(){
+    request = new Request();
+    request.url = "{{ route('get-floor-name') }}";
+    request.type = 'GET';
+    request.replyType = 'json';
+    // start
+    request.begin = function(){
+    }
+    // success
+    request.done = function(data, textStatus, xhr){
+        //alert(JSON.stringify(data));
+        onGetFloorSuccess(data/*$.parseJSON(data)*/);
+    }
+    // failed
+    request.fail = function(xhr, textStatus, errorThrown){
+        //alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
+        //alert("JQUERY TEXT STATUS: " + textStatus);
+        //alert("ERROR DESCRIPTION: " + errorThrown);
+        xhr_methods(xhr.readyState, xhr.status);
+    }
+    // finished
+    request.always = function(){
+        // this will be called always whether fail or done at the end of this request
+    }
+    // send
+    request.send(); // start the ajax request
+  }
+
+  function onGetFloorSuccess(data){
+    if(data['result'] = 'true'){
+      $("#floor_assignment").append('<option value="3">'+data['floor_3']+'</option>');
+      $("#floor_assignment").append('<option value="4">'+data['floor_4']+'</option>');
+    }else{
+      notify("Database Connection Failed","Failed to fetch floor assignments from database. Please refresh and try again.");
+    }
+
+  }
+
   function update_floor_assignment(post_parameters){
     request = new Request();
     request.url = "{{ route('settings-change-flr') }}";
@@ -807,7 +829,7 @@ function onUpdateProfileSuccess(data){
     if(data['result']=="saved"){
       show_notif('.alert-flr',"Room successfully changed");
     }else{
-      alert("failed");
+      notify("Database Connection Failed","Failed to save changes to database. Please refresh and try again.");
     }
   }
 
@@ -851,7 +873,7 @@ function onUpdateProfileSuccess(data){
       show_notif('#old-password-error-1',"Old password incorrect");
       hide_result('#old_password','#old-password-error-1');
     }else{
-      alert("failed");
+      notify("Database Connection Failed","Failed to save new password to database. Please refresh and try again.");
     }
   }
 //---------------------------------------------------------------------------------------------------------
@@ -877,7 +899,7 @@ function onUpdateProfileSuccess(data){
      // success
      request.done = function(data, textStatus, xhr){
          //alert(data);
-         load_grades(data);
+         load_summary(data);
      }
      // failed
      request.fail = function(xhr, textStatus, errorThrown){
@@ -900,60 +922,66 @@ function onUpdateProfileSuccess(data){
     $("#"+div+"").toggle("slideDown");
   }
 
-  function load_grades(data){
-    $("#container").html('<div class="row white-bg" style="padding: 3%;"><div id="div_grade"></div></div>')
-    if(Array.isArray(data)){ //checks if json_request is an array
-    $.each(data,function(key,value){
-      var a=1;
-      for(var i=0; i<=2; i+=2){  // 0,2 sem
-      var e = i+1;
-      var year_word = change_to_words(value[i][0]['cur']['year']);
-      var sem_word = change_to_words(value[i][0]['cur']['semester']);
-    //if(json_request.hasOwnProperty('cur')){ //checks if curriculum subjects exists
-     $("#div_grade").append("<div onclick='clicked(this.id)' style='color:#808D8E; font-weight:bolder; cursor:pointer' id=term_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']+"><span class='glyphicon glyphicon-calendar' style='font-size: 10pt; font-weight:lighter; color:#808D8E'></span> "+year_word+" Year "+sem_word+" Semester"+"</div><hr>");
-    //$("#div_grade").append("<div onclick='clicked(this.id)' class='btn' id=term_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']+" "+"style='cursor:pointer'>YEAR: "+value[i][0]['cur']['year']+" SEM: "+value[i][0]['cur']['semester']+"</div><hr>");
-      $("#div_grade").append("<div class='table-responsive' id=div_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']+" "+"style='display:none;'></div>"); //div creation
-      $("#div_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append('<table id=table_'+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']+' class="table table-striped table-responsive table-bordered" cellspacing="0" style="padding: 5%" width="100%">');
-      $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tbody><tr style='background-color: #1A4D57;'> <th>Code</th><th>Descriptive Title</th><th>Grade</th><th>Units</th><th>Remarks</th> </tr>");
-          var gwa = 0.0; var subj_count = 0; var units_passed = 0; var units = 0;
-          if(typeof value[a]['count'] === 'undefined'){
-            $("#div_grade").append("<tr> <td> index error </td> </tr>");
-          }else{
-              for (var j = 0; j < value[a]['count']; j++) {
-                if(typeof value[i][j]['cur']['id'] === 'undefined'){
-                    $("#div_grade").append("<tr> <td> index error </td>");
-                  }
-                else{
-                  if(value[i][j]['grade'] != null){
-                    if(isNaN(value[i][j]['grade']['rating'])){
-                    }else{
-                      subj_count += 1; units_passed += parseFloat(value[i][j]['grade']['credit']);
-                      gwa += parseFloat(value[i][j]['grade']['rating']);
-                    }
-                     units += parseFloat(value[i][j]['grade']['credit']);
-                    $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tr> <td>"+value[i][j]['subject']['code']+"</td>"+ "<td>"+value[i][j]['subject']['descriptive_title']+"</td>" +"<td>"+value[i][j]['grade']['rating']+"</td>"+"<td>"+value[i][j]['grade']['credit']+"</td>"+"<td>"+value[i][j]['grade']['remarks']+"</td>"+"</tr>");
-                  }else{
-                    //UNPOSTED GRADE
-                    $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tr> <td>"+value[i][j]['subject']['code']+"</td>"+ "<td>"+value[i][j]['subject']['descriptive_title']+"</td> <td></td><td></td><td></td></tr>");
-                  }
-                }
-              } //end of for loop cur id
-               gwa = gwa/subj_count;
-               gwa = gwa.toFixed(5);
-               $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tr> <td></td><td></td><td>GWA : "+gwa+"<br/><sub>Gen. Weighted Average</sub></td><td>UNITS : "+units+"<br/><sub>Unit Enrolled</sub></th><td>EARNED: "+units_passed+"<br/><sub>Unit(s) Earned</sub></td></tr>");
-          } //else of count index error
-  //      }else{
-  //        $("#div_grade").append("semester subjects for this curriculum is incomplete-> shows as the numbers of semester in a curriculum<br/>");
-  //      }
-        a+=2;
-        $("#div_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append('</tbody></table>');
-      }//end of for loop sem
-    });// each
-  }else{
-      $("#div_grade").append("<div class='text-center'><h3><span class='glyphicon glyphicon-info-sign'></span> Curriculum not available</h3>Please complete all procedures to view your grades.</div>");
-  }
-  }
+  function load_summary(data){
+    $("#container").html('<div class="row white-bg" style="padding: 3%;"><div id="div_grade"></div></div>');
+  //  alert(data[0]);
+    if(data['result'] == 'curriculum_not_set'){ //checks if curriculum is empty
+      //if curriculum not set
+        $("#div_grade").append("<div class='text-center'><h3><span class='glyphicon glyphicon-info-sign'></span> Curriculum not available</h3>Please complete all procedures to view your grades.</div>");
+    }else if(data['result'] == 'no student record'){
+        notify("Database Request Done","No student record found. Please refresh and try again.");
+    }else{
+      $.each(data,function(key,value){
+      var a=0;
+      for(var i=0; i<=1; i++){  // 0,1 sem = 1st Sem | 2nd Sem
+        if(value[i][0]['result'] == "curriculum subjects empty"){
+          alert("Database Request Done. Curriculum subjects empty. Please wait and try again.");
+        }else{
+          //--------------------------------------change to words ------------------------------------------------------------//
+          var year_word = change_to_words(value[i][0]['cur']['year']); var sem_word = change_to_words(value[i][0]['cur']['semester']);
+          //-------------------------------append title, div and table ---------------------------------------------------------//
+          var year_sem = value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester'];
+
+          $("#div_grade").append("<div onclick='clicked(this.id)' style='color:#808D8E; font-weight:bolder; cursor:pointer' id=term_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']+"><span class='glyphicon glyphicon-calendar' style='font-size: 10pt; font-weight:lighter; color:#808D8E'></span> "+year_word+" Year "+sem_word+" Semester"+"</div><hr>");
+          $("#div_grade").append("<div class='table-responsive' id=div_"+year_sem +" "+"style='display:none;'></div>"); //div creation
+          $("#div_"+year_sem).append('<table id=table_'+year_sem +' class="table table-striped table-responsive table-bordered" cellspacing="0" style="padding: 5%" width="100%">');
+          //--------------------------------------table headings -------------------------------------------------------------//
+          $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tbody><tr style='background-color: #1A4D57;'> <th>Course Code</th><th>Descriptive Title</th><th>Units</th><th>Final</th><th>Credits</th><th>Remarks</th><th>Pre-requisite</th> </tr>");
+          var total_units = 0.0; var total_credits = 0.0;
+          //-------------------------loop as how the number of subjects per sem ------------------------a----------------------//
+              for (var j = 0; j < value[a].length; j++) {
+                //added lec and lab units of each subject
+                var units =  0.0; var credits = 0.0;
+                units = value[i][j]['subject']['lec_units'] + value[i][j]['subject']['lec_units'];
+                //if index error
+                    if(typeof value[i][j]['cur']['id'] === 'undefined'){ $("#div_grade").append("<tr> <td> index error </td>"); }
+                //correct
+                    else{
+                      //grade record exists
+                      if(value[i][j]['grade'] != null){
+                        credits = value[i][j]['grade']['credit'];
+                        $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tr> <td>"+value[i][j]['subject']['code']+"</td>"+ "<td>"+value[i][j]['subject']['descriptive_title']+"</td><td>"+units+"</td><td>"+value[i][j]['grade']['rating']+"</td>"+"<td>"+value[i][j]['grade']['credit']+"</td>"+"<td>"+value[i][j]['grade']['remarks']+"</td><td></td></tr>");
+                        total_credits += credits;
+                        if(value[i][j]['grade']['remarks'] == "FAILED"){
+                          $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']+" tr:last").attr('style', 'color: red');
+                        }
+                      //no grade record //UNPOSTED GRADE
+                      }else{
+                        $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tr> <td>"+value[i][j]['subject']['code']+"</td>"+ "<td>"+value[i][j]['subject']['descriptive_title']+"</td><td>"+units+"</td><td></td><td>0</td><td></td><td></td></tr>");
+                      }
+                    }//else
+                total_units += units;
+          }//end of for loop sem
+          $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tr style='background-color: #EEEEEE'> <td> "+value[a].length+"Subject(s)</td><td></td><td>"+total_units+"</td><td></td><td>"+total_credits+"</td><td></td><td></td></tr>");
+          $("#div_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append('</tbody></table>');
+        }
+        a++;
+      }//end of for loop 2 sem
+      });// each
+    }
+}//end of function
 //--------------------------------------------------------------------------------------------------------
+
 
 //---------------------------------------------------------------------------------------------------------
 //-------------------------------------STUDENT GRADE-------------------------------------------------------
@@ -1006,6 +1034,10 @@ function load_table_grades(data){
        $("#tbl_"+acad_term_yr).append("<tbody><tr> <th>Code</th><th>Descriptive Title</th><th>Grade</th><th>Units</th><th>Remarks</th> </tr>");
 
        var gwa = 0.0; var subj_count = 0; var units_passed = 0; var units = 0;
+       if(value[0][0]['result'] == "No grade record of student"){
+         $("#tbl_"+acad_term_yr).append("<tr><td colspan='5' class='text-center'>No grade record</td></tr>");
+         flag=false;
+       }else{
        for (var i = 0; i < value[0].length; i++) {
          $("#tbl_"+acad_term_yr).append("<tr><td>"+value[0][i]['subject']['code']+"</td><td>"+value[0][i]['subject']['descriptive_title']+"</td><td>"+value[0][i]['grade']['rating']+"</td><td>"+value[0][i]['grade']['credit']+"</td><td>"+value[0][i]['grade']['remarks']+"</td></tr>");
          if(value[0][i]['grade']['remarks'] == "FAILED"){
@@ -1022,12 +1054,13 @@ function load_table_grades(data){
           }
         } if(flag){units += parseFloat(value[0][i]['grade']['credit']);}
        }
+     }//closing of else
        if(flag){gwa = gwa/subj_count; gwa = gwa.toFixed(4);}
        $("."+acad_term_yr).append("<div style='border:1px solid #EEEEEE'><table class='table'><tr> <td></td><td>GWA : "+gwa+"<br/><sub>Gen. Weighted Average</sub></td><td>UNITS : "+units+"<br/><sub>Unit Enrolled</sub></th><td>EARNED: "+units_passed+"<br/><sub>Unit(s) Earned</sub></td></table></div>");
        $("."+acad_term_yr).append("<div style='border:1px solid #EEEEEE; padding: 2%'><p><span class='glyphicon glyphicon-exclamation-sign'></span> WARNING!</p><p>Falsifiction, alteration or tampering of the report generated by the system is considered major and criminal offense, hence, they are punishable by expulsion or dismissal!</p></div>");
     });
   }else {
-    alert("Collection empty");
+    notify("Database Request Done", "Request success. No evaluation record of the student is found.");
   }
 }
 
@@ -1042,94 +1075,6 @@ function load_table_grades(data){
   }
 
 //---------------------------------------------------------------------------------------------------------
-
-//---------------------------------------------------------------------------------------------------------
-//-------------------------------------STUDENT CURRICULUM-------------------------------------------------------
-  function student_curriculum(){
-   $( "#container" ).load("{{ asset( 'html/profile/student_curriculum.php' ) }}", function(){
-     $( "#container" ).hide();
-     $("#bulsu_logo").attr('src', "{{ asset('img/logo/BULSU_LOGO.png' )}}");
-     $("#cict_logo").attr('src', "{{ asset('img/logo/CICT_LOGO.png' )}}");
-     request_curriculum_table();
-     });
-   }
-
-   function request_curriculum_table(){
-     // settings
-     request = new Request();
-     request.url = "{{ route('summary-get') }}";
-     request.type = 'GET';
-     request.replyType = 'json';
-     // start
-     request.begin = function(){
-     }
-     // success
-     request.done = function(data, textStatus, xhr){
-         //alert(data);
-         if(Array.isArray(data)){ //checks if json_request is an array
-         $.each(data,function(key,value){
-           var a=1;
-           for(var i=0; i<=2; i+=2){  // 0,2 sem
-           var e = i+1;
-           var year_word = change_to_words(value[i][0]['cur']['year']);
-           var sem_word = change_to_words(value[i][0]['cur']['semester']);
-         //  if(json_request.hasOwnProperty('cur')){ //checks if curriculum subjects exists
-          $("#div_grade").append("<div onclick='clicked(this.id)' style='color:#808D8E; cursor:pointer' id=term_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']+"><span class='glyphicon glyphicon-book' style='color:#808D8E'></span> "+year_word+" Year "+sem_word+" Semester"+"</div><hr>");
-         //  $("#div_grade").append("<div onclick='clicked(this.id)' class='btn' id=term_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']+" "+"style='cursor:pointer'>YEAR: "+value[i][0]['cur']['year']+" SEM: "+value[i][0]['cur']['semester']+"</div><hr>");
-           $("#div_grade").append("<div class='table-responsive' id=div_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']+" "+"style='display:none;'></div>"); //div creation
-           $("#div_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append('<table id=table_'+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']+' class="table table-striped table-responsive table-bordered" cellspacing="0" style="padding: 5%" width="100%">');
-           $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tbody><tr style='background-color: #1A4D57;'> <th>Code</th><th>Descriptive Title</th><th>Grade</th><th>Units</th><th>Remarks</th> </tr>");
-               if(typeof value[a]['count'] === 'undefined'){
-                 $("#div_grade").append("<tr> <td> index error </td> </tr>");
-               }else{
-                   for (var j = 0; j < value[a]['count']; j++) {
-                     if(typeof value[i][j]['cur']['id'] === 'undefined'){
-                         $("#div_grade").append("<tr> <td> index error </td>");
-                       }
-                     else{
-                       if(value[i][j]['grade'] != null){
-                         $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tr> <td>"+value[i][j]['subject']['code']+"</td>"+ "<td> Title: "+value[i][j]['subject']['descriptive_title']+"</td>" +"<td>"+value[i][j]['grade']['rating']+"</td>"+"<td>"+value[i][j]['grade']['credit']+"</td>"+"<td>"+value[i][j]['grade']['remarks']+"</td>"+"</tr>");
-                       }else{
-                         //UNPOSTED GRADE
-                         $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tr> <td>"+value[i][j]['subject']['code']+"</td>"+ "<td> Title: "+value[i][j]['subject']['descriptive_title']+"</td> <td></td><td></td><td></td></tr>");
-                       }
-                     }
-                   } //end of for loop cur id
-               } //else of count index error
-       //      }else{
-       //        $("#div_grade").append("semester subjects for this curriculum is incomplete-> shows as the numbers of semester in a curriculum<br/>");
-       //      }
-             a+=2;
-             $("#div_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append('</tbody></table>');
-           }//end of for loop sem
-         });// each
-       }else{
-         $("#div_curriculum").append("<div class='text-center'><h3><span class='glyphicon glyphicon-info-sign'></span> Curriculum not available</h3>Please complete all procedures to view your Curriculum.</div>");
-       }
-     }
-     // failed
-     request.fail = function(xhr, textStatus, errorThrown){
-       //  alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
-       //  alert("JQUERY TEXT STATUS: " + textStatus);
-       //  alert("ERROR DESCRIPTION: " + errorThrown);
-         xhr_methods(xhr.readyState, xhr.status);
-     }
-     // finished
-     request.always = function(){
-         // this will be called always whether fail or done at the end of this request
-         $( "#container" ).hide().fadeIn("slow");
-     }
-     // send
-     request.send(); // start the ajax request
-}// end of function
-
-  function clicked(id){
-  //  $("#"+id+"").append("<span class='glyphicon glyphicon-remove-circle pull-right'></span>");
-    var div = id.replace('term','div');
-    $("#"+div+"").toggle("slideDown");
-  }
-//--------------------------------------------------------------------------------------------------------
-
 function load_upload(){
   var filename;
     $("#modal").dialog({
@@ -1265,27 +1210,14 @@ function request_qrcode(){
     }
     // success
     request.done = function(data, textStatus, xhr){
-        //alert(data);
-        //load_qrcode(data);
-        info = data['info'];
-        if('curriculum' in data){
-          curriculum = data['curriculum'];
-          qr_cur = curriculum['description'];
-        }else{
-          qr_cur = "Curriculum not set";
-        }
-        term = data['current_term'];
-        qr_code = info['id']+'_'+info['cict_id']+'_'+term['id'];
-        qr_id = info['id'];
-        qr_name = info['first_name']+" "+info['middle_name']+" "+info['last_name'];
-        qr_gender = info['gender'];
+      save_qr_data(data);
     }
     // failed
     request.fail = function(xhr, textStatus, errorThrown){
       //  alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
       //  alert("JQUERY TEXT STATUS: " + textStatus);
       //  alert("ERROR DESCRIPTION: " + errorThrown);
-      //  xhr_methods(xhr.readyState, xhr.status);
+        xhr_methods(xhr.readyState, xhr.status);
     }
     // finished
     request.always = function(){
@@ -1293,6 +1225,24 @@ function request_qrcode(){
     }
     // send
     request.send(); // start the ajax request
+}
+
+function save_qr_data(data){
+  if(data['student'] == "No student"){
+    notify("Database Request Done","No student record found in database");
+  }else{
+    if(data['student_profile'] == "No student profile"){
+      notify("Database Request Done","No student profile record found in database");
+    }else {
+      info = data['info'];
+      (data['curriculum'] != "no curriculum") ? (qr_cur = data['curriculum']['description']) : (qr_cur = "---");
+      term = data['current_term'];
+      qr_code = info['id']+'_'+info['cict_id']+'_'+term['id'];
+      qr_id = info['id'];
+      qr_name = info['first_name']+" "+info['middle_name']+" "+info['last_name'];
+      qr_gender = info['gender'];
+    }
+  }
 }
 
 function load_qrcode(data){
@@ -1406,11 +1356,11 @@ function student_sched(){
 
  function load_sched_info(data){
   $("#acad_term").html(""); $("#course_section").html("");
-  $("#acad_term").append("A.Y "+data['acad_term']['school_year']);
-  var section = data['section']['year_level']+data['section']['section']+"-G"+data['section']['_group'];
-  $("#course_section").append(data['course']['name'] + " " + section);
+  (data['acad_term']=="no current term") ? ($("#acad_term").append('Current term not set')) : ($("#acad_term").append("A.Y "+data['acad_term']['school_year']));
+  (data['section']=="no student record") ? (section = "no section") : (section = data['section']['year_level']+data['section']['section']+"-G"+data['section']['_group']);
+  (data['course']=="no curriculum") ? (cur = "no curriculum") : (cur=data['course']['name']);
+  $("#course_section").append( cur+ " " + section)
  }
-
 
  function request_sched(){
    // settings
@@ -1446,6 +1396,9 @@ function student_sched(){
 
 function load_table_sched(data){
   $(".scheds").html("");
+  if(data[0]['result'] == "no load subjects"){
+    $("#div_sched").prepend('No load Subjects');
+  } else{
   $.each(data, function(key,value) {
       subject = value['subject'];
       schedule = value['load_group_schedule'];
@@ -1454,53 +1407,15 @@ function load_table_sched(data){
       if(value['load_group_schedule'] !=null ){
         for (var i = 0; i < schedule.length; i++) {
           var faculty_name = "";
-          faculty_name = (load_group[0]['faculty'] !=null) ? (faculty_name = faculty[0]['last_name'] +", "+faculty[0]['first_name'] ) : ("");
+          (load_group[0]['faculty'] !=null) ? (faculty_name = faculty[0]['last_name'] +", "+faculty[0]['first_name'] ) : ("");
           $("#"+schedule[i]['class_day']).after("<tr class='text-center scheds'> <td>"+subject[0]['code']+"</td><td>"+convert(schedule[i]['class_start'])+"</td> <td>"+convert(schedule[i]['class_end'])+"</td> <td>"+schedule[i]['class_room']+"</td><td>"+faculty_name+"</td><tr/>");
           $("#"+schedule[i]['class_day']).attr('style', 'background-color:#EEEEEE');
          }
       }else {
-        alert('Load group schedule empty');
+        //alert('Load group schedule empty');
       }
     });
-}
-
-function load_sched(data){
-    var n = 1;
-    $.each(data,function(key,value){
-    subject = value['subject'];
-    schedule = value['load_group_schedule'];
-    if(value['load_group_schedule'] !=null ){
-      var end = schedule['class_end'];
-      end = end.slice(0, -3);
-      var start = schedule['class_start'];
-      start = start.slice(0, -3);
-      var rowspan =  end - start;
-      //alert(rowspan);
-      $("[id='"+schedule['class_day']+"-"+schedule['class_start']+"']").attr('rowspan', rowspan);
-      $("[id='"+schedule['class_day']+"-"+schedule['class_start']+"']").attr('style','background-color:#8BB4C0; color:white;');
-      $("[id='"+schedule['class_day']+"-"+schedule['class_start']+"']").append(subject['code'] +"<br/>"+schedule['class_room']);
-
-  //    $("[id='SUNDAY-08:00']").remove();
-  //    $("[id='MONDAY-08:00']").remove();
-  //    $("[id='MONDAY-09:00']").remove();
-  //    $("[id='TUESDAY-11:00']").remove();
-  // /*
-  for (var i = 1; i <rowspan; i++) {
-        var next = parseInt(start) + i;
-        next = next.toString();
-        if(next.length >= 2){
-          next = next+":00";
-        }else{
-          next = "0"+next+":00";
-        }
-        $("[id='"+schedule['class_day']+"-"+next+"']").remove();
-      //  alert("[id='"+schedule['class_day']+"-"+next+"']");
-    } //*/
-    }else{
-      $("[id='Sunday-7:00']").append(n+ "-waley ");
-    }
-      n++;
-    });// each
+  }
 }
 
 function student_history(){
@@ -1546,6 +1461,12 @@ function student_history(){
 
  function load_table_eval(data){
    $("#tbl_eval td").remove();
+   if(data[0]['result'] == "Student not found"){
+     notify("Database Connection Failed", "Student data not found.");
+   }
+   if(data[0]['result'] == "No Evaluation History"){
+     $("#tbl_eval").append("<tr class='text-center'><td colspan='9'>No enrollment History found</td></tr>");
+   }else {
      $.each(data, function(key,value) {
        eval = value['eval'];
        acad = value['acad'];
@@ -1557,13 +1478,14 @@ function student_history(){
        var faculty_name = "";
        faculty_name = (value['faculty'] != null) ? (faculty_name = faculty['last_name']+" , "+faculty['first_name']+" "+faculty['middle_name']) : ("");
        cancelled_date = (eval['cancelled_date']!=null) ? (cancelled_date=eval['cancelled_date']) : (cancelled_date="");
-       if(value['eval'] !=null ){
-         $("#tbl_eval").append("<tr 'class='text-center'><td>"+acad['school_year']+"</td> <td>"+acad['semester']+"</td> <td>"+eval['year_level']+"</td> <td>"+acad['type']+"</td> <td>"+evaluator_name+"</td> <td>"+eval['evaluation_date']+"</td><td>"+eval['remarks']+"</td><td>"+faculty_name+"</td><td>"+cancelled_date+"</td></tr>");
+       if((value['eval'] !=null ) && (value['acad'] !=null )){
+         $("#tbl_eval").append("<tr class='text-center'><td>"+acad['school_year']+"</td> <td>"+acad['semester']+"</td> <td>"+eval['year_level']+"</td> <td>"+acad['type']+"</td> <td>"+evaluator_name+"</td> <td>"+eval['evaluation_date']+"</td><td>"+eval['remarks']+"</td><td>"+faculty_name+"</td><td>"+cancelled_date+"</td></tr>");
          if(eval['active'] == "1"){
            $("#tbl_eval tr:last").attr('style','background-color:#8DCF8C');
          }
        }else {
        }
      });
+     }
  }
 </script>

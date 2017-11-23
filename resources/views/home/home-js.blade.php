@@ -72,7 +72,7 @@ function request_announcements(){
 
 function onRequestAnnouncementSuccess(data){
   if(data == ""){
-    $("#tbl_announcements").append("<tr><td>No announcements<td></tr>");
+    $("#tbl_announcements").append("<tr><td colspan='3'>No announcements<td></tr>");
   }else {
     $.each(data, function(key, value) {
       faculty_name = (value['faculty'] != null) ? (faculty_name = value['faculty']['last_name']+", "+value['faculty']['first_name'] +" "+value['faculty']['middle_name']) : ("");
@@ -127,9 +127,9 @@ function onRequestFacultySuccess(data){
     $("#txt_faculty_name").autocomplete({
       source: faculty_name,
       select: function (event, ui) {
-          $("#txt_faculty_name").val(ui.item.label); // display the selected name
-          $("#txt_faculty_id").val(ui.item.id); // save selected id to hidden input
-          return false;
+        $("#txt_faculty_name").val(ui.item.label); // display the selected name
+        $("#txt_faculty_id").val(ui.item.id); // save selected id to hidden input
+        return false;
       }
     });
 
@@ -170,7 +170,10 @@ function request_faculty_sched(id){
 
 function onRequestFacultySchedSuccess(data){
   $(".scheds").html("");
-  $.each(data, function(key,value) {
+  if(data[0]['result'] == "No load_group"){
+    $("#div_sched").prepend('<h1>faculty has no schedule</h1>')
+  }else{
+    $.each(data, function(key,value) {
       subject = value['subject'];
       schedule = value['load_group_schedule'];
       load_group = value['load_group'];
@@ -179,11 +182,12 @@ function onRequestFacultySchedSuccess(data){
           var faculty_name = "";
           $("#"+schedule[i]['class_day']).after("<tr class='text-center scheds'> <td>"+subject[0]['code']+"</td><td>"+convert(schedule[i]['class_start'])+"</td> <td>"+convert(schedule[i]['class_end'])+"</td> <td>"+schedule[i]['class_room']+"</td><tr/>");
           $("#"+schedule[i]['class_day']).attr('style', 'background-color:#EEEEEE');
-         }
+        }
       }else {
         //alert('Load group schedule empty');
       }
     });
+  }
 }
 
 function load_eval_steps(){

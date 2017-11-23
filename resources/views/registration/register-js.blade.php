@@ -424,7 +424,7 @@ $(document).ready(function() {
         $("#floor_assignment").append('<option value="3">'+data['floor_3']+'</option>');
         $("#floor_assignment").append('<option value="4">'+data['floor_4']+'</option>');
       }else{
-        notify("Database Connection Failed","Failed to fetch street floor question from database. Please refresh and try again.");
+        notify("Database Connection Failed","Failed to fetch floor assignments from database. Please refresh and try again.");
       }
 
     }

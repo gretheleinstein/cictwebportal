@@ -25,6 +25,10 @@ class Student_Schedule extends Controller
     ->orderBy('id','DESC')
     ->get();
 
+    if($load_subject->isEmpty()){
+      $single_row['result'] = "no load subjects";
+      array_push($collection,$single_row);
+    }else{
     #------------------------------------------------------
     //loop through each subject
     foreach ($load_subject as $each){
@@ -61,6 +65,7 @@ class Student_Schedule extends Controller
 
       array_push($collection,$single_row);
     }
+  }
   #------------------------------------------------------
   // format collection
   $array_result = json_encode($collection,JSON_OBJECT_AS_ARRAY);
@@ -79,6 +84,11 @@ class Student_Schedule extends Controller
     ->where('active','=','1')
     ->first();
 
+    if($acad){
+      $reply['acad_term'] = $acad;
+    }else{
+      $reply['acad_term'] = "no current term";
+    }
     #------------------------------------------------------
     //get student info
     $student = Student::where('active', '=', '1')
@@ -86,6 +96,11 @@ class Student_Schedule extends Controller
     ->orderBy('id','DESC')
     ->first();
 
+    if($student){
+      $reply['section'] = $student;
+    }else{
+      $reply['section'] = "no student record";
+    }
     #------------------------------------------------------
     //get curriculum info of student
     $cur  = Curriculum::where('active', '=', '1')
@@ -93,10 +108,11 @@ class Student_Schedule extends Controller
     ->orderBy('id','DESC')
     ->first();
 
-    $reply['acad_term'] = $acad;
-    $reply['course'] = $cur;
-    $reply['section'] = $student;
-
+    if($cur){
+      $reply['course'] = $cur;
+    }else{
+      $reply['course'] = "no curriculum";
+    }
     #------------------------------------------------------
     // send response
     echo json_encode($reply, JSON_FORCE_OBJECT);

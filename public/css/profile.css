@@ -1,7 +1,7 @@
 body{ background-color:#F4F8F9;font-family: Montserrat; font-size: 9pt;}
 .navbar-fixed-side{ border: none; padding-bottom: 5%}
 .navbar-fixed-side span{ padding-right: 10%; padding-left: 10%;}
-.span_grey{ color: #C6C8C7; background-color: transparent; outline: none; border: none;}
+.span_grey{ color: #b2b4b3; background-color: transparent; outline: none; border: none;}
 .form-control{ border-radius: 0; font-size: 9pt;}
 .btn-blue:focus{ color: white; }
 .btn-blue{ background-color: white;border-radius: 0; border: 1px solid #CCCCCC; font-size: 9pt; }

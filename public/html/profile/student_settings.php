@@ -7,9 +7,8 @@
         <label class="control-label col-sm-4">Select new floor assignment:</label>
         <div class="col-sm-8">
           <select name="floor_assignment" class="form-control" id="floor_assignment">
-              <option value="3">3RD FLOOR / IT8</option>
-              <option value="4">4TH FLOOR / CT6</option>
-          </select>
+
+          </select
         </div>
       </div><br><br>
       <div class="col-lg-10 alert alert-info alert-flr text-center col-lg-offset-1" style="display: none"></div>

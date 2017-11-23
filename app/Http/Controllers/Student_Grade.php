@@ -9,16 +9,17 @@ use App\AcademicTerm;
 class Student_Grade extends Controller
 {
   public function get_grade(Request $request){
-      $collection = array();
-      $id = $request->session()->get('SES_CICT_ID');
+    $collection = array();
+    $id = $request->session()->get('SES_CICT_ID');
 
-      #------------------------------------------------------
-      // Get the evaluation records of student
-      $eval = Evaluation::where('STUDENT_id', '=', $id)
-      ->where('active','=','1')
-      ->where('remarks','=','ACCEPTED')
-      ->get();
+    #------------------------------------------------------
+    // Get the evaluation records of student
+    $eval = Evaluation::where('STUDENT_id', '=', $id)
+    ->where('active','=','1')
+    ->where('remarks','=','ACCEPTED')
+    ->get();
 
+    if($eval){
       // Loop through every evaluation record
       foreach ($eval as $each){
         $collection2 = array();
@@ -36,16 +37,22 @@ class Student_Grade extends Controller
         ->where('active','=','1')
         ->get();
 
-        // Loop through each grades and get data and corresponding subject info
-        foreach ($grade as $each_grade){
-          $subject = Subject::where('id','=',$each_grade->SUBJECT_id)
-           ->where('active','=','1')
-           ->first();
+        if($grade->isEmpty()){
+          // if grades is empty
+          $single['result'] = "No grade record of student";
+          array_push($collection2,$single);
+        }else{
+          // Loop through each grades and get data and corresponding subject info
+          foreach ($grade as $each_grade){
+            $subject = Subject::where('id','=',$each_grade->SUBJECT_id)
+            ->where('active','=','1')
+            ->first();
 
-           $grades_row['grade'] = $each_grade;
-           $grades_row['subject'] = $subject;
+            $grades_row['grade'] = $each_grade;
+            $grades_row['subject'] = $subject;
 
-           array_push($collection2,$grades_row);
+            array_push($collection2,$grades_row);
+          }
         }
 
         $single_row = [];
@@ -57,6 +64,10 @@ class Student_Grade extends Controller
         array_push($single_row,$collection2);
         array_push($collection,$single_row);
       }
+    }else{
+      $single_row['result'] = "No evaluation record of student";
+      array_push($collection,$single_row);
+    }
 
     #------------------------------------------------------
     // format collection
@@ -65,5 +76,5 @@ class Student_Grade extends Controller
     #------------------------------------------------------
     // send result
     echo $array_result;
- }
+  }
 }
