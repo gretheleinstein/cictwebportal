@@ -61,7 +61,7 @@ function request_announcements(){
     //alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
     //alert("JQUERY TEXT STATUS: " + textStatus);
     //alert("ERROR DESCRIPTION: " + errorThrown);
-    window.location = error_route + xhr.status;
+//    window.location = error_route + xhr.status;
   }
   // finished
   request.always = function(){
@@ -76,8 +76,8 @@ function onRequestAnnouncementSuccess(data){
     $("#tbl_announcements").append("<tr><td colspan='3'>No announcements<td></tr>");
   }else {
     $.each(data, function(key, value) {
-      faculty_name = (value['faculty'] != null) ? (faculty_name = value['faculty']['last_name']+", "+value['faculty']['first_name'] +" "+value['faculty']['middle_name']) : ("");
-      $("#tbl_announcements").append("<tr><td>"+value['all']['title']+"</td><td style='word-wrap: break-word'>"+value['all']['message']+"</td><td>"+value['all']['date']+"</td><td>"+faculty_name+"</td></tr>");
+      faculty_name = (value['faculty'] != null) ? (value['faculty']['last_name']+", "+value['faculty']['first_name'] +" "+value['faculty']['middle_name']) : ("");
+      $("#tbl_announcements").append("<tr><td>"+value['all']['title']+"</td><td style='word-wrap: break-word'>"+value['all']['message']+"</td><td>"+value['date_time']+"</td><td>"+faculty_name+"</td></tr>");
     });
   }
 }
@@ -162,7 +162,7 @@ function request_faculty_sched(id){
     //alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
     //alert("JQUERY TEXT STATUS: " + textStatus);
     //alert("ERROR DESCRIPTION: " + errorThrown);
-  //  window.location = error_route + xhr.status;
+    window.location = error_route + xhr.status;
   }
   // finished
   request.always = function(){

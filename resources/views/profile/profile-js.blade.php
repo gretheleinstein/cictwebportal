@@ -634,6 +634,7 @@ function load_summary(data){
                 total_credits += credits;
                 if(value[i][j]['grade']['remarks'] == "FAILED"){
                   $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']+" tr:last").attr('style', 'color: red');
+                  total_credits -= credits;
                 }
                 //no grade record //UNPOSTED GRADE
               }else{
@@ -922,7 +923,8 @@ function load_sched_info(data){
 function load_table_sched(data){
   $(".scheds").html("");
   if(data[0]['result'] == "no load subjects"){
-    $("#div_sched").prepend('No load Subjects');
+    $(".scheds").html("");
+    $("#div_sched").append('No load Subjects');
   } else{
     $.each(data, function(key,value) {
       subject = value['subject'];
@@ -969,7 +971,7 @@ function load_table_eval(data){
       evaluator_name = (value['evaluator'] != null) ? (evaluator_name = evaluator['last_name']+" , "+evaluator['first_name']+" "+evaluator['middle_name']) : ("");
       var faculty_name = "";
       faculty_name = (value['faculty'] != null) ? (faculty_name = faculty['last_name']+" , "+faculty['first_name']+" "+faculty['middle_name']) : ("");
-      cancelled_date = (eval['cancelled_date']!=null) ? (cancelled_date=eval['cancelled_date']) : (cancelled_date="");
+      cancelled_date = (value['cancelled_date']!=null) ? (value['cancelled_date']) : (cancelled_date="");
       if((value['eval'] !=null ) && (value['acad'] !=null )){
         $("#tbl_eval").append("<tr class='text-center'><td>"+acad['school_year']+"</td> <td>"+acad['semester']+"</td> <td>"+eval['year_level']+"</td> <td>"+acad['type']+"</td> <td>"+evaluator_name+"</td> <td>"+eval['evaluation_date']+"</td><td>"+eval['remarks']+"</td><td>"+faculty_name+"</td><td>"+cancelled_date+"</td></tr>");
         if(eval['active'] == "1"){

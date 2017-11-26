@@ -7,6 +7,7 @@ use App\Evaluation;
 use App\AcademicTerm;
 use App\Student;
 use App\Curriculum;
+use Carbon\Carbon;
 
 class Student_Evaluation_History extends Controller
 {
@@ -29,7 +30,7 @@ class Student_Evaluation_History extends Controller
 
       #------------------------------------------------------
       //get evaluation records of student
-      $eval = Evaluation::where('STUDENT_id', '=', 0)
+      $eval = Evaluation::where('STUDENT_id', '=', $id)
       ->get();
 
       if($eval->isEmpty()){
@@ -51,9 +52,12 @@ class Student_Evaluation_History extends Controller
         ->where('active','=','1')
         ->first();
 
+        $date_time = Carbon::parse($each->cancelled_date);
+
         $single_row = [];
         $single_row['eval'] = $each;
         $single_row['acad'] = $acad;
+        $single_row['cancelled_date'] = $date_time->format('m/d/Y g:ia');
         $single_row['evaluator'] = $evaluator;
         $single_row['faculty'] = $faculty;
 

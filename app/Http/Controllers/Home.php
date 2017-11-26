@@ -10,6 +10,7 @@ use App\LoadGroupSchedule;
 use App\LoadSubject;
 use App\LoadGroup;
 use App\Subject;
+use Carbon\Carbon;
 
 class Home extends Controller
 {
@@ -85,8 +86,11 @@ class Home extends Controller
       ->where('active','=',1)
       ->first();
 
+      $date_time = Carbon::parse($each->date);
+
       $single_row = [];
       $single_row['all'] = $each;
+      $single_row['date_time'] = $date_time->format('F d, Y g:ia');
       $single_row['faculty'] = $faculty;
 
       array_push($collection, $single_row);
