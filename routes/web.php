@@ -21,9 +21,9 @@ Route::get('show_token',function(){
 });
 
 //404 PAGE
-Route::get('page_not_found', function(){
-  return view('errors.404');
-})->name('error-404');
+Route::get('page_not_found','Error@show_404')->name('error-404');
+//STATUS CODE
+Route::get('status_error/{status}','Error@show_status_error')->name('error-status');
 
 // ROUTES FOR GUEST USERS
 Route::group(['middleware' => ['cict.guest']], function () {

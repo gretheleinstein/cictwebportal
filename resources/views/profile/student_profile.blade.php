@@ -54,7 +54,7 @@ body {
     </div>
     <div class="col-lg-1"><br></div>
   </div>
-</div><br/><br/>
+</div><br/>
   <!-- this will contain the footer-->
   <footer class="footer hidden-lg hidden-md hidden-sm col-xs-12 text-center" style="background-color:white; border-top: 1px solid #DBDBDB; ">
   <div class="container">

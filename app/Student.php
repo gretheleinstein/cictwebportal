@@ -8,6 +8,6 @@ class Student extends Model
 {
     //
     public $table = 'student';
-  //  public $primaryKey = 'cict_id';
+    public $primaryKey = 'cict_id';
     public $timestamps = false;
 }

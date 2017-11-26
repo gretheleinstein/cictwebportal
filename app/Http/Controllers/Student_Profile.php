@@ -35,6 +35,7 @@ class Student_Profile extends Controller
       ->orderBy('id','DESC')
       ->first();
 
+      $reply['info'] =$student;
       if($student_profile){
         #------------------------------------------------------
         //get curriculum info of student
@@ -46,11 +47,10 @@ class Student_Profile extends Controller
         #------------------------------------------------------
         //get current academic term info
         $academic_term = AcademicTerm::where('active', '=', '1')
-        ->where('current', '=', 7)
+        ->where('current', '=', 1)
         ->first();
 
         $reply['current_term'] =$academic_term;
-        $reply['info'] =$student;
         $reply['profile'] =$student_profile;
 
         //if curriculum is not null/empty
@@ -59,10 +59,10 @@ class Student_Profile extends Controller
         }else {
           $reply['curriculum'] ="no curriculum";
         }
-        if($curriculum){
+        if($academic_term){
           $reply['current_term'] =$academic_term;
         }else {
-          $reply['current_term'] ="no current sem";
+          $reply['current_term'] ="no current term";
         }
       }else{
         $reply['student_profile'] ="No student profile";
@@ -118,7 +118,7 @@ class Student_Profile extends Controller
           $cloned_profile->STUDENT_id = $id;
         }
         //update gender changes
-        $student->has_profile = 1;
+        $student->has_profile = '1';
         $student->gender = strtoupper($gender);
         $cloned_profile->mobile = strtoupper($contact_no);
         $cloned_profile->zipcode = strtoupper($zipcode);

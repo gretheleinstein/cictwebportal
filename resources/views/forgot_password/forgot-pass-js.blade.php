@@ -72,7 +72,7 @@ function verify_student(post_parameters){
     //alert("JQUERY TEXT STATUS: " + textStatus);
     //alert("ERROR DESCRIPTION: " + errorThrown);
     btn_clicked_end("#btn_verify");
-    xhr_methods(xhr.readyState, xhr.status);
+    window.location = error_route + xhr.status;
   }
   // finished
   request.always = function(){
@@ -148,7 +148,7 @@ function check_question(post_parameters){
     //alert("JQUERY TEXT STATUS: " + textStatus);
     //alert("ERROR DESCRIPTION: " + errorThrown);
     btn_clicked_end("#btn_confirm");
-    xhr_methods(xhr.readyState, xhr.status);
+    window.location = error_route + xhr.status;
   }
   // finished
   request.always = function(){
@@ -185,7 +185,7 @@ function request_question(){
     //alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
     //alert("JQUERY TEXT STATUS: " + textStatus);
     //alert("ERROR DESCRIPTION: " + errorThrown);
-    xhr_methods(xhr.readyState, xhr.status);
+    window.location = error_route + xhr.status;
   }
   // finished
   request.always = function(){
@@ -263,7 +263,7 @@ function update_password(post_parameters){
     //alert("JQUERY TEXT STATUS: " + textStatus);
     //alert("ERROR DESCRIPTION: " + errorThrown);
     btn_clicked_end("#btn_reset");
-    xhr_methods(xhr.readyState, xhr.status);
+    window.location = error_route + xhr.status;
   }
   // finished
   request.always = function(){

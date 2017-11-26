@@ -16,19 +16,19 @@
   <div class="row white-bg" style="margin-bottom: 1%;  padding: 3%">
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
       <label for="">Student ID</label><br>
-      <span class="glyphicon glyphicon-triangle-right span_grey"></span><input type="text" class="span_grey" id="stud-id" value="" disabled>
+      <input type="text" class="span_grey" id="stud-id" value="" disabled>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
       <label for="">Year/Sec/Group</label><br>
-      <span class="glyphicon glyphicon-triangle-right span_grey"></span><input type="text" class="span_grey" id="year-sec-gr" value="" disabled>
+      <input type="text" class="span_grey" id="year-sec-gr" value="" disabled>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
       <label for="">Curriculum</label><br>
-      <span class="glyphicon glyphicon-triangle-right span_grey"></span><input type="text" class="span_grey" id="curriculum" value="" disabled>
+      <input type="text" class="span_grey" id="curriculum" value="" disabled>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-      <label for="">Floor Assignment</label><br>
-      <span class="glyphicon glyphicon-triangle-right span_grey"></span><input type="text" class="span_grey" id="floor-assignment-lbl" value="" disabled>
+      <label for="">Cluster Assignment</label><br>
+      <input type="text" class="span_grey" id="floor-assignment-lbl" value="" disabled>
     </div>
   </div>
   <div class="row white-bg" style="padding: 3%">
@@ -87,11 +87,11 @@
       <input type="text" id="house_no" name="house_no" class="form-control input-sm" placeholder="e.g. 03" value="">
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <label for="street" class="">Street</label><br>
+      <label for="street" class="">Street (Optional)</label><br>
       <input type="text" id="street" name="street" class="form-control input-sm" placeholder="e.g. St. Palayan" value="">
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <label for="zipcode" class="">Zipcode *</label><br>
+      <label for="zipcode" class="">Zipcode (Optional)</label><br>
       <input type="text" id="zipcode" name="zipcode" class="form-control input-sm" placeholder="e.g. 3005" value="">
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

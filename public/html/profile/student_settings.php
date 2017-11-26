@@ -1,10 +1,10 @@
 <form id = "frm_change_flr_ass">
   <div class="row white-bg" style="padding:3%;">
     <div class="col-lg-12">
-      <h5>Change Floor Assignment</h5><hr>
+      <h5>Change Cluster Assignment</h5><hr>
     </div>
       <div class="col-lg-10 form-group col-lg-offset-1">
-        <label class="control-label col-sm-4">Select new floor assignment:</label>
+        <label class="control-label col-sm-4">Select new Cluster assignment:</label>
         <div class="col-sm-8">
           <select name="floor_assignment" class="form-control" id="floor_assignment">
 

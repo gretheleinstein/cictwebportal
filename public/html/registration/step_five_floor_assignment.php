@@ -8,12 +8,12 @@
           <div class="col-lg-1"></div>
           <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 wow flipInX animated">
           <div class="text-center pad-div">
-              <span class="span_step_title">Floor Assignment</span>
+              <span class="span_step_title">Cluster Assignment</span>
           </div><br>
           <div id = "div_floor_assignment">
                <form id="frm_floor_assignment">
                    <select name="floor_assignment" class="form-control" id="floor_assignment">
-                       
+
                    </select><br>
                   <button type="button" id="btn_register" class="btn_next" name="button">Next</button>
                  </form>

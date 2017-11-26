@@ -61,6 +61,7 @@ function request_announcements(){
     //alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
     //alert("JQUERY TEXT STATUS: " + textStatus);
     //alert("ERROR DESCRIPTION: " + errorThrown);
+    window.location = error_route + xhr.status;
   }
   // finished
   request.always = function(){
@@ -105,6 +106,7 @@ function request_faculty_name(){
     //alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
     //alert("JQUERY TEXT STATUS: " + textStatus);
     //alert("ERROR DESCRIPTION: " + errorThrown);
+    window.location = error_route + xhr.status;
   }
   // finished
   request.always = function(){
@@ -159,6 +161,7 @@ function request_faculty_sched(id){
     //alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
     //alert("JQUERY TEXT STATUS: " + textStatus);
     //alert("ERROR DESCRIPTION: " + errorThrown);
+    window.location = error_route + xhr.status;
   }
   // finished
   request.always = function(){
@@ -306,6 +309,7 @@ function login_details(post_parameters){
     //alert("JQUERY TEXT STATUS: " + textStatus);
     //alert("ERROR DESCRIPTION: " + errorThrown);
     btn_clicked_end("#btn_signin");
+    window.location = error_route + xhr.status;
   }
   // finished
   request.always = function(){
