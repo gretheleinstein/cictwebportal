@@ -81,6 +81,6 @@ Route::group(['middleware' => ['cict.auth']], function () {
 // EXTERNAL ROUTES
 	Route::get('linked/api/{cict_id}', function($cict_id){
 		ini_set("allow_url_fopen",1);
-		$json = file_get_contents('http://localhost/laravel/linked/public/linked/check_number/'.$cict_id);
+		$json = file_get_contents('http://localhost/laravel/linked-php-api/public/linked/check_number/'.$cict_id);
     echo $json;
 	})->name('check-number');

@@ -105,7 +105,7 @@ function get_request(route, goto_func){
     //  alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
     //  alert("JQUERY TEXT STATUS: " + textStatus);
     //  alert("ERROR DESCRIPTION: " + errorThrown);
-    window.location = error_route + xhr.status;
+    //window.location = error_route + xhr.status;
   }
   // finished
   request.always = function(){
