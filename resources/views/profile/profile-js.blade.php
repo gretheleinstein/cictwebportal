@@ -71,7 +71,7 @@ function post_request(route, goto_func, post_parameters, btn_id){
     //alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
     //alert("JQUERY TEXT STATUS: " + textStatus);
     //alert("ERROR DESCRIPTION: " + errorThrown);
-  //  window.location = error_route + xhr.status;
+    window.location = error_route + xhr.status;
     btn_clicked_end(btn_id);
   }
   // finished
