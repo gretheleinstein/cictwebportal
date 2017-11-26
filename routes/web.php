@@ -59,7 +59,8 @@ Route::group(['middleware' => ['cict.auth']], function () {
   Route::post('student_profile/update','Student_Profile@update_profile')->name('profile-update');
   Route::post('get_profile','Student_Profile@get_profile_details')->name('profile-get');
   Route::post('logout','Student_Profile@logout')->name('profile-logout');
-  Route::get('student_profile/{id}/PDF/view_pdf', 'Student_Profile@view_pdf')->name('pdf-view');
+  Route::get('student_profile/PDF/view_pdf', 'Student_Profile@view_pdf')->name('pdf-view');
+  Route::get('student_grade/{year_sem}', 'Student_Grade@view_pdf')->name('pdf-view-grade');
   Route::get('get_grade','Student_Grade@get_grade')->name('grade-get');
   Route::get('get_summary','Student_Summary@get_summary')->name('summary-get');
   Route::get('view_eval','Student_Evaluation_History@view_eval')->name('eval-get');

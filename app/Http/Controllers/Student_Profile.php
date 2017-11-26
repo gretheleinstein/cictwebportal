@@ -156,7 +156,8 @@ class Student_Profile extends Controller
       echo json_encode($data,JSON_FORCE_OBJECT);
     }
 
-    public function view_pdf($id, Request $request){
+    public function view_pdf(Request $request){
+      $id = $request->session()->get('SES_CICT_ID');
       #------------------------------------------------------
       //find student with the given parameter
       $student = Student::where('cict_id', '=', $id)

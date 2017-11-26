@@ -5,6 +5,9 @@ use App\Subject;
 use App\Grade;
 use App\Evaluation;
 use App\AcademicTerm;
+use PDF;
+use App\Student;
+use Carbon\Carbon;
 
 class Student_Grade extends Controller
 {
@@ -77,4 +80,83 @@ class Student_Grade extends Controller
     // send result
     echo $array_result;
   }
+
+  public function view_pdf($year_sem, Request $request){
+        $id = $request->session()->get('SES_CICT_ID');
+
+        $year_sem = explode("_", $year_sem);
+        $year = $year_sem[0];
+        $sem = $year_sem[1];
+
+        #------------------------------------------------------
+        //find student with the given parameter
+        $student = Student::where('cict_id', '=', $id)
+        ->where('active', '=', '1')
+        ->orderBy('id','DESC')
+        ->first();
+
+        $acad = AcademicTerm::where('school_year','=',$year)
+        ->where('semester','=',$sem)
+        ->where('active','=','1')
+        ->first();
+
+        if($acad){
+          $collection = array();
+          $grade = Grade::where('STUDENT_id','=',$id)
+          ->where('ACADTERM_id','=',$acad->id)
+          ->where('active','=','1')
+          ->get();
+
+          if($grade->isEmpty()){
+            // if grades is empty
+            $single['result'] = "No grade record of student";
+            array_push($collection,$single);
+          }else{
+            // Loop through each grades and get data and corresponding subject info
+            foreach ($grade as $each_grade){
+              $subject = Subject::where('id','=',$each_grade->SUBJECT_id)
+              ->where('active','=','1')
+              ->first();
+
+              $grades_row['grade'] = $each_grade;
+              $grades_row['subject'] = $subject;
+
+              array_push($collection,$grades_row);
+            }
+            //dd($collection);
+          }
+        }
+
+        $date = Carbon::now();
+        $date = $date->format('F d, Y g:ia');
+
+        #------------------------------------------------------
+        $view =\View::make('pdf.student_grade_pdf',['student' => $student, 'collection' => $collection, 'year_sem' => $year." ".$sem, 'time' => $date ]);
+        $html_content = $view->render();
+        //  PDF::new TCPDF('L', 'mm', array(210,97), true, 'UTF-8', false);
+        PDF::SetTitle($student->last_name.', '.$student->first_name.' '.$student->middle_name);
+        //  PDF::SetMargins(25,17,25, true);
+        //  $resolution= array(165, 172);
+        //  PDF::AddPage('P', $resolution);
+        PDF::SetFont('gothic');
+        PDF::AddPage();
+        PDF::writeHTML($html_content, true, false, true, false, '');
+        PDF::Output($student->last_name.', '.$student->first_name.' '.$student->middle_name.'.pdf');
+      }
+
+      public function convert_to_words($sem){
+        if($sem == "FIRST SEMESTER"){
+          $new_sem = "FIRST";
+        }else if($sem == "SECOND SEMESTER"){
+          $new_sem = "SECOND";
+        }else if($sem == "FIRST SUMMER"){
+          $new_sem = "1st SUMMER";
+        }else if($sem == "SECOND SUMMER"){
+          $new_sem = "2nd SUMMER";
+        }else{
+          $new_sem = $sem;
+        }
+
+        return $new_sem;
+      }
 }
