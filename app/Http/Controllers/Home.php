@@ -121,6 +121,13 @@ class Home extends Controller
   public function get_faculty_sched($id){
     $collection = array();
     #------------------------------------------------------
+    // See if faculty exists
+    $faculty = Faculty::where('id', '=', $id)
+    ->where('active', '=', '1')
+    ->first();
+
+    if($faculty){
+    #------------------------------------------------------
     // Get faculty load group
     $load_group = LoadGroup::where('faculty', '=', $id)
     ->where('active', '=', '1')
@@ -151,8 +158,12 @@ class Home extends Controller
       $single_row['subject'] = $subject;
 
       array_push($collection,$single_row);
-    }
-  }
+      }
+     }
+   }else {
+     $single_row['result'] = "No faculty matched";
+     array_push($collection,$single_row);
+   }
   #------------------------------------------------------
   // format collection
   $array_result = json_encode($collection,JSON_OBJECT_AS_ARRAY);

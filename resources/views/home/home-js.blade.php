@@ -106,7 +106,7 @@ function request_faculty_name(){
     //alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
     //alert("JQUERY TEXT STATUS: " + textStatus);
     //alert("ERROR DESCRIPTION: " + errorThrown);
-    window.location = error_route + xhr.status;
+  //  window.location = error_route + xhr.status;
   }
   // finished
   request.always = function(){
@@ -144,8 +144,9 @@ function onRequestFacultySuccess(data){
 
 var routee = "{{ route('get-faculty-sched','') }}/"
 function request_faculty_sched(id){
+  var validated_id = (id == "") ? ("no id") : (id);
   request = new Request();
-  request.url = routee + id;
+  request.url = routee + validated_id;
   request.type = 'POST';
   request.replyType = 'json';
   // start
@@ -161,7 +162,7 @@ function request_faculty_sched(id){
     //alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
     //alert("JQUERY TEXT STATUS: " + textStatus);
     //alert("ERROR DESCRIPTION: " + errorThrown);
-    window.location = error_route + xhr.status;
+  //  window.location = error_route + xhr.status;
   }
   // finished
   request.always = function(){
@@ -172,8 +173,10 @@ function request_faculty_sched(id){
 }
 
 function onRequestFacultySchedSuccess(data){
-  $(".scheds").html("");
-  if(data[0]['result'] == "No load_group"){
+  $(".scheds, #div_sched").html("");
+  if(data[0]['result'] == "No faculty matched"){
+    $("#div_sched").prepend('<h1>No results matched your search. Faculty does not exists.</h1>')
+  }else if(data[0]['result'] == "No load_group"){
     $("#div_sched").prepend('<h1>faculty has no schedule</h1>')
   }else{
     $.each(data, function(key,value) {
