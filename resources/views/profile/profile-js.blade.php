@@ -256,7 +256,7 @@ function load_display_picture(id){
   newImg2.style.border="1px solid #EEEEEE";
   newImg2.width="100";
   newImg2.height="100";
-//  newImg2.onload=onload_display_picture('profile-pic_img');
+  //  newImg2.onload=onload_display_picture('profile-pic_img');
 }
 
 function onload_display_picture(id){
@@ -267,10 +267,10 @@ function onload_display_picture(id){
     _img.src = newImg2.src;
   }
 
-//  $("#"+id).replaceWith(newImg2);
-setTimeout(function() {
-  $("#"+id).replaceWith(newImg2);
-},1000) ;
+  //  $("#"+id).replaceWith(newImg2);
+  setTimeout(function() {
+    $("#"+id).replaceWith(newImg2);
+  },1000) ;
 }
 
 //---------------------------------------------------------------------------------------------------------
@@ -839,7 +839,7 @@ function student_linked_account(){
   //    $( "#container" ).hide().fadeIn("slow");
   request_profile_values(save_qr_data);
   clear_linked = setInterval(function() {
-  get_request("{{ route('check-number', ['cict_id'=>session('SES_CICT_ID')]) }}", load_linked_acc_info);
+    get_request("{{ route('check-number', ['cict_id'=>session('SES_CICT_ID')]) }}", load_linked_acc_info);
   },3000);
   //  });
 }
