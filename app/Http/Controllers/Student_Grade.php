@@ -97,7 +97,7 @@ class Student_Grade extends Controller
 
         if($student){
           $single['student'] = "No grade record of student";
-          array_push($collection,$single)
+          array_push($collection,$single);
         }else{
         $acad = AcademicTerm::where('school_year','=',$year)
         ->where('semester','=',$sem)

@@ -892,7 +892,7 @@ function load_linked_acc_info(data){
     $("#div_linked").append(data['called']);
     $("#div_linked").append("<div id='div_linked_sub' class='col-lg-8 col-lg-offset-2 text-left'></div>");
     $("#div_linked_sub").append('<hr/><h6>Reference Details</h6>');
-    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<span class='glyphicon glyphicon-menu-hamburger'></span> Reference No. #</p>"); // "+reference['id']+"
+    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<span class='glyphicon glyphicon-menu-hamburger'></span> Reference No. #"+pila_info['floor_number']+"</p>");
     $("#div_linked_sub").append("<p>&nbsp;&nbsp;<span class='glyphicon glyphicon-blackboard'></span> Room assignment "+pila_info['floor_assignment']+"</p>"); //linked_settings['floor_'+pila_info['floor_assignment']+'_name']
     $("#div_linked_sub").append("<p>&nbsp;&nbsp;<span class='glyphicon glyphicon-calendar'></span> Accepted "+ new Date(pila_info['request_accepted']).toLocaleString() +"</p>");
     var var_request_called;
