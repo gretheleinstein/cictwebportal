@@ -884,7 +884,7 @@ function load_qrcode(data){
 function load_linked_acc_info(data){
   $("#container").html('');
   $("#container").html('<div class="row white-bg text-center" style="padding: 3%;"><div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3" id="div_linked" style="font-weight: bold; font-size: 9pt"><div class="txt-white" style="display:none; background-color: #1A4D57;padding:5%; border-bottom: 5px solid #BDC3C7;"></div></div></div>');
-  reference = data['reference'];
+  // reference = data['reference'];
   pila_info = data['pila_info'];
   linked_settings = data['settings'];
   if(data['pila_status'] == "yes"){
@@ -892,8 +892,8 @@ function load_linked_acc_info(data){
     $("#div_linked").append(data['called']);
     $("#div_linked").append("<div id='div_linked_sub' class='col-lg-8 col-lg-offset-2 text-left'></div>");
     $("#div_linked_sub").append('<hr/><h6>Reference Details</h6>');
-    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<span class='glyphicon glyphicon-menu-hamburger'></span> Reference No. # "+reference['id']+"</p>");
-    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<span class='glyphicon glyphicon-blackboard'></span> Room assignment "+linked_settings['floor_'+pila_info['floor_assignment']+'_name']+"</p>");
+    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<span class='glyphicon glyphicon-menu-hamburger'></span> Reference No. #</p>"); // "+reference['id']+"
+    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<span class='glyphicon glyphicon-blackboard'></span> Room assignment "+pila_info['floor_assignment']+"</p>"); //linked_settings['floor_'+pila_info['floor_assignment']+'_name']
     $("#div_linked_sub").append("<p>&nbsp;&nbsp;<span class='glyphicon glyphicon-calendar'></span> Accepted "+ new Date(pila_info['request_accepted']).toLocaleString() +"</p>");
     var var_request_called;
     if(pila_info['request_called'] == null){ var_request_called="UNCALLED"; }else{ var_request_called = pila_info['request_called']}
@@ -901,7 +901,7 @@ function load_linked_acc_info(data){
     var var_request_validity;
     if(pila_info['request_validity'] == null){ var_request_validity="VALID"; }else{ var_request_validity = new Date(pila_info['request_validity']).toLocaleString()}
     $("#div_linked_sub").append("<p>&nbsp;&nbsp;<span class='glyphicon glyphicon-warning-sign'></span> Expiration "+var_request_validity+"</p><hr/>");
-    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<span class='glyphicon glyphicon-warning-bullhorn'></span> Announcement</p><p> The lazy fox jumps over. mehehehe</p>");
+    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<span class='glyphicon glyphicon-warning-bullhorn'></span> Announcement</p><p>"+data['announcement']+"</p>");
   }else {
     load_qrcode();
   }

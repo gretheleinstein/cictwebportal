@@ -95,6 +95,10 @@ class Student_Grade extends Controller
         ->orderBy('id','DESC')
         ->first();
 
+        if($student){
+          $single['student'] = "No grade record of student";
+          array_push($collection,$single)
+        }else{
         $acad = AcademicTerm::where('school_year','=',$year)
         ->where('semester','=',$sem)
         ->where('active','=','1')
@@ -123,8 +127,8 @@ class Student_Grade extends Controller
 
               array_push($collection,$grades_row);
             }
-            //dd($collection);
           }
+        }
         }
 
         $date = Carbon::now();
@@ -134,29 +138,15 @@ class Student_Grade extends Controller
         $view =\View::make('pdf.student_grade_pdf',['student' => $student, 'collection' => $collection, 'year_sem' => $year." ".$sem, 'time' => $date ]);
         $html_content = $view->render();
         //  PDF::new TCPDF('L', 'mm', array(210,97), true, 'UTF-8', false);
-        PDF::SetTitle($student->last_name.', '.$student->first_name.' '.$student->middle_name);
+        PDF::SetTitle($student->last_name.', '.$student->first_name.' '.$student->middle_name.' '.$year.' '.$sem);
         //  PDF::SetMargins(25,17,25, true);
         //  $resolution= array(165, 172);
         //  PDF::AddPage('P', $resolution);
         PDF::SetFont('gothic');
         PDF::AddPage();
         PDF::writeHTML($html_content, true, false, true, false, '');
-        PDF::Output($student->last_name.', '.$student->first_name.' '.$student->middle_name.'.pdf');
+        PDF::Output($student->last_name.', '.$student->first_name.' '.$student->middle_name.' '.$year.' '.$sem.'.pdf');
       }
 
-      public function convert_to_words($sem){
-        if($sem == "FIRST SEMESTER"){
-          $new_sem = "FIRST";
-        }else if($sem == "SECOND SEMESTER"){
-          $new_sem = "SECOND";
-        }else if($sem == "FIRST SUMMER"){
-          $new_sem = "1st SUMMER";
-        }else if($sem == "SECOND SUMMER"){
-          $new_sem = "2nd SUMMER";
-        }else{
-          $new_sem = $sem;
-        }
 
-        return $new_sem;
-      }
 }
