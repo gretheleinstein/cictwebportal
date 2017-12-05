@@ -116,9 +116,10 @@
 
     @elseif($status === "511")
       show_report("511","Network Authentication Required","The client needs to authenticate to gain network access.")
+    @elseif($status === "Failed")
+      show_report("---","Something went wrong!","Sorry something went wrong. Access Denied.")
     @else
       show_report("&nbsp;&nbsp;---","Status code not found!","Status code error not listed.");
-
     @endif
   });
 

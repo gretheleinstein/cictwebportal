@@ -36,12 +36,12 @@
     <span>
       <table>
         <tr>
-          <td width="5%"></td>
+          <td width="6%"></td>
           <td width="90%"><table class="name_header">
             <tr><td></td></tr>
-            <tr><td width="2%"></td><td width="11%">Name:</td><td width="39%">{{ $student->last_name.", ".$student->first_name." ".$student->middle_name }}</td>          <td width="21%">Academic Term and Year:</td><td width="27%">{{ $year_sem }}</td></tr>
-            <tr><td width="2%"></td><td width="11%">Student No.:</td><td width="39%">{{ $student->id }}</td>   <td width="21%">Year Level:</td><td width="15%">{{ $student->year_level }}</td></tr>
-            <tr><td width="2%"></td><td width="11%">Course:</td><td width="39%">{{ $student->CURRICULUM_id }}</td></tr>
+            <tr><td width="2%"></td><td width="11%">Name:</td><td width="38%">{{ $student->last_name.", ".$student->first_name." ".$student->middle_name }}</td>          <td width="21%">Academic Term and Year:</td><td width="27%">{{ $year_sem }}</td></tr>
+            <tr><td width="2%"></td><td width="11%">Student No.:</td><td width="38%">{{ $student->id }}</td>   <td width="21%">Year Level:</td><td width="15%">{{ $student->year_level }}</td></tr>
+            <tr><td width="2%"></td><td width="11%">Course:</td><td width="38%">{{ $cur }}</td></tr>
             <tr><td></td></tr>
           </table></td>
         </tr>
@@ -53,7 +53,7 @@
         <tr>
           <td width="5%"></td>
           <td width="90%"><table class="name_header" style="padding: 5px;">
-            <tr><td width="2%"class="border_bottom"></td><th width="17%" class="border_bottom">SUBJECT CODE</th><th width="53%" class="border_bottom">TITLE</th><th width="8%" class="border_bottom">UNITS</th><th width="8%" class="border_bottom">FINAL</th><th width="12%" class="border_bottom">REMARKS</th></tr>
+            <tr><td width="2%"class="border_bottom"></td><th width="17%" class="border_bottom">SUBJECT CODE</th><th width="54%" class="border_bottom">TITLE</th><th width="8%" class="border_bottom">UNITS</th><th width="8%" class="border_bottom">FINAL</th><th width="12%" class="border_bottom">REMARKS</th></tr>
             @foreach ($collection as $each)
             <?php $grade = $each['grade']['remarks'] ?>
             @if( $grade == "FAILED" )

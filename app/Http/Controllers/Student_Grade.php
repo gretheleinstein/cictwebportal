@@ -8,6 +8,7 @@ use App\AcademicTerm;
 use PDF;
 use App\Student;
 use Carbon\Carbon;
+use App\Curriculum;
 
 class Student_Grade extends Controller
 {
@@ -95,17 +96,24 @@ class Student_Grade extends Controller
         ->orderBy('id','DESC')
         ->first();
 
+        $collection = array();
         if($student){
-          $single['student'] = "No grade record of student";
-          array_push($collection,$single);
-        }else{
+        $cur = Curriculum::where('id','=',$student->CURRICULUM_id)
+        ->where('active','=','1')
+        ->first();
+
+        if($cur){
+          $cur=$cur->description;
+        }else {
+          $cur = "----";
+        }
+
         $acad = AcademicTerm::where('school_year','=',$year)
         ->where('semester','=',$sem)
         ->where('active','=','1')
         ->first();
 
         if($acad){
-          $collection = array();
           $grade = Grade::where('STUDENT_id','=',$id)
           ->where('ACADTERM_id','=',$acad->id)
           ->where('active','=','1')
@@ -127,26 +135,28 @@ class Student_Grade extends Controller
 
               array_push($collection,$grades_row);
             }
+
+            $date = Carbon::now('Asia/Manila');
+            $date = $date->format('F d, Y g:ia');
+
+            #------------------------------------------------------
+            $view =\View::make('pdf.student_grade_pdf',['student' => $student, 'cur' => $cur, 'collection' => $collection, 'year_sem' => $year." ".$sem, 'time' => $date ]);
+            $html_content = $view->render();
+            //  PDF::new TCPDF('L', 'mm', array(210,97), true, 'UTF-8', false);
+            PDF::SetTitle($student->last_name.', '.$student->first_name.' '.$student->middle_name.' '.$year.' '.$sem);
+            //  PDF::SetMargins(25,17,25, true);
+            //  $resolution= array(165, 172);
+            //  PDF::AddPage('P', $resolution);
+            PDF::SetFont('gothic');
+            PDF::AddPage();
+            PDF::writeHTML($html_content, true, false, true, false, '');
+            PDF::Output($student->last_name.', '.$student->first_name.' '.$student->middle_name.' '.$year.' '.$sem.'.pdf');
           }
         }
         }
-
-        $date = Carbon::now();
-        $date = $date->format('F d, Y g:ia');
-
-        #------------------------------------------------------
-        $view =\View::make('pdf.student_grade_pdf',['student' => $student, 'collection' => $collection, 'year_sem' => $year." ".$sem, 'time' => $date ]);
-        $html_content = $view->render();
-        //  PDF::new TCPDF('L', 'mm', array(210,97), true, 'UTF-8', false);
-        PDF::SetTitle($student->last_name.', '.$student->first_name.' '.$student->middle_name.' '.$year.' '.$sem);
-        //  PDF::SetMargins(25,17,25, true);
-        //  $resolution= array(165, 172);
-        //  PDF::AddPage('P', $resolution);
-        PDF::SetFont('gothic');
-        PDF::AddPage();
-        PDF::writeHTML($html_content, true, false, true, false, '');
-        PDF::Output($student->last_name.', '.$student->first_name.' '.$student->middle_name.' '.$year.' '.$sem.'.pdf');
+      else{
+        return redirect()->route('error-status', 'Failed');
       }
-
+    }//function
 
 }
