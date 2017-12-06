@@ -11,6 +11,7 @@ $(document).ready(function() {
 function load_nav(){
   $("#container-nav").load("{{ asset('html/navbar/home_nav.php') }}",function(){
     $("#lnk_register").attr('href',"{{ route('register') }}");
+    $("#logo").attr('src', '{{ asset("img/logo/navnav.png") }}');
     load_hello();
     load_eval_steps();
   //  login_form();
@@ -202,6 +203,10 @@ function onRequestFacultySchedSuccess(data){
 
 function load_eval_steps(){
   $( "#container-steps-in-eval" ).load("{{ asset( 'html/home/steps_in_eval.php' ) }}", function(){
+    $("#wifi").attr('src', '{{ asset("img/wifi.png") }}');
+    $("#student").attr('src', '{{ asset("img/student.png") }}');
+    $("#linked").attr('src', '{{ asset("img/linked_acc.png") }}');
+    $("#bell").attr('src', '{{ asset("img/bell.png") }}');
   });
 }
 

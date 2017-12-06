@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-md navbar-trans fixed-top">
-  <a class="navbar-brand" href="#">CICT Web Portal</a>
+<nav class="navbar navbar-expand-md fixed-top" id="navbar_main">
+  <a class="navbar-brand" href="#"><img src="" class="img-fluid" id="logo"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -8,22 +8,22 @@
     </ul>
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link page-scroll" href="#help-section">GUIDE <span class="sr-only">(current)</span></a>
+        <a class="nav-link page-scroll" href="#help-section">GUIDE</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" id="lnk_register" >ANNOUNCEMENTS </a>
+        <a class="nav-link page-scroll" href="#announcement-section" id="lnk_anno" >ANNOUNCEMENTS</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" id="lnk_register" >SEARCH </a>
+        <a class="nav-link page-scroll" href="#search-section" id="lnk_search" >SEARCH</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" id="lnk_register" >APP </a>
+        <a class="nav-link page-scroll" href="#app-section" id="lnk_app" >APP</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" id="lnk_register" >SIGN UP </a>
+        <a class="nav-link" href="#" id="lnk_register" >SIGNUP</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link btn btn-outline-secondary" href="#" id="lnk_register" >LOGIN </a>
+        <a class="nav-link underline" href="#" id="lnk_register" >LOGIN </a>
       </li>
       <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

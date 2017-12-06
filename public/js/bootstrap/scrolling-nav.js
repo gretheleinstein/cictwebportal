@@ -1,15 +1,18 @@
-jQuery to collapse the navbar on scroll
+
+$(document).ready(function() {
 $(window).scroll(function() {
-  //$("#a.login").click();
     if ($(".navbar").offset().top > 50) {
-        $(".navbar-fixed-top").addClass("top-nav-collapse");
+        $(".navbar-expand-md").addClass('navbar-darker');
         $(".navbar-fixed-top").removeClass("navbar-transparent");
-        $(".a-signin").removeClass("corners-rounded btn btn-default");
+        $("#logo").width('150px');
+        $("#logo").height('50px');
     } else {
-        $(".navbar-fixed-top").removeClass("top-nav-collapse");
+        $(".navbar-expand-md").removeClass('navbar-darker');
         $(".navbar-fixed-top").addClass("navbar-transparent");
-        $(".a-signin").addClass("corners-rounded btn btn-default");
+        $("#logo").width('420px');
+        $("#logo").height('150px');
     }
+});
 });
 
 

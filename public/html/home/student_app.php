@@ -1,4 +1,4 @@
-<div class="container-fluid wow bounceInUp animated">
+<div class="container wow fadeIn animated" id="app-section">
   <div class="row">
     <div class="container col-lg-10">
     <hr class="featurette-divider">
