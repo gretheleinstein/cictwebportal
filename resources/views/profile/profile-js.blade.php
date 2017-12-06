@@ -37,7 +37,7 @@ function request_profile_values(onDone){
     //  alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
     //  alert("JQUERY TEXT STATUS: " + textStatus);
     //  alert("ERROR DESCRIPTION: " + errorThrown);
-    window.location = error_route + xhr.status;
+      window.location = error_route + xhr.status;
   }
   // finished
   request.always = function(){
@@ -280,7 +280,6 @@ function load_values(data){
   if(data['student']== "No student"){
     notify("Database Request Done","No student record found.");
   }else if(data['student_profile']== "No student profile"){
-    alert('mnn');
     post_request("{{ route('profile-update') }}", onUp, "","");
   }
   else{

@@ -1,4 +1,15 @@
-<br/><div class="container-fluid wow slideInUp animated" style="background-color: white; padding-top:6%; padding-bottom:5%;">
+<div class="row"><br>
+<div class="container c0l-lg-12 wow slideInUp animated" style="background-color: white; padding-top:6%; padding-bottom:5%;">
+  <hr><br><h1>Finding a Teacher?</h1>
+  <h5 class="text-muted s-light">Teacher finder can offer help to find your respective instructor. Go to Teacher Finder and search for the instructor's name and view their CICT schedule for the whole semester.</h5>
+  <br><button type="button" class="btn btn-primary btn-lg" name="button"> Teacher Finder</button>
+</div>
+</div>
+
+
+
+
+<br/><div class="container-fluid wow slideInUp animated" style="background-color: white; padding-top:6%; padding-bottom:5%;" hidden>
   <div class="row">
     <div class="container col-lg-12">
       <h1>SEARCH SCHEDULE</h1>

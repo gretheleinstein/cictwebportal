@@ -86,7 +86,7 @@
   #world, #cict_firefox{ font-size: 30px; }
   #intro_eval{ font-size: 25px; }
   #div-app{ padding-top: 10%; }
-  #btn_dl_app_login, #btn_dl_app{ padding: 3%; }
+  #btn_dl_app_login, #btn_dl_app{ padding: 3%; font-size: 12pt; }
   .span_step_no{  font-size: 25pt; }
   #sub-intro{ font-size: 20px; }
   .input{ height: 40px; }
@@ -165,7 +165,7 @@
   #intro{ font-size: 50px; }
   #intro_eval{ font-size: 50px; }
   #div-app{ padding-top: 15%; }
-  #btn_dl_app{ padding: 5%; }
+  #btn_dl_app{ padding: 3%; }
   .span_step_no{  font-size: 25pt; }
   #sub-intro{ font-size: 30px; }
 }

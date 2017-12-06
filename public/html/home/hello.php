@@ -1,6 +1,60 @@
-<div class="container-fluid text-center hello-world slideInDown animated">
-  <p id="hello"><span style="color: #EFC364">H</span><span style="color: #F0917F">e</span><span style="color: #64C1AE">l</span><span style="color: #64C1AE">l</span><span style="color: #DF686A">o</span></p>
-  <p id="world" style="display:none"><span style="color: #EFC364">W</span><span style="color: #F0917F">O</span><span style="color: #64C1AE">R</span><span style="color: #64C1AE">L</span><span style="color: #DF686A">D</span></p>
-  <p id="cict_firefox" style="display:none"><span style="color: #EA9578;">C</span><span style="color: #EFC364">I</span><span style="color: #F0917F">C</span><span style="color: #64C1AE">T</span> <span style="color: #64C1AE">F</span><span style="color: #DF686A">I</span><span style="color: #EA9578">R</span><span style="color: #64C1AE">E</span><span style="color: #DF686A">F</span><span style="color: #EA9578">O</span><span style="color: #EA9578">X</span></p>
-  <a class="btn btn-default btn-lg corners-rounded page-scroll fadeInUp animated " href="#login-div"><span class="glyphicon glyphicon-menu-down"></span></a>
+<div class="container-fluid slideInDown animated" style="padding:0%">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="padding:0%">
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+            <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+            <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="3" class=""></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item">
+              <img class="first-slide img-fluid" src="" alt="First slide">
+              <div class="container">
+                <div class="carousel-caption text-left">
+                  <h1>Example examplex.</h1>
+                  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                  <p><a class="btn btn-lg btn-primary" href="" role="button">EWAN</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item active">
+              <img class="second-slide img-fluid" src="" alt="Second slide">
+              <div class="container">
+                <div class="carousel-caption">
+                  <h1>Example examplex.</h1>
+                  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                  <p><a class="btn btn-lg btn-primary" href="#" role="button">EWAN</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img class="third-slide img-fluid" src="" alt="Third slide">
+              <div class="container">
+                <div class="carousel-caption text-right">
+                  <h1>Example examplex.</h1>
+                  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                  <p><a class="btn btn-lg btn-primary" href="#" role="button">EWAN</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img class="fourth-slide img-fluid" src="" alt="Fourth slide">
+              <div class="container">
+                <div class="carousel-caption text-right">
+                  <h1>Example examplex.</h1>
+                  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                  <p><a class="btn btn-lg btn-primary" href="#" role="button">EWAN</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+    </div>
 </div><br><br>

@@ -9,7 +9,7 @@ use App\StudentProfile;
 use App\Curriculum;
 use App\AcademicTerm;
 use DB; use PDF;
-use Illuminate\Support\Facades\Route;
+#use Illuminate\Support\Facades\Route;
 
 class Student_Profile extends Controller
 {
@@ -66,6 +66,7 @@ class Student_Profile extends Controller
         }
       }else{
         $reply['student_profile'] ="No student profile";
+      //  return redirect()->route('profile-catch');
       }
     }else {
       $reply['student'] = "No student";
@@ -215,6 +216,62 @@ class Student_Profile extends Controller
       }
 
       return $new_sem;
+    }
+
+    public function show_student_profile(){
+      return view('profile.student_profile_cluster');
+    }
+
+    public function create_profile(){
+      // get session with default value if no value was assigned
+      $id = $request->session()->get('SES_CICT_ID');
+
+      $post = $request->all();
+      $cluster = $request['cluster'];
+
+      #---------------------------------------------------
+      // check if student record exists in table student
+      $student = Student::where('cict_id', $id)
+      ->where('active', '1')
+      ->orderBy('cict_id', 'desc')
+      ->first();
+
+      //if student record exists
+      if($student){
+        #---------------------------------------------------
+        //search latest student profile
+        $student_profile = StudentProfile::where('STUDENT_id', $id)
+        ->where('active', '1')
+        ->orderBy('id', 'desc')
+        ->first();
+        //if there is a record
+        if ($student_profile) {
+          $cloned_profile = MonoUtility::cloneProfile($student_profile);
+        } else {
+          //if there is no record, create
+          $cloned_profile = new StudentProfile;
+          $cloned_profile->STUDENT_id = $id;
+          $cloned_profile->floor_assignment = $cluster;
+        }
+
+        //multiple insertion
+        $data['result'] = "failed";
+        try {
+          DB::beginTransaction();
+          $cloned_profile->save();
+          DB::commit();
+          $data['result'] = "saved";
+          $data['message'] = 'Information successfully created.';
+        } catch (\PDOException $e) {
+          DB::rollback();
+          $data['message'] = 'Failed to create please try again.';
+        }
+        //if student record does not exists
+      }else {
+        $data['message'] = 'Cannot create information the student is not existing.';
+      }
+
+      echo json_encode($data,JSON_FORCE_OBJECT);
     }
 
     public function logout(Request $request){

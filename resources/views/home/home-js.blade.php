@@ -1,8 +1,8 @@
 <script type = "text/javascript">
-$(".active").removeAttr('style');
-$(window).scroll(function(event) {
-  $(".active").removeClass('active');
-});
+// $(".active").removeAttr('style');
+// $(window).scroll(function(event) {
+//   $(".active").removeClass('active');
+// });
 
 $(document).ready(function() {
   load_nav();
@@ -12,10 +12,10 @@ function load_nav(){
   $("#container-nav").load("{{ asset('html/navbar/home_nav.php') }}",function(){
     $("#lnk_register").attr('href',"{{ route('register') }}");
     load_hello();
-    login_form();
+    load_eval_steps();
+  //  login_form();
     announcements();
     faculty_sched();
-    load_eval_steps();
     load_student_app();
     load_free_browsing();
     load_footer();
@@ -24,16 +24,20 @@ function load_nav(){
 
 function load_hello(){
   $( "#container-hello" ).load("{{ asset( 'html/home/hello.php' ) }}", function(){
-    $("#world").removeAttr('style');
-    var startup_popup = setInterval(function() {
-      $("#world").attr('style','display: none;');
-      $("#cict_firefox").removeAttr('style');
-      $("#cict_firefox").hide().fadeIn("slow");
-      startup_popup = setTimeout(function() {
-        $("#world").hide().fadeIn("slow");
-        $("#cict_firefox").attr('style','display: none;');
-      },2000);
-    },3000);
+    $(".first-slide").attr('src', "{{ asset('img/1.jpg') }}");
+    $(".second-slide").attr('src', "{{ asset('img/2.jpg') }}");
+    $(".third-slide").attr('src', "{{ asset('img/3.jpg') }}");
+    $(".fourth-slide").attr('src', "{{ asset('img/4.jpg') }}");
+    // $("#world").removeAttr('style');
+    // var startup_popup = setInterval(function() {
+    //   $("#world").attr('style','display: none;');
+    //   $("#cict_firefox").removeAttr('style');
+    //   $("#cict_firefox").hide().fadeIn("slow");
+    //   startup_popup = setTimeout(function() {
+    //     $("#world").hide().fadeIn("slow");
+    //     $("#cict_firefox").attr('style','display: none;');
+    //   },2000);
+    // },3000);
   });
 }
 
@@ -77,7 +81,7 @@ function onRequestAnnouncementSuccess(data){
   }else {
     $.each(data, function(key, value) {
       faculty_name = (value['faculty'] != null) ? (value['faculty']['last_name']+", "+value['faculty']['first_name'] +" "+value['faculty']['middle_name']) : ("");
-      $("#tbl_announcements").append("<tr><td>"+value['all']['title']+"</td><td style='word-wrap: break-word'>"+value['all']['message']+"</td><td>"+value['date_time']+"</td><td>"+faculty_name+"</td></tr>");
+      $("#card_announcements").append('<div class="card text-left wow flipInY animated"><div class="card-body"><h4 class="card-title">'+value['all']['title']+'</h4><p class="card-text">'+value['all']['message']+'</p><p class="card-text"><small class="text-muted">Announced by: '+faculty_name+'</small></p></div><div class="card-footer"><small class="text-muted">' +value['date_time']+'</small></div></div>')
     });
   }
 }

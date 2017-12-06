@@ -9,7 +9,7 @@
    <title>CICT Web Portal | College Of Information and Communications Technology</title>
    <link rel="icon" href="{{ asset('img/logo/CICT_RED.png') }}" type="image/png">
    <!-- css files -->
-   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap/bootstrap.min.css') }}">
+   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap/v4/bootstrap.min.css') }}">
    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap/animate.css') }}">
    <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery/jquery-ui.min.css') }}">
    <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
