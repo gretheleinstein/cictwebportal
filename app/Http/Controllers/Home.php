@@ -143,6 +143,9 @@ class Home extends Controller
       echo json_encode($collection, JSON_OBJECT_AS_ARRAY);
     }
 
+    public function show_teacher_finder(){
+      return view('teacher_finder.teacher_finder');
+    }
 
   public function get_faculty_name(Request $request){
     #--------------------------------------------------------

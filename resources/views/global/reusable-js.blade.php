@@ -1,6 +1,16 @@
 <script type = "text/javascript">
 var error_route = "{{ route('error-status','') }}/";
 
+function show_desc(id, src, desc){
+  $(id).html("");
+  $(id).append('<div class="row flipInX animated"><div class="col-md-5 col-4 text-right"><img class="img-fluid" src="'+src+'"></div><div class="col-md-4 col-8 text-left"><br><p class="mont">'+desc+'</p></div></div>')
+}
+
+function remove_prev(prev, new_id){
+  $(prev).attr('style','display:none');
+  $(new_id).removeAttr('style');
+}
+
 function loader(id){
   $(id).html('<div class="loader" style="height:300px;"></div>');
   $(".loader").append('<div class="loader-inner ball-scale-ripple-multiple" style="position: relative; top: 50%; left: 50%; width:50px;"></div>');

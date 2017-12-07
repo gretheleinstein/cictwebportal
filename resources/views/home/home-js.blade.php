@@ -25,10 +25,10 @@ function load_nav(){
 
 function load_hello(){
   $( "#container-hello" ).load("{{ asset( 'html/home/hello.php' ) }}", function(){
-    $(".first-slide").attr('src', "{{ asset('img/1.jpg') }}");
-    $(".second-slide").attr('src', "{{ asset('img/2.jpg') }}");
-    $(".third-slide").attr('src', "{{ asset('img/3.jpg') }}");
-    $(".fourth-slide").attr('src', "{{ asset('img/4.jpg') }}");
+    $(".first-slide").attr('src', "{{ asset('img/carousel/1.jpg') }}");
+    $(".second-slide").attr('src', "{{ asset('img/carousel/2.jpg') }}");
+    $(".third-slide").attr('src', "{{ asset('img/carousel/3.jpg') }}");
+    $(".fourth-slide").attr('src', "{{ asset('img/carousel/4.jpg') }}");
     // $("#world").removeAttr('style');
     // var startup_popup = setInterval(function() {
     //   $("#world").attr('style','display: none;');
@@ -78,7 +78,8 @@ function request_announcements(){
 
 function onRequestAnnouncementSuccess(data){
   if(data == ""){
-    $("#tbl_announcements").append("<tr><td colspan='3'>No announcements<td></tr>");
+    $("#tbl_announcements").html("");
+    show_desc("#tbl_announcements", "{{ asset( 'img/icons/megaphone.png' ) }}", "As of now, there are no posted announcements yet.");
   }else {
     $.each(data, function(key, value) {
       faculty_name = (value['faculty'] != null) ? (value['faculty']['last_name']+", "+value['faculty']['first_name'] +" "+value['faculty']['middle_name']) : ("");
@@ -93,124 +94,16 @@ function onRequestAnnouncementSuccess(data){
 
 function faculty_sched(){
   $("#container-faculty-sched").load("{{ asset('html/home/faculty_sched.php') }}", function(){
-    request_faculty_name();
+    $("#btn_teacher_finder").attr('href', "{{ route('show-teacher-finder') }}");
   });
-}
-
-function request_faculty_name(){
-  request = new Request();
-  request.url = "{{ route('get-faculty-name') }}";
-  request.type = 'POST';
-  request.replyType = 'json';
-  // start
-  request.begin = function(){
-
-  }
-  // success
-  request.done = function(data, textStatus, xhr){
-    onRequestFacultySuccess(data/*$.parseJSON(data)*/);
-  }
-  // failed
-  request.fail = function(xhr, textStatus, errorThrown){
-    //alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
-    //alert("JQUERY TEXT STATUS: " + textStatus);
-    //alert("ERROR DESCRIPTION: " + errorThrown);
-  //  window.location = error_route + xhr.status;
-  }
-  // finished
-  request.always = function(){
-    // this will be called always whether fail or done at the end of this request
-  }
-  // send
-  request.send(); // start the ajax request
-}
-
-function onRequestFacultySuccess(data){
-  if(data == "No data"){
-    $("#txt_faculty_name").val("No faculty record found");
-  }else{
-    var faculty_name = [];
-    $.each(data, function(key, value) {
-      var each = { label : value['last_name']+", "+value['first_name']+" "+value['middle_name'], id : value['id'] };
-      faculty_name.push(each);
-    });
-
-    $("#txt_faculty_name").autocomplete({
-      source: faculty_name,
-      select: function (event, ui) {
-        $("#txt_faculty_name").val(ui.item.label); // display the selected name
-        $("#txt_faculty_id").val(ui.item.id); // save selected id to hidden input
-        return false;
-      }
-    });
-
-    $("#btn_search_faculty").click(function(event) {
-      var id = $("#txt_faculty_id").val();
-      request_faculty_sched(id);
-    });
-  }
-}
-
-var routee = "{{ route('get-faculty-sched','') }}/"
-function request_faculty_sched(id){
-  var validated_id = (id == "") ? ("no id") : (id);
-  request = new Request();
-  request.url = routee + validated_id;
-  request.type = 'POST';
-  request.replyType = 'json';
-  // start
-  request.begin = function(){
-
-  }
-  // success
-  request.done = function(data, textStatus, xhr){
-    onRequestFacultySchedSuccess(data/*$.parseJSON(data)*/);
-  }
-  // failed
-  request.fail = function(xhr, textStatus, errorThrown){
-    //alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
-    //alert("JQUERY TEXT STATUS: " + textStatus);
-    //alert("ERROR DESCRIPTION: " + errorThrown);
-    window.location = error_route + xhr.status;
-  }
-  // finished
-  request.always = function(){
-    // this will be called always whether fail or done at the end of this request
-  }
-  // send
-  request.send(); // start the ajax request
-}
-
-function onRequestFacultySchedSuccess(data){
-  $(".scheds, #div_sched").html("");
-  if(data[0]['result'] == "No faculty matched"){
-    $("#div_sched").prepend('<h1>No results matched your search. Faculty does not exists.</h1>')
-  }else if(data[0]['result'] == "No load_group"){
-    $("#div_sched").prepend('<h1>faculty has no schedule</h1>')
-  }else{
-    $.each(data, function(key,value) {
-      subject = value['subject'];
-      schedule = value['load_group_schedule'];
-      load_group = value['load_group'];
-      if(value['load_group_schedule'] !=null ){
-        for (var i = 0; i < schedule.length; i++) {
-          var faculty_name = "";
-          $("#"+schedule[i]['class_day']).after("<tr class='text-center scheds'> <td>"+subject[0]['code']+"</td><td>"+convert(schedule[i]['class_start'])+"</td> <td>"+convert(schedule[i]['class_end'])+"</td> <td>"+schedule[i]['class_room']+"</td><tr/>");
-          $("#"+schedule[i]['class_day']).attr('style', 'background-color:#EEEEEE');
-        }
-      }else {
-        //alert('Load group schedule empty');
-      }
-    });
-  }
 }
 
 function load_eval_steps(){
   $( "#container-steps-in-eval" ).load("{{ asset( 'html/home/steps_in_eval.php' ) }}", function(){
-    $("#wifi").attr('src', '{{ asset("img/wifi.png") }}');
-    $("#student").attr('src', '{{ asset("img/student.png") }}');
-    $("#linked").attr('src', '{{ asset("img/linked_acc.png") }}');
-    $("#bell").attr('src', '{{ asset("img/bell.png") }}');
+    $("#wifi").attr('src', '{{ asset("img/steps/wifi.png") }}');
+    $("#student").attr('src', '{{ asset("img/steps/student.png") }}');
+    $("#linked").attr('src', '{{ asset("img/steps/linked_acc.png") }}');
+    $("#bell").attr('src', '{{ asset("img/steps/bell.png") }}');
   });
 }
 

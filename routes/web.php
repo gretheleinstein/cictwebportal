@@ -38,6 +38,8 @@ Route::group(['middleware' => ['cict.guest']], function () {
   Route::get('announcements','Home@show_more_announcements')->name('show-more-anno');
   Route::post('more_announcements','Home@get_more_announcements')->name('get-more-anno');
 
+  Route::get('teacher_finder','Home@show_teacher_finder')->name('show-teacher-finder');
+
   //REGISTRATION
   Route::get('registration/register','Registration@show_registration')->name('register');
   Route::post('registration/verify','Registration@verify_student')->name('register-verify');

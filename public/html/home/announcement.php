@@ -3,7 +3,7 @@
 </div> <br><br>
 <div class="container">
   <div class="row">
-    <div class="container col-lg-12">
+    <div class="container col-lg-12" id="tbl_announcements">
       <div class="card-columns" id="card_announcements">
         <!-- <div class="card text-center">
           <div class="card-body">

@@ -4,7 +4,7 @@
     <h1 class="">CICT Evaluation Guide</h1>
     </div>
     <div class="container col-lg-12">
-    <h6 class="" style="color: #A4A4A4">Missing something? Read throughly to fully understand the process.</h6>
+    <h6 class="" style="color: #A4A4A4">Missing something? Read throughly to fully understand the process.</h6><hr>
     </div>
     <hr>
   </div><br><br>
