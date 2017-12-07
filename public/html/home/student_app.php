@@ -1,6 +1,6 @@
 <div class="container wow fadeIn animated" id="app-section">
   <div class="row">
-    <div class="container col-lg-10">
+    <div class="container col-lg-12">
     <hr class="featurette-divider">
         <div class="row featurette s-light">
           <div class="col-md-7 order-md-1"><br><br><br><br><br><br><br>

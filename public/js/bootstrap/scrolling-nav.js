@@ -2,15 +2,15 @@
 $(document).ready(function() {
 $(window).scroll(function() {
     if ($(".navbar").offset().top > 50) {
-        $(".navbar-expand-md").addClass('navbar-darker');
-        $(".navbar-fixed-top").removeClass("navbar-transparent");
-        $("#logo").width('150px');
-        $("#logo").height('50px');
+        $("#navbar_main").addClass('navbar-darker');
+        $("#navbar_main").removeClass("navbar-transparent");
+        $("#logo_main").width('150px');
+        $("#logo_main").height('50px');
     } else {
-        $(".navbar-expand-md").removeClass('navbar-darker');
-        $(".navbar-fixed-top").addClass("navbar-transparent");
-        $("#logo").width('420px');
-        $("#logo").height('150px');
+        $("#navbar_main").removeClass('navbar-darker');
+        $("#navbar_main").addClass("navbar-transparent");
+        $("#logo_main").width('420px');
+        $("#logo_main").height('150px');
     }
 });
 });

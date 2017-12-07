@@ -1,15 +1,3 @@
-<div class="container wow fadeIn animated" style="padding-top: 3%;">
-  <div class="row text-center">
-    <div class="col-lg-12">
-      <p class="s-light" id="ques">You've got questions? We've got answers!</p>
-    </div>
-    <div class="col-lg-12">
-      <button type="button" name="button" class="btn-primary" style="border-radius:30px; padding: 1%">Click here to view answers</button>
-    </div>
-  </div>
-</div>
-<br><br><br>
-
 <div class="container-fluid text-center wow fadeIn animated" style="background-color: #333333; border-top: 10px solid #CE6F2D; color:white; font-size: 8pt; padding: 3%;">
   <p class="s-light" style="font-size:30px;">Stay connected with your college.</p>
   <p class="mont">Keep in touch with your organizations. Follow them to be updated.</p>

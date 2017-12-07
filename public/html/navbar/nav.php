@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <div class="row">
+    <nav class="navbar navbar-expand-md fixed-top fadeIn animated navbar-light" id="navbar_sub">
+      <a class="navbar-brand" href="#"><img src="" class="img-fluid" id="logo" width="250" height="150"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link page-scroll" href="#search-section" id="lnk_home" >HOME</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link page-scroll" href="#search-section" id="lnk_search" >TEACHER FINDER</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link page-scroll" href="#app-section" id="lnk_app" >APP</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="lnk_register" >SIGNUP</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link underline" href="#" id="lnk_register" >LOGIN </a>
+          </li>
+          <!-- <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              ACCOUNT
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#" id="lnk_register">Sign Up</a>
+              <a class="dropdown-item" href="#" id="login-form">Log In</a>
+            </div>
+          </li> -->
+        </ul>
+        <!-- <form class="form-inline mt-2 mt-md-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search Faculty Schedule" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form> -->
+    </div>
+    </nav>
+  </div>
+</div><br><br><br><br><br>

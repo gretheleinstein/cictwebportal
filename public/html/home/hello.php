@@ -1,4 +1,4 @@
-<div class="container-fluid slideInDown animated" style="padding:0%">
+<div class="container-fluid fadeIn animated" style="padding:0%">
   <div id="myCarousel" class="carousel slide" data-ride="carousel" style="padding:0%">
           <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class=""></li>

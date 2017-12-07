@@ -11,7 +11,7 @@ $(document).ready(function() {
 function load_nav(){
   $("#container-nav").load("{{ asset('html/navbar/home_nav.php') }}",function(){
     $("#lnk_register").attr('href',"{{ route('register') }}");
-    $("#logo").attr('src', '{{ asset("img/logo/navnav.png") }}');
+    $("#logo_main").attr('src', '{{ asset("img/logo/navnav.png") }}');
     load_hello();
     load_eval_steps();
   //  login_form();
@@ -82,8 +82,12 @@ function onRequestAnnouncementSuccess(data){
   }else {
     $.each(data, function(key, value) {
       faculty_name = (value['faculty'] != null) ? (value['faculty']['last_name']+", "+value['faculty']['first_name'] +" "+value['faculty']['middle_name']) : ("");
-      $("#card_announcements").append('<div class="card text-left wow flipInY animated"><div class="card-body"><h4 class="card-title">'+value['all']['title']+'</h4><p class="card-text">'+value['all']['message']+'</p><p class="card-text"><small class="text-muted">Announced by: '+faculty_name+'</small></p></div><div class="card-footer"><small class="text-muted">' +value['date_time']+'</small></div></div>')
+      $("#card_announcements").append('<div class="card text-left wow fadeInUp animated anno-cards s-light"><div class="card-body anno-cards-body"><h4 class="card-title bold">'+value['all']['title']+'</h4><div class="collapse" id="'+key+'"><p class="card-text">'+value['all']['message']+'</p></div><p class="card-text"><small class="">-'+faculty_name+'</small><a data-toggle="collapse" href="#'+key+'" class="btn btn-black-bordered float-right btn-sm">Read More</a></p></div><div class="card-footer div-black-top-bordered"><small class="">' +value['date_time']+'</small></div></div>')
     });
+    if(data.length == 10){
+      $("#card_announcements").append("<a class='btn btn-black-bordered float-right' href='' id='btn_view_more_anno'>View More ></a>");
+      $("#btn_view_more_anno").attr('href', "{{ route('show-more-anno') }}");
+    }
   }
 }
 

@@ -31,9 +31,12 @@ Route::group(['middleware' => ['cict.guest']], function () {
   //HOME
   Route::get('home/{type}','Home@show_home')->name('home');
   Route::post('home/verify','Home@verify_login')->name('login-verify');
-  Route::post('home/announcements','Home@get_all_announcements')->name('get-all-anno');
+  Route::post('home/all_announcements','Home@get_all_announcements')->name('get-all-anno');
   Route::post('home/faculty_name','Home@get_faculty_name')->name('get-faculty-name');
   Route::post('home/faculty_sched/{id}','Home@get_faculty_sched')->name('get-faculty-sched');
+
+  Route::get('announcements','Home@show_more_announcements')->name('show-more-anno');
+  Route::post('more_announcements','Home@get_more_announcements')->name('get-more-anno');
 
   //REGISTRATION
   Route::get('registration/register','Registration@show_registration')->name('register');

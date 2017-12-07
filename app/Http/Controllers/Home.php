@@ -76,6 +76,8 @@ class Home extends Controller
     #------------------------------------------------------
     // get all announcements
     $all = Announcements::where('active','=',1)
+    ->orderBy('id','DESC')
+    ->take(10)
     ->get();
 
     #------------------------------------------------------
@@ -102,6 +104,45 @@ class Home extends Controller
     // send response
     echo json_encode($collection, JSON_OBJECT_AS_ARRAY);
   }
+
+  public function show_more_announcements(){
+    return view('announcements.more-announcements');
+  }
+
+
+    public function get_more_announcements(){
+      $collection = array();
+      #------------------------------------------------------
+      // get all announcements
+      $all = Announcements::where('active','=',1)
+      ->orderBy('id','DESC')
+      ->get();
+
+      #------------------------------------------------------
+      // if an announcement exists
+      if($all){
+        foreach ($all as $each) {
+        $faculty = Faculty::where('id','=',$each->announced_by)
+        ->where('active','=',1)
+        ->first();
+
+        $date_time = Carbon::parse($each->date);
+
+        $single_row = [];
+        $single_row['all'] = $each;
+        $single_row['date_time'] = $date_time->format('F d, Y g:ia');
+        $single_row['faculty'] = $faculty;
+
+        array_push($collection, $single_row);
+        }
+      //if there are no announcements
+      }else{}
+
+      #------------------------------------------------------
+      // send response
+      echo json_encode($collection, JSON_OBJECT_AS_ARRAY);
+    }
+
 
   public function get_faculty_name(Request $request){
     #--------------------------------------------------------

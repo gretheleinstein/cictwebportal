@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-md fixed-top" id="navbar_main">
-  <a class="navbar-brand" href="#"><img src="" class="img-fluid" id="logo"></a>
+<nav class="navbar navbar-expand-md fixed-top fadeIn animated navbar-light" id="navbar_main">
+  <a class="navbar-brand" href="#"><img src="" class="img-fluid" id="logo_main"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
