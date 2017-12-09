@@ -1,24 +1,27 @@
-<div class="container-fluid div_bg_blue" style="background-color: #F6F9FC;padding-top:5%;padding-bottom:5%;">
-     <div class="row">
-          <div class="col-lg-1 col-md-1 col-sm-1"></div>
-          <div class="col-lg-5 col-md-5 col-sm-4 pull-left div_left_caption">
-              <span class="span_step_no">Step 1</span> <h2>Please fill in your credentials, for us to confirm your identity.</h2><br>
-              <h5>Find anything difficult? Learn more.</h5>
-          </div>
-          <div class="col-lg-1"></div>
-          <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 wow flipInX animated">
-          <div class="text-center pad-div">
-              <span class="span_step_title">Create your account</span>
-          </div><br>
-              <div id = "div_verify">
-                <form id="frm_verify">
-                  <input type="text" class="form-control" id="stud_id" name="stud_id" placeholder="Student ID e.g. 2014100282">
-                  <label for="" class="error" id="stud_id-error-1" style="display: none"></label><br>
-                  <button type="button" id = "btn_verify" class="btn_next">Next</button>
-              </form>
-            </div><br><br>
-              <span class="gray bold"> Already have an account? </span><a id="btn_login" class="btn btn-danger pull-right">Log in</a>
-            </div>
-          <div class="col-lg-1 col-md-1 col-sm-1"></div>
+<div class="container-fluid wow fadeIn animated">
+  <div class="container d-none d-sm-block pad-5"></div>
+  <div class="row">
+    <div class="col-lg-4 offset-md-2 col-md-4 col-sm-5 col-12 text-right wow fadeIn animated s-light txt-white">
+      <div class="container d-none d-sm-block pad-5"></div><p class="span_step_no">Step 1</p> <h2 class="">Please fill in your Student ID, for us to confirm your registration.</h2><br>
+      <h6 class="link_white" href="#">Find anything difficult? Learn more.</h6><hr>
+    </div>
+    <div class="col-lg-4 col-md-5 col-sm-6 col-12 float-right wow fadeIn animated text-center">
+      <div class="card div-white-shadow">
+        <div class="card-header" id="custom-card-header">
+          <span class="mont bold gray"><span><i class="fa fa-pencil-square-o fa-lg"></i></span> Create your account</span>
+        </div>
+        <div class="card-body">
+          <p class="card-text txt-orange">PLEASE FILL UP TO CONTINUE</p>
+          <div id = "div_verify">
+            <form id="frm_verify">
+              <input type="text" class="form-control" id="stud_id" name="stud_id" placeholder="Student ID e.g. 2014100282">
+              <label for="" class="error" id="stud_id-error-1" style="display: none"></label><br>
+              <button type="button" id = "btn_verify" class="btn btn-orange form-control">Next</button>
+            </form>
+          </div><br><br>
+          <span class="gray bold"> Already have an account? </span><a id="btn_login" class="btn btn-black-bordered pull-right">Log in</a>
+        </div>
       </div>
+    </div>
+  </div>
 </div>

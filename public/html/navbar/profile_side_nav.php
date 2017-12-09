@@ -1,24 +1,16 @@
-  <nav class="navbar navbar-default navbar-fixed-side wow fadeIn animated hidden-xs" style=" background-color:white; ">
-    <ul class="nav navbar-nav">
-    <li class="profile-li" style="border-left: 20px solid #1A4D57;">
-      <div class="profile-userinfo text-center" >
-        <div class="profile-pic">
-          <img id="profile-pic_img" onload="onload_display_picture(this.id)" class="img-responsive img-circle text-center" width="100" height="100" alt="">
-        </div>
-        <div id ="side-bar-name" class="profile-name">
-        </div>
-        <div id ="side-bar-id" class="profile-stud-id span_grey">
-        </div>
-      </div></li>
-    <li><a href="#" id="btn_profile" style="padding-left: 23%"><span class="showopacity glyphicon glyphicon-th-list"></span> PROFILE</a></li>
-    <li><a href="#" id="btn_history" style="padding-left: 23%"><span class="showopacity glyphicon glyphicon-tags"></span> HISTORY</a></li>
-    <li><a href="#" id="btn_sched" style="padding-left: 23%"><span class="showopacity glyphicon glyphicon-time"></span> SCHEDULE</a></li>
-    <li><a href="#" id="btn_grade" style="padding-left: 23%"><span class="showopacity glyphicon glyphicon-credit-card"></span> GRADES</a></li>
-    <li><a href="#" id="btn_summary" style="padding-left: 23%"><span class="showopacity glyphicon glyphicon-list-alt"></span> SUMMARY</a></li>
-    <li><a href="#" id="btn_linked" style="padding-left: 23%;"><span><img src="" id="linked_logo" height="15" width="15"/></span>LINKED</a></li>
-    <li><a href="#" id="btn_settings" style="padding-left: 23%"><span class="showopacity glyphicon glyphicon-cog"></span> SETTINGS</a></li>
-    <li><a href="#" id="btn_help" style="padding-left: 23%"><span class="showopacity glyphicon glyphicon-question-sign"></span> HELP</a></li>
-    <li class="text-center" style="height:50px; width:110%; position: absolute; bottom: 60px;"><a href="https://www.facebook.com/monosyncstudioph/" target="_blank" style="font-size:7pt;"><span style="padding: 0; padding-right: 5px"><img src="" id="monosync_logo" height="15" width="15"/></span>Monosync Studio PH | 2017<p class="" style="font-size:6pt"> "Innovating Possibilities."</p></a><li>
-  </ul>
-</nav>
-<br>
+<div class="list-group border-0 card text-center text-md-left div-white-shadow ">
+  <br><a class="profile-li list-group-item d-inline-block collapsed">
+      <img id="profile-pic_img" onload="onload_display_picture(this.id)" class="img-fluid rounded-circle" width="100" height="100" alt=""><br><br>
+      <span id ="side-bar-name" class="profile-name d-none d-md-block"></span>
+      <span id ="side-bar-id" class="profile-stud-id d-none d-md-block"></span>
+  </a>
+  <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#" id="btn_profile_sub" ><i class="fa fa-th-list fa-lg"></i> <span class="d-none d-md-inline">PROFILE</span></a>
+  <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#" id="btn_history_sub" ><i class="fa fa-tags fa-lg"></i> <span class="d-none d-md-inline">HISTORY</span></a>
+  <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#" id="btn_sched_sub" ><i class="fa fa-calendar-minus-o fa-lg"></i> <span class="d-none d-md-inline">SCHEDULE</span></a>
+  <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#" id="btn_grade_sub" ><i class="fa fa-server fa-lg"></i> <span class="d-none d-md-inline">GRADES</a>
+  <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#" id="btn_summary_sub" ><i class="fa fa-list-alt fa-lg"></i> <span class="d-none d-md-inline">SUMMARY</span></a>
+  <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#" id="btn_linked_sub"><span><img src="" id="linked_logo" height="16" width="18" style="margin-right: 7px" class="pull-left"/></span><span class="d-none d-md-inline">LINKED</span></a>
+  <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#" id="btn_settings_sub" ><i class="fa fa-gear fa-lg"></i> <span class="d-none d-md-inline">SETTINGS</span></a>
+  <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#" id="btn_help_sub" ><i class="fa fa-question-circle fa-lg"></i> <span class="d-none d-md-inline">HELP</span></a>
+  <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#" id="btn-logout_sub" ><i class="fa fa-sign-out fa-lg"></i> <span class="d-none d-md-inline">LOG OUT</span></a>
+</div>

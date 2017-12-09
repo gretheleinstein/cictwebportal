@@ -1,11 +1,10 @@
 @include('global.html-start')
 <head>
 @include('global.html-header')
-<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap/scrolling-nav.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/forgot_pass.css') }}">
 </head>
 
-<body id="page-top">
+<body id="page-top" class="two-half-colour-background">
   <div class="loader" style="position: absolute; top: 50%; left: 50%;">
       <div class="loader-inner square-spin">
         <div></div>

@@ -9,6 +9,7 @@ function load_nav(){
     $("#lnk_search").attr('href',"{{ route('register') }}");
     $("#lnk_app").attr('href',"{{ route('get-app') }}");
     $("#lnk_register").attr('href',"{{ route('register') }}");
+    $("#lnk_login").attr('href',"{{ route('show-login') }}");
     $("#logo").attr('src', '{{ asset("img/logo/navnav.png") }}');
     teacher_finder();
   });
@@ -42,7 +43,7 @@ function request_faculty_name(){
     //alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
     //alert("JQUERY TEXT STATUS: " + textStatus);
     //alert("ERROR DESCRIPTION: " + errorThrown);
-  //  window.location = error_route + xhr.status;
+    window.location = error_route + xhr.status;
   }
   // finished
   request.always = function(){

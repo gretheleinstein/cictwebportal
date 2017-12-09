@@ -1,10 +1,9 @@
 @include('global.html-start')
 <head>
 @include('global.html-header')
-<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap/scrolling-nav.css') }}">
 </head>
 
-<body id="page-top"> <!-- Navigation -->
+<body id="page-top" class="bg-orange"> <!-- Navigation -->
   <div class="loader" style="position: fixed; top: 50%; left: 50%;">
        <div class="loader-inner ball-grid-pulse">
          <div></div>
@@ -19,8 +18,8 @@
        </div>
   </div>
 
-  <div id="container-nav" class="">
-  </div>
+<div id="container-nav">
+</div>
 
     @include('global.reusable-js')
     @include('registration.register-js')

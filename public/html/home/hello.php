@@ -11,9 +11,8 @@
               <img class="first-slide img-fluid" src="" alt="First slide">
               <div class="container">
                 <div class="carousel-caption text-left">
-                  <h1>Example examplex.</h1>
-                  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                  <p><a class="btn btn-lg btn-primary" href="" role="button">EWAN</a></p>
+                  <h1>CICT Firefox Roars</h1>
+                  <p>Ignite! Unite! CICT Fight! Since 2001, the college uplift their encouragment yell on every fight.<p><a class="btn btn-lg btn-orange" href="" role="button">Read More</a></p>
                 </div>
               </div>
             </div>
@@ -23,7 +22,7 @@
                 <div class="carousel-caption">
                   <h1>Example examplex.</h1>
                   <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                  <p><a class="btn btn-lg btn-primary" href="#" role="button">EWAN</a></p>
+                  <p><a class="btn btn-lg btn-orange" href="#" role="button">EWAN</a></p>
                 </div>
               </div>
             </div>
@@ -33,7 +32,7 @@
                 <div class="carousel-caption text-right">
                   <h1>Example examplex.</h1>
                   <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                  <p><a class="btn btn-lg btn-primary" href="#" role="button">EWAN</a></p>
+                  <p><a class="btn btn-lg btn-orange" href="#" role="button">EWAN</a></p>
                 </div>
               </div>
             </div>
@@ -43,7 +42,7 @@
                 <div class="carousel-caption text-right">
                   <h1>Example examplex.</h1>
                   <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                  <p><a class="btn btn-lg btn-primary" href="#" role="button">EWAN</a></p>
+                  <p><a class="btn btn-lg btn-orange" href="#" role="button">EWAN</a></p>
                 </div>
               </div>
             </div>

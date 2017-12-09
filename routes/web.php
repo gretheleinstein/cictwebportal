@@ -29,16 +29,18 @@ Route::get('status_error/{status}','Error@show_status_error')->name('error-statu
 Route::group(['middleware' => ['cict.guest']], function () {
 
   //HOME
-  Route::get('home/{type}','Home@show_home')->name('home');
-  Route::post('home/verify','Home@verify_login')->name('login-verify');
+  Route::get('home','Home@show_home')->name('home');
   Route::post('home/all_announcements','Home@get_all_announcements')->name('get-all-anno');
-  Route::post('home/faculty_name','Home@get_faculty_name')->name('get-faculty-name');
-  Route::post('home/faculty_sched/{id}','Home@get_faculty_sched')->name('get-faculty-sched');
 
   Route::get('announcements','Home@show_more_announcements')->name('show-more-anno');
   Route::post('more_announcements','Home@get_more_announcements')->name('get-more-anno');
 
   Route::get('teacher_finder','Home@show_teacher_finder')->name('show-teacher-finder');
+  Route::post('teacher_finder/faculty_name','Home@get_faculty_name')->name('get-faculty-name');
+  Route::post('faculty_sched/{id}','Home@get_faculty_sched')->name('get-faculty-sched');
+
+  Route::get('login','Home@show_login')->name('show-login');
+  Route::post('login/verify','Home@verify_login')->name('login-verify');
 
   //REGISTRATION
   Route::get('registration/register','Registration@show_registration')->name('register');

@@ -1,15 +1,17 @@
-<div class="container-fluid div_bg_blue" style="background-color: #F6F9FC;padding-top:5%;padding-bottom:5%;">
-     <div class="row">
-          <div class="col-lg-1 col-md-1 col-sm-1"></div>
-          <div class="col-lg-5 col-md-5 col-sm-4 pull-left div_left_caption">
-              <span class="span_step_no">Step 4</span> <h2>Recover your account using your chosen question and answer.</h2><br>
-              <h5>Find anything difficult? Learn more.</h5>
-          </div>
-          <div class="col-lg-1"></div>
-          <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 wow flipInX animated">
-          <div class="text-center pad-div">
-              <span class="span_step_title">Don't get locked up.</span>
-          </div><br>
+<div class="container-fluid wow fadeIn animated">
+  <div class="container d-none d-sm-block pad-5"></div>
+  <div class="row">
+    <div class="col-lg-4 offset-md-2 col-md-4 col-sm-5 col-12 text-right wow fadeIn animated s-light txt-white">
+      <div class="container d-none d-sm-block pad-5"></div><p class="span_step_no">Step 4</span> <h2>Recover your account using your chosen question and answer.</h2><br>
+      <h6 class="link_white" href="#">Find anything difficult? Learn more.</h6><hr>
+    </div>
+    <div class="col-lg-4 col-md-5 col-sm-6 col-12 float-right wow fadeIn animated text-center">
+      <div class="card div-white-shadow">
+        <div class="card-header" id="custom-card-header">
+          <span class="mont bold gray"><span><i class="fa fa-question-circle-o fa-lg"></i></span> Security Question</span>
+        </div>
+        <div class="card-body">
+          <p class="card-text txt-orange">PLEASE FILL UP TO CONTINUE</p>
           <div id = "div_secure">
                <form id="frm_setup_acc">
                    <select name="recovery_question" class="form-control" id="recovery_question">
@@ -24,11 +26,12 @@
                    </select><br>
                    <input type="password" name="recovery_answer" class="form-control" id="recovery_answer" name="recovery_answer" placeholder="Answer" /><br>
                    <input type="password" name="confirm_recovery_answer" class="form-control" id="confirm_recovery_answer" name="confirm_recovery_answer" placeholder="Confirm Answer" /><br>
-                   <button type="button" id="btn_register" class="btn_next" name="button">Next</button>
+                   <button type="button" id="btn_register" class="btn btn-orange form-control" name="button">Next</button>
                  </form>
-              </div><br>
-              <span class="gray bold"> You've got questions? </span><a href="login" class="pull-right">See Frequently asked questions.</a>
-            </div>
-          <div class="col-lg-1 col-md-1 col-sm-1"></div>
+            </div><br>
+          <span class="gray bold"> How to recover my account? </span><a id="btn_help-recovery-acc" class="btn btn-black-bordered pull-right">Read More</a>
+        </div>
       </div>
+    </div>
+  </div>
 </div>

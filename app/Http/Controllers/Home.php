@@ -14,8 +14,12 @@ use Carbon\Carbon;
 
 class Home extends Controller
 {
-  public function show_home($type){
-    return view('home.home',['view_type' => $type]);
+  public function show_home(){
+    return view('home.home');
+  }
+
+  public function show_login(){
+    return view('login.login');
   }
 
   public function verify_login(Request $request){

@@ -7,13 +7,14 @@ $(document).ready(function() {
   load_nav();
   student_profile();
   request_profile_values(load_profile_values);
-  load_footer();
+  // load_footer();
 });
 
 function load_nav(){
   $("#container-nav").load("{{ asset('html/navbar/profile_nav.php') }}",function(){
     $(".loader").attr('style', 'display:none');
-    load_side_nav_collapse();
+    $("#logo").attr('src', "{{ asset('img/logo/huhu.png') }}");
+    // load_side_nav_collapse();
     load_side_nav();
   });
 }
@@ -176,9 +177,9 @@ function load_side_nav_collapse(){
 }
 
 function load_side_nav(){
-  $("#container-side-nav").load("{{ asset('html/navbar/profile_side_nav.php') }}",function(){
+  $("#sidebar").load("{{ asset('html/navbar/profile_side_nav.php') }}",function(){
     $("#linked_logo").attr('src',"{{ asset('img/linked.png') }}");
-    $("#monosync_logo").attr('src',"{{ asset('img/monosync_logo.jpg') }}");
+    //$("#monosync_logo").attr('src',"{{ asset('img/logo/monosync_logo.jpg') }}");
     request_profile_values(side_nav_load_values);
     //side nav options
   });
@@ -189,7 +190,7 @@ function load_side_nav(){
 function load_footer(){
   $("#footer-nav").load("{{ asset('html/footer/profile_footer.php') }}",function(){
     $("#footer-nav").hide().fadeIn("slow");
-    $("#monosync_logo_footer").attr('src', "{{ asset('img/monosync_logo.jpg') }}");
+    $("#monosync_logo_footer").attr('src', "{{ asset('img/logo/monosync_logo.jpg') }}");
   });
 }
 
@@ -218,7 +219,7 @@ function load_display_picture_sub(id){
   var _img = $(id);
   newImg1.id = "profile-pic_sub";
   newImg1.src = get_photo+profile['profile_picture'];
-  newImg1.className = 'img-responsive img-circle text-center';
+  newImg1.className = 'img-fluid rounded-circle text-center';
   newImg1.style.border="1px solid #EEEEEE";
   newImg1.width="100";
   newImg1.height="100";
@@ -252,7 +253,7 @@ function load_display_picture(id){
   var _img = $(id);
   newImg2.id = "profile-pic_img";
   newImg2.src = get_photo+profile['profile_picture'];
-  newImg2.className = 'img-responsive img-circle text-center';
+  newImg2.className = 'img-fluid rounded-circle text-center';
   newImg2.style.border="1px solid #EEEEEE";
   newImg2.width="100";
   newImg2.height="100";
@@ -335,7 +336,7 @@ function update_profile_picture(id){
   $("#btn_change_pic").prop('disabled', true);
   newImg3.id = "display-pic";
   newImg3.src = get_photo+profile['profile_picture'];
-  newImg3.className = 'img-responsive img-thumbnail';
+  newImg3.className = 'img-fluid img-thumbnail';
   newImg3.width="150";
   newImg3.height="150";
   newImg3.onload = onload_profile_photo('display-pic');
@@ -615,7 +616,7 @@ function load_summary(data){
           $("#div_grade").append("<div class='table-responsive' id=div_"+year_sem +" "+"style='display:none;'></div>"); //div creation
           $("#div_"+year_sem).append('<table id=table_'+year_sem +' class="table table-striped table-responsive table-bordered" cellspacing="0" style="padding: 5%" width="100%">');
           //--------------------------------------table headings -------------------------------------------------------------//
-          $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tbody><tr style='background-color: #1A4D57;'> <th>Course Code</th><th>Descriptive Title</th><th>Units</th><th>Final</th><th>Credits</th><th>Remarks</th><th>Pre-requisite</th> </tr>");
+          $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tbody><tr style='background-color: #1A4D57;'> <th>Course Code</th><th>Descriptive Title</th><th>Units</th><th>Final</th><th>Credits</th><th>Remarks</th></tr>");
           var total_units = 0.0; var total_credits = 0.0;
           //-------------------------loop as how the number of subjects per sem ------------------------a----------------------//
           for (var j = 0; j < value[a].length; j++) {
@@ -629,7 +630,7 @@ function load_summary(data){
               //grade record exists
               if(value[i][j]['grade'] != null){
                 credits = value[i][j]['grade']['credit'];
-                $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tr> <td>"+value[i][j]['subject']['code']+"</td>"+ "<td>"+value[i][j]['subject']['descriptive_title']+"</td><td>"+units+"</td><td>"+value[i][j]['grade']['rating']+"</td>"+"<td>"+value[i][j]['grade']['credit']+"</td>"+"<td>"+value[i][j]['grade']['remarks']+"</td><td></td></tr>");
+                $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tr> <td>"+value[i][j]['subject']['code']+"</td>"+ "<td>"+value[i][j]['subject']['descriptive_title']+"</td><td>"+units+"</td><td>"+value[i][j]['grade']['rating']+"</td>"+"<td>"+value[i][j]['grade']['credit']+"</td>"+"<td>"+value[i][j]['grade']['remarks']+"</td></tr>");
                 total_credits += credits;
                 if(value[i][j]['grade']['remarks'] == "FAILED"){
                   $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']+" tr:last").attr('style', 'color: red');
@@ -637,7 +638,7 @@ function load_summary(data){
                 }
                 //no grade record //UNPOSTED GRADE
               }else{
-                $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tr> <td>"+value[i][j]['subject']['code']+"</td>"+ "<td>"+value[i][j]['subject']['descriptive_title']+"</td><td>"+units+"</td><td></td><td>0</td><td></td><td></td></tr>");
+                $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tr> <td>"+value[i][j]['subject']['code']+"</td>"+ "<td>"+value[i][j]['subject']['descriptive_title']+"</td><td>"+units+"</td><td></td><td>0</td><td></td></tr>");
               }
             }//else
             total_units += units;

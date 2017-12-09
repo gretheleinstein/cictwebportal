@@ -5,10 +5,11 @@ $(document).ready(function() {
 
 function load_nav(){
   $("#container-nav").load("{{ asset('html/navbar/nav.php') }}",function(){
-    $("#lnk_home").attr('href',"{{ route('home','hello') }}");
+    $("#lnk_home").attr('href',"{{ route('home') }}");
     $("#lnk_search").attr('href',"{{ route('register') }}");
     $("#lnk_app").attr('href',"{{ route('get-app') }}");
     $("#lnk_register").attr('href',"{{ route('register') }}");
+    $("#lnk_login").attr('href',"{{ route('show-login') }}");
     $("#logo").attr('src', '{{ asset("img/logo/navnav.png") }}');
     announcements();
   });

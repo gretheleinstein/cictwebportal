@@ -7,13 +7,13 @@
     <div id="upload_message"></div>
   <label>Select Your Image</label><br/>
   <input type="file" name="image-file" id="image-file"/>
-  <button type="button" class="btn btn-options" name="image-upload" id="image-upload" style="padding:2%">Upload Image</button>
+  <button type="button" class="btn btn-options" name="image-upload" id="image-upload" style="padding:2%;">Upload Image</button>
   </div>
   </form>
 </div>
 
 <form id = "frm_student_profile">
-  <div class="row white-bg" style="margin-bottom: 1%;  padding: 3%">
+  <div class="row white-bg div-white-shadow" style="margin-bottom: 2%;  padding: 3%; margin-top: 5%">
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
       <label for="">Student ID</label><br>
       <input type="text" class="span_grey" id="stud-id" value="" disabled>
@@ -31,7 +31,7 @@
       <input type="text" class="span_grey" id="floor-assignment-lbl" value="" disabled>
     </div>
   </div>
-  <div class="row white-bg" style="padding: 3%">
+  <div class="row white-bg div-white-shadow" style="padding: 3%">
     <div class="col-lg-12">
       <div class="col-lg-10 col-md-10 col-sm-10 col-xs-7" style="padding:0%">
       <h5 class="bold">STUDENT PROFILE</h5>

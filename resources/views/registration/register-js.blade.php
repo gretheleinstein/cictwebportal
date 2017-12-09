@@ -6,8 +6,7 @@ $(document).ready(function() {
 function load_nav(){
   $( "#container-nav" ).load("{{ asset( 'html/navbar/register_nav.php' ) }}", function(){
     $(".loader").attr('style', 'display:none');
-    $("#btn_home").attr('href',"{{ route('home','hello') }}");
-    $("#btn_dl_app").attr('href', "{{ route('get-app') }}");
+    $("#btn_home").attr('href',"{{ route('home') }}");
     registration_verify();
   });
 }
@@ -15,7 +14,8 @@ function load_nav(){
 // default view when ready
 function registration_verify(){
   $( "#container" ).load("{{ asset( 'html/registration/step_one_verify.php' ) }}", function(){
-    $("#btn_login").attr('href', "{{ route('home','login') }}");
+    $(".loader").attr('style', 'display:none');
+    $("#btn_login").attr('href', "{{ route('show-login') }}");
 
     //----------------------------------------------------------
     $("#frm_verify").validate({
@@ -362,7 +362,6 @@ function registration_secure(account_data){
 
 function floor_assignment(final_account_data){
   $( "#container" ).load("{{ asset( 'html/registration/step_five_floor_assignment.php' ) }}", function(){
-    get_floor_name();
 
     //----------------------------------------------------------
     $("#frm_floor_assignment").validate({
@@ -389,44 +388,6 @@ function floor_assignment(final_account_data){
     }); //end of btn click
     onKeyPress('#floor_assignment','#btn_register');
   });
-}
-
-function get_floor_name(){
-  request = new Request();
-  request.url = "{{ route('get-floor-name') }}";
-  request.type = 'GET';
-  request.replyType = 'json';
-  // start
-  request.begin = function(){
-  }
-  // success
-  request.done = function(data, textStatus, xhr){
-    //alert(JSON.stringify(data));
-    onGetFloorSuccess(data/*$.parseJSON(data)*/);
-  }
-  // failed
-  request.fail = function(xhr, textStatus, errorThrown){
-    //alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
-    //alert("JQUERY TEXT STATUS: " + textStatus);
-    //alert("ERROR DESCRIPTION: " + errorThrown);
-    window.location = error_route + xhr.status;
-  }
-  // finished
-  request.always = function(){
-    // this will be called always whether fail or done at the end of this request
-  }
-  // send
-  request.send(); // start the ajax request
-}
-
-function onGetFloorSuccess(data){
-  if(data['result'] = 'true'){
-    $("#floor_assignment").append('<option value="3">'+data['floor_3']+'</option>');
-    $("#floor_assignment").append('<option value="4">'+data['floor_4']+'</option>');
-  }else{
-    notify("Database Connection Failed","Failed to fetch floor assignments from database. Please refresh and try again.");
-  }
-
 }
 
 function create_account_request(post_param, account_data_param){

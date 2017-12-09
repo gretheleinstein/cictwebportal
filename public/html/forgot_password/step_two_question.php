@@ -1,12 +1,12 @@
-<div class="container-fluid" style="padding-top:1%;padding-bottom:5%;">
+<div class="container-fluid wow fadeIn" style="padding-top:3%;padding-bottom:5%;">
      <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12 col-lg-offset-3 col-md-offset-3 col-sm-offset-2">
-          <div class="panel panel-default">
-          <div class="panel-heading blue" style="background-color: #F6F9FC; padding: 5%;">
-              <span class="glyphicon glyphicon-thumbs-up pull-left" style="color: #1A4D57" id="icon"></span>
+        <div class="col-lg-5 col-md-6 col-sm-8 col-12 mx-auto">
+          <div class="card">
+          <div class="card-header bg-orange" style="padding: 5%;">
+              <span class="pull-left" id="icon"><i class="fa fa-file-archive-o txt-white"></i></span>
               <div style="padding-left:15%;">
-              <h3 class="txt-blue bold mont">Verify your rights.</h3>
-              <p class="txt-blue s-light">Answer. So we could help.</p>
+              <h3 class="bold mont txt-white">Verify your rights.</h3><hr>
+              <p class="s-light txt-white">Answer. So we could help.</p>
               </div>
           </div>
           <div id ="div_confirm" class="panel-body" style="padding: 5%">
@@ -16,11 +16,11 @@
                   <label for="" class="segoe bold">ANSWER</label>
                   <input type="text" name="recovery_answer" class="form-control" id="recovery_answer" name="recovery_answer"/>
                   <label for="" class="error" id="recovery_answer-error-1" style="display: none"></label><br>
-                  <a href="#" id="btn_login" class="gray"><span class="glyphicon glyphicon-erase"></span> Remembered my account.</a>
-                  <button type="button" id = "btn_confirm" name = "btn_verify" class="btn_next pull-right" style="width: 35%">Next</button><br>
+                  <a href="#" id="btn_login" class="gray"><i class="fa fa-lightbulb-o"></i> Remembered my account.</a>
+                  <button type="button" id = "btn_confirm" name = "btn_verify" class="btn btn-orange pull-right" style="width: 35%">Next</button><br>
                 </form><br>
            </div>
            </div>
-           </div>
+          </div>
       </div>
 </div>

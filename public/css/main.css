@@ -55,6 +55,132 @@
   background: transparent;
 }
 
+
+
+.underline{
+    text-decoration: underline;
+    font-weight: bolder;
+}
+
+.btn-orange{
+  color:white;
+  background-color: #CE6F2D;
+  border: 3px solid #CE6F2D;
+  -webkit-transition: background .5s ease-in-out;
+}
+
+.btn-orange:hover{
+  background-color: transparent;
+  border: 3px solid #CE6F2D;
+  color: #CE6F2D;
+}
+ #link_orgs{
+   text-decoration:none; color: #CE6F2D;
+ }
+
+ .anno-cards{
+   /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+ }
+ .anno-cards-body{
+    background-color: #fff; color: black;
+ }
+
+.btn-black-bordered{
+  text-decoration: none; color: white; background-color: #333333; border: 2px solid #333333; border-bottom: 3px solid #CE6F2D;
+  -webkit-transition: background .5s ease-in-out;
+}
+
+.btn-black-bordered:hover{
+  text-decoration: none; color: black; background-color: white;
+}
+
+.btn-white-bordered{
+  text-decoration: none; color: white; background-color: #333333; border: 2px solid #333333;
+  -webkit-transition: background .5s ease-in-out;
+}
+
+.btn-white-bordered:hover{
+  text-decoration: none; color: black; background-color: white;
+}
+
+.div-black-top-bordered{
+  background-color: #333333; border-top:10px solid #CE6F2D; color: white;
+}
+.bold{
+  font-weight: bolder;
+}
+#navbar_sub{
+  background-color: white;
+  border: 1px solid #EEEEEE;
+}
+
+.div-white-shadow{
+  background-color: white; border-bottom: 7px solid #CE6F2D; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.boder-bottom{
+  border-bottom: 2px solid #CE6F2D;
+}
+
+.txt-orange{
+  color: #CE6F2D;
+}
+
+.txt-black{
+  color: #333333;
+}
+
+.link_orange{
+  color: #333333;
+  text-decoration: none;
+  font-size: 10pt;
+}
+
+.link_orange:hover{
+  color: #CE6F2D;
+  text-decoration: underline;
+}
+
+.link_white{
+  color: #333333;
+  text-decoration: none;
+  font-size: 10pt;
+}
+
+.link_white:hover{
+  color: white;
+  text-decoration: underline;
+}
+
+.bg-orange{
+  background-color: #CE6F2D;
+}
+
+.bg-white{
+  background-color: white;
+}
+
+.two-colour-background {
+    background: -webkit-linear-gradient(left, #CE6F2D 50%, #CE6F2D, white, white 50%);
+}
+
+.two-half-colour-background{
+  background-color: #EEEEEE
+  /*background-image: -webkit-linear-gradient(30deg, #333333 50%, #EEEEEE 50%);*/
+}
+
+.pad-home-2{
+  padding-top:2%;padding-right:2%;
+}
+
+.pad-5{
+  padding-top:5%;
+}
+
+#custom-card-header{
+  border-bottom: 2px solid #CE6F2D; font-size:15pt; padding: 5%; background-color:white;
+}
+
 /*-----login----*/
 
 .navbar{

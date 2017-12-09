@@ -8,12 +8,11 @@
       <div class="input-group">
         <input id="txt_faculty_name" name="txt_faculty_name" value="" class="form-control" placeholder="Search Faculty Name">
         <input id="txt_faculty_id" name="txt_faculty_id" value="" type="hidden">
-        &nbsp;<button type="button" id="btn_search_faculty" name="btn_search_faculty" class="btn btn-primary">Search</button>
+        &nbsp;<button type="button" id="btn_search_faculty" name="btn_search_faculty" class="btn btn-orange">Search</button>
       </div>
       </div>
   </div><br><br>
 </div>
-
 
 <div class="container-fluid wow fadeIn animated" style="padding-top:6%;" id="search_desc">
 </div>

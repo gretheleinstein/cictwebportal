@@ -9,9 +9,7 @@ $(document).ready(function() {
 function load_nav(){
   $( "#container-nav" ).load("{{ asset( 'html/navbar/register_nav.php' ) }}", function(){
     $(".loader").attr('style', 'display:none');
-    $("#btn_home").attr('href',"{{ route('home','hello') }}");
-    $("#btn_login").attr('href',"{{ route('home','login') }}");
-    $("#btn_dl").attr('href',"{{ route('get-app') }}");
+    $("#btn_home").attr('href',"{{ route('home') }}");
     forgot_pass_verify();
   });
 }
@@ -289,8 +287,8 @@ function onUpdateSuccess(data){
 function reset_success(){
   $("#container").load("{{ asset('html/forgot_password/reset_success.php') }}", function(){
     $( "#container" ).hide().fadeIn("slow");
-    $( "#btn_login" ).attr('href',"{{ route('home','login') }}");
-    $( "#btn_home" ).attr('href',"{{ route('home','hello') }}");
+    $( "#btn_login" ).attr('href',"{{ route('show-login') }}");
+    $( "#btn_home" ).attr('href',"{{ route('home') }}");
   });
 }
 </script>
