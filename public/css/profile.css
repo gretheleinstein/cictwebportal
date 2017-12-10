@@ -1,11 +1,11 @@
 body{ background-color:#F4F8F9;font-family: Montserrat; font-size: 9pt;}
 .navbar-fixed-side{ border: none; padding-bottom: 5%}
 .navbar-fixed-side span{ padding-right: 10%; padding-left: 10%;}
-.span_grey{ color: #b2b4b3; background-color: transparent; outline: none; border: none;}
-.form-control{ border-radius: 0; font-size: 9pt;}
+.span_orange{ color:#CE6F2D; text-decoration:underline; background-color: transparent; outline: none; border: none;}
+.form-control{ border-radius: 0; font-size: 9pt;border-left: 3px solid #CE6F2D}
 .btn-blue:focus{ color: white; }
 .btn-blue{ background-color: white;border-radius: 0; border: 1px solid #CCCCCC; font-size: 9pt; }
-.active{ color: white; background-color: #1A4D57; }
+.btn-group .active{ color: white; background-color: #333333; }
 .profile-li{ border-bottom: 1px solid white; padding: 5%; font-size:7pt; }
 .profile-pic{ color: #556970; width:100px; margin: 0 auto; }
 .white-bg{ background-color: white; }
@@ -14,7 +14,13 @@ body{ background-color:#F4F8F9;font-family: Montserrat; font-size: 9pt;}
   color: white; background-color:#1A4D57;  border-radius: 0; padding:1%;  margin-bottom: 2%; margin-top: 2%;  border: 1px solid transparent}
 .btn-options:hover{ background-color: transparent; border: 1px solid #1A4D57; color: #1A4D57; }
 .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
-   background-color: #F4F8F9;
+   background-color: #DCDEE1;
+}
+.hide{
+  display:none;
+}
+.summary_heading{
+  color:#808D8E; font-weight:bolder; cursor:pointer;
 }
 #sidebar {
     overflow: hidden;
@@ -23,7 +29,7 @@ body{ background-color:#F4F8F9;font-family: Montserrat; font-size: 9pt;}
 #sidebar .list-group {
     min-width: 400px;
     background-color: white;
-    min-height: 200vh;
+    min-height: 155vh;
 }
 #sidebar i {
     margin-right: 6px;
@@ -101,8 +107,8 @@ body{ background-color:#F4F8F9;font-family: Montserrat; font-size: 9pt;}
     #sidebar::-webkit-scrollbar{ width: 0px; }
 
     #sidebar, #sidebar .list-group {
-        min-width: 35px;
         overflow: visible;
+        min-width: 35px;
     }
     /* overlay sub levels on small screens */
     #sidebar .list-group .collapse.show, #sidebar .list-group .collapsing {

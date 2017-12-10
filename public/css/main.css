@@ -115,7 +115,8 @@
 }
 
 .div-white-shadow{
-  background-color: white; border-bottom: 7px solid #CE6F2D; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: white; border-bottom: 7px solid #CE6F2D;
+  box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.2), 4px 6px 20px 4px  rgba(0, 0, 0, 0.19);
 }
 
 .boder-bottom{

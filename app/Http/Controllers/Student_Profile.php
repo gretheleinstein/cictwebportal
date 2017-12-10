@@ -37,6 +37,7 @@ class Student_Profile extends Controller
 
       $reply['info'] =$student;
       if($student_profile){
+        echo $student_profile->student_address;
         #------------------------------------------------------
         //get curriculum info of student
         $curriculum = Curriculum::where('active', '=', '1')
@@ -86,10 +87,11 @@ class Student_Profile extends Controller
       $contact_no = $request['contact_no'];
       $zipcode = $request['zipcode'];
       $email = $request['email'];
-      $house_no = $request['house_no'];
-      $street = $request['street'];
-      $brgy = $request['brgy'];
-      $city = $request['city'];
+      // $house_no = $request['house_no'];
+      // $street = $request['street'];
+      // $brgy = $request['brgy'];
+      // $city = $request['city'];
+      $student_address = $request['student_address'];
       $province = $request['province'];
       $ice_name = $request['ice_name'];
       $ice_contact = $request['ice_contact'];
@@ -124,11 +126,12 @@ class Student_Profile extends Controller
         $cloned_profile->mobile = strtoupper($contact_no);
         $cloned_profile->zipcode = strtoupper($zipcode);
         $cloned_profile->email = $email;
-        $cloned_profile->house_no = strtoupper($house_no);
-        $cloned_profile->street = strtoupper($street);
-        $cloned_profile->brgy = strtoupper($brgy);
-        $cloned_profile->city = strtoupper($city);
-        $cloned_profile->province = strtoupper($province);
+        // $cloned_profile->house_no = strtoupper($house_no);
+        // $cloned_profile->street = strtoupper($street);
+        // $cloned_profile->brgy = strtoupper($brgy);
+        // $cloned_profile->city = strtoupper($city);
+        // $cloned_profile->province = strtoupper($province);
+        $cloned_profile->student_address = strtoupper($student_address);
         $cloned_profile->ice_name = strtoupper($ice_name);
         $cloned_profile->ice_contact = strtoupper($ice_contact);
         $cloned_profile->ice_address = strtoupper($ice_address);

@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\AcademicTerm' => $baseDir . '/app/AcademicTerm.php',
     'App\\AccountStudent' => $baseDir . '/app/AccountStudent.php',
+    'App\\Announcements' => $baseDir . '/app/Announcements.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Curriculum' => $baseDir . '/app/Curriculum.php',
     'App\\CurriculumSubject' => $baseDir . '/app/CurriculumSubject.php',
@@ -20,6 +21,7 @@ return array(
     'App\\Http\\Controllers\\Auth\\RegisterController' => $baseDir . '/app/Http/Controllers/Auth/RegisterController.php',
     'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\Error' => $baseDir . '/app/Http/Controllers/Error.php',
     'App\\Http\\Controllers\\Forgot_Password' => $baseDir . '/app/Http/Controllers/Forgot_Password.php',
     'App\\Http\\Controllers\\Home' => $baseDir . '/app/Http/Controllers/Home.php',
     'App\\Http\\Controllers\\Linked_Settings' => $baseDir . '/app/Http/Controllers/Linked_Settings.php',
@@ -27,6 +29,7 @@ return array(
     'App\\Http\\Controllers\\MonoUtility' => $baseDir . '/app/Http/Controllers/MonoUtility.php',
     'App\\Http\\Controllers\\Registration' => $baseDir . '/app/Http/Controllers/Registration.php',
     'App\\Http\\Controllers\\Settings' => $baseDir . '/app/Http/Controllers/Settings.php',
+    'App\\Http\\Controllers\\Student_Evaluation_History' => $baseDir . '/app/Http/Controllers/Student_Evaluation_History.php',
     'App\\Http\\Controllers\\Student_Grade' => $baseDir . '/app/Http/Controllers/Student_Grade.php',
     'App\\Http\\Controllers\\Student_Profile' => $baseDir . '/app/Http/Controllers/Student_Profile.php',
     'App\\Http\\Controllers\\Student_Schedule' => $baseDir . '/app/Http/Controllers/Student_Schedule.php',

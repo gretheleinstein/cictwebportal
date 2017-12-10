@@ -1,9 +1,12 @@
-<div class="row white-bg" style="padding: 3%;">
-<table style="width:100%; border: 1px solid #EEEEEE">
+<div class="row white-bg fadeIn animated div-white-shadow hide" style="padding: 3%;" id="row_eval">
+  <div class="container col-lg-12 wow fadeIn animated" id="div_student_eval">
+  </div>
+<div class="container col-lg-12 fadeIn animated" style=" display:none" id="span_student_eval">
+<h3 class="mont">Enrollment History</h3><hr>
+<table class="table-responsive" style="width:100%; border: 1px solid #EEEEEE">
   <tr>
     <td class="text-right" width="25%"><img id="bulsu_logo" src="" width="70" height="70" alt=""></td>
     <td class="text-center" width="47%"><table class="header">
-      <tr><h3 class="mont">Enrollment History</h3></tr>
       <tr><td>BULACAN STATE UNIVERSITY</td></tr>
       <tr><td style="font-weight: bold">COLLEGE OF INFORMATION AND COMMUNICATIONS TECHNOLOGY</td></tr>
       <tr><td id="course_section"></td></tr>
@@ -12,7 +15,7 @@
   </tr>
 </table>
 <br>
-<table border="1" id="tbl_eval" class="table table-responsive table-bordered text-left" cellspacing="0" style="padding: 5%" width="100%" >
+<table id="tbl_eval" class="table table-responsive table-bordered text-left">
   <th class="text-center">School Year</th>
   <th class="text-center">Semester</th>
   <th class="text-center">Year Level</th>
@@ -23,4 +26,5 @@
   <th class="text-center">Cancelled By</th>
   <th class="text-center">Cancelled Date</th>
 </table>
+</div>
 </div>

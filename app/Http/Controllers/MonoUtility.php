@@ -11,11 +11,12 @@ class MonoUtility
         $cloned_profile->floor_assignment = $student_profile->floor_assignment;
         $cloned_profile->profile_picture = $student_profile->profile_picture;
         $cloned_profile->mobile = $student_profile->mobile;
-        $cloned_profile->house_no = $student_profile->house_no;
-        $cloned_profile->street = $student_profile->street;
-        $cloned_profile->brgy = $student_profile->brgy;
-        $cloned_profile->city = $student_profile->city;
-        $cloned_profile->province = $student_profile->province;
+        // $cloned_profile->house_no = $student_profile->house_no;
+        // $cloned_profile->street = $student_profile->street;
+        // $cloned_profile->brgy = $student_profile->brgy;
+        // $cloned_profile->city = $student_profile->city;
+        // $cloned_profile->province = $student_profile->province;
+        $cloned_profile->student_address = $student_profile-student_address;
         $cloned_profile->zipcode = $student_profile->zipcode;
         $cloned_profile->email = $student_profile->email;
         $cloned_profile->ice_name = $student_profile->ice_name;

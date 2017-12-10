@@ -11,14 +11,13 @@ class Settings extends Controller
     $post = $request->all();
     $new_flr = $request['floor_assignment'];
     $id = $request->session()->get('SES_CICT_ID');
-
     #------------------------------------------------------
     // Find the student with the given parameters
     $student_profile = StudentProfile::where('active', '=', '1')
     ->where('STUDENT_id', '=', $id)
     ->orderBy('id','DESC')
     ->take(1)
-    ->update(['floor_assignment' => $new_flr,]);
+    ->update(['floor_assignment' => $new_flr]);
 
     #------------------------------------------------------
     // if floor_assignment successfully updated

@@ -92,17 +92,21 @@ class Media extends Controller
         try {
             // resize image
             $img = MonoImage::resizeImage($image, $save_image_name);
-            //save in ftp then delete in temp folder
-            MonoImage::saveToFTP('student_avatar/', $save_image_name, $img);
-            // if it succeeded then great
-            $file_uploaded = true;
-            // but some things are meant to go wrong sometime
-            // recheck if the file is now existing in the disk
-            $exists = MonoImage::checkIfExist('student_avatar/', $save_image_name);
-            // if not existing
-            // sometimes servers are not reliable
-            if (!$exists) {
-                $file_uploaded = false;
+            if($img == "image_rectangle"){
+              return response()->json(['result' => 'image_rectangle']);
+            }else{
+              //save in ftp then delete in temp folder
+              MonoImage::saveToFTP('student_avatar/', $save_image_name, $img);
+              // if it succeeded then great
+              $file_uploaded = true;
+              // but some things are meant to go wrong sometime
+              // recheck if the file is now existing in the disk
+              $exists = MonoImage::checkIfExist('student_avatar/', $save_image_name);
+              // if not existing
+              // sometimes servers are not reliable
+              if (!$exists) {
+                  $file_uploaded = false;
+              }
             }
             #--------------------------------------------------------------------------
         } catch (Exception $e) {

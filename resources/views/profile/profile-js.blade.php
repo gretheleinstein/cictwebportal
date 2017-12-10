@@ -1,5 +1,4 @@
 <script type = "text/javascript">
-
 var get_photo = "{{ route('get-photo','') }}/";
 //------------------------------------ON DOCUMENT READY---------------------------------------
 //--------------------------------------------------------------------------------------------
@@ -14,10 +13,13 @@ function load_nav(){
   $("#container-nav").load("{{ asset('html/navbar/profile_nav.php') }}",function(){
     $(".loader").attr('style', 'display:none');
     $("#logo").attr('src', "{{ asset('img/logo/huhu.png') }}");
-    // load_side_nav_collapse();
     load_side_nav();
   });
 }
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+})
 
 //--------------------------------REUSABLE GET PROFILE REQUEST--------------------------------
 //--------------------------------------------------------------------------------------------
@@ -38,7 +40,7 @@ function request_profile_values(onDone){
     //  alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
     //  alert("JQUERY TEXT STATUS: " + textStatus);
     //  alert("ERROR DESCRIPTION: " + errorThrown);
-      window.location = error_route + xhr.status;
+    //  window.location = error_route + xhr.status;
   }
   // finished
   request.always = function(){
@@ -63,7 +65,6 @@ function post_request(route, goto_func, post_parameters, btn_id){
   }
   // success
   request.done = function(data, textStatus, xhr){
-    //alert(data);
     btn_clicked_end(btn_id);
     goto_func(data/*$.parseJSON(data)*/);
   }
@@ -168,17 +169,12 @@ function clear_notify(){
 }
 
 
-//---------------------------------------LOAD NAVBARS-----------------------------------------
+//---------------------------------------LOAD NAVBAR-----------------------------------------
 //--------------------------------------------------------------------------------------------
-function load_side_nav_collapse(){
-  $("#linked_logo_sub").attr('src',"{{ asset('img/linked.png') }}");
-  request_profile_values(side_nav_collapse_load_values);
-  //side nav options
-}
-
 function load_side_nav(){
   $("#sidebar").load("{{ asset('html/navbar/profile_side_nav.php') }}",function(){
-    $("#linked_logo").attr('src',"{{ asset('img/linked.png') }}");
+    $("#linked_logo").attr('src',"{{ asset('img/icons/linked.png') }}");
+    $("#sidebar").addClass('div-white-shadow');
     //$("#monosync_logo").attr('src',"{{ asset('img/logo/monosync_logo.jpg') }}");
     request_profile_values(side_nav_load_values);
     //side nav options
@@ -190,7 +186,7 @@ function load_side_nav(){
 function load_footer(){
   $("#footer-nav").load("{{ asset('html/footer/profile_footer.php') }}",function(){
     $("#footer-nav").hide().fadeIn("slow");
-    $("#monosync_logo_footer").attr('src', "{{ asset('img/logo/monosync_logo.jpg') }}");
+    // $("#monosync_logo_footer").attr('src', "{{ asset('img/logo/monosync_logo.jpg') }}");
   });
 }
 
@@ -228,7 +224,7 @@ function load_display_picture_sub(id){
 
 function onload_display_picture_sub(id){
   if(newImg1.src.includes("NONE")){
-    newImg1.src = "{{ asset('img/img.png') }}";
+    newImg1.src = "{{ asset('img/icons/img.png') }}";
   }else{
     var _img = $(id);
     _img.src = newImg1.src;
@@ -262,7 +258,7 @@ function load_display_picture(id){
 
 function onload_display_picture(id){
   if(newImg2.src.includes("NONE")){
-    newImg2.src = "{{ asset('img/img.png') }}";
+    newImg2.src = "{{ asset('img/icons/img.png') }}";
   }else{
     var _img = $(id);
     _img.src = newImg2.src;
@@ -305,12 +301,14 @@ function load_values(data){
     update_profile_picture("#display-pic");
     $("#contact_no").val(data['profile']['mobile']);
     $("#email").val(profile['email']);
-    $("#house_no").val(profile['house_no']);
-    $("#street").val(profile['street']);
+    // $("#house_no").val(profile['house_no']);
+    // $("#street").val(profile['street']);
+    // $("#brgy").val(profile['brgy']);
+    // $("#city").val(profile['city']);
+    // $("#province").val(profile['province']);
+
     $("#zipcode").val(profile['zipcode']);
-    $("#brgy").val(profile['brgy']);
-    $("#city").val(profile['city']);
-    $("#province").val(profile['province']);
+    $("#stud_address").val(profile['student_address']);
     $("#ice_name").val(profile['ice_name']);
     $("#ice_contact").val(profile['ice_contact']);
     $("#ice_address").val(profile['ice_address']);
@@ -344,7 +342,7 @@ function update_profile_picture(id){
 
 function onload_profile_photo(id){
   if(newImg3.src.includes("NONE")){
-    newImg3.src = "{{ asset('img/img.png') }}";
+    newImg3.src = "{{ asset('img/icons/img.png') }}";
   }else{
     var _img = $(id);
     _img.src = newImg3.src;
@@ -362,7 +360,7 @@ function onload_profile_photo(id){
 function logout_request(){
   $.post("{{ route('profile-logout') }}")
   .done(function(data){
-    window.location.href = "{{ route('home','hello') }}";
+    window.location.href = "{{ route('home') }}";
   })
   .fail(function(data){
   });
@@ -478,11 +476,11 @@ function student_profile(){
 function onUpdateProfileSuccess(data){
   show_buttons('#btn_save');
   if(data['result'] == "saved"){
-    show_notif('.alert-info',"Saved Changes");
+    show_notif('.alert alert-secondary',"Saved Changes");
     request_profile_values(load_profile_values);
     request_profile_values(load_values);
   }else{
-    show_notif('.alert-info',"Alert! Failed to save to database.");
+    show_notif('.alert alert-secondary',"Alert! Failed to save to database.");
   }
 }
 //---------------------------------------------------------------------------------------------------------
@@ -493,8 +491,6 @@ function onUpdateProfileSuccess(data){
 function student_settings(){
   $( "#container" ).load("{{ asset( 'html/profile/student_settings.php' ) }}", function(){
     $( "#container" ).hide().fadeIn("slow");
-    get_request("{{ route('get-floor-name') }}", onGetFloorSuccess);
-
     $("#frm_change_flr_ass").validate({
       rules: {
         floor_assignment: {
@@ -551,14 +547,6 @@ function student_settings(){
   });
 }
 
-function onGetFloorSuccess(data){
-  if(data['result'] = 'true'){
-    $("#floor_assignment").append('<option value="3">'+data['floor_3']+'</option>');
-    $("#floor_assignment").append('<option value="4">'+data['floor_4']+'</option>');
-  }else{
-    notify("Database Connection Failed","Failed to fetch floor assignments from database. Please refresh and try again.");
-  }
-}
 
 function onUpdateFlrSuccess(data){
   if(data['result']=="saved"){
@@ -593,30 +581,30 @@ function clicked(id){
 }
 
 function load_summary(data){
-  $("#container").html('<div class="row white-bg" style="padding: 3%;"><div id="div_grade"></div></div>');
-  //  alert(data[0]);
+  $("#container").html('<div class="row white-bg div-white-shadow fadeIn animated" id="div_summary" style="padding: 3%;"></div>');
+    //  alert(data[0]);
   if(data['result'] == 'curriculum_not_set'){ //checks if curriculum is empty
     //if curriculum not set
-    $("#div_grade").append("<div class='text-center'><h3><span class='glyphicon glyphicon-info-sign'></span> Curriculum not available</h3>Please complete all procedures to view your grades.</div>");
+    show_desc("#div_summary", "{{ asset('img/icons/curriculum.png') }}", "Curriculum not available. Please complete all procedures to view your grades.");
   }else if(data['result'] == 'no student record'){
     notify("Database Request Done","No student record found. Please refresh and try again.");
   }else{
-    $.each(data,function(key,value){
+  $("#div_summary").append('<div class="container col-lg-12"><h3 class="mont">Academic Evaluation</h3><hr></div>');
+  $.each(data,function(key,value){
       var a=0;
       for(var i=0; i<=1; i++){  // 0,1 sem = 1st Sem | 2nd Sem
         if(value[i][0]['result'] == "curriculum subjects empty"){
-          alert("Database Request Done. Curriculum subjects empty. Please wait and try again.");
+          //alert("Database Request Done. Curriculum subjects empty. Please wait and try again.");
         }else{
           //--------------------------------------change to words ------------------------------------------------------------//
           var year_word = change_to_words(value[i][0]['cur']['year']); var sem_word = change_to_words(value[i][0]['cur']['semester']);
           //-------------------------------append title, div and table ---------------------------------------------------------//
           var year_sem = value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester'];
-
-          $("#div_grade").append("<div onclick='clicked(this.id)' style='color:#808D8E; font-weight:bolder; cursor:pointer' id=term_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']+"><span class='glyphicon glyphicon-calendar' style='font-size: 10pt; font-weight:lighter; color:#808D8E'></span> "+year_word+" Year "+sem_word+" Semester"+"</div><hr>");
-          $("#div_grade").append("<div class='table-responsive' id=div_"+year_sem +" "+"style='display:none;'></div>"); //div creation
-          $("#div_"+year_sem).append('<table id=table_'+year_sem +' class="table table-striped table-responsive table-bordered" cellspacing="0" style="padding: 5%" width="100%">');
+          $("#div_summary").append("<div class='container col-lg-12 summary_heading' onclick='clicked(this.id)' id=term_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']+">"+year_word+" Year "+sem_word+" Semester"+"<hr></div>");
+          $("#div_summary").append("<div class='container col-lg-12'><div class='table-responsive' id=div_"+year_sem+" style='display:none'></div></div>"); //div creation
+          $("#div_"+year_sem).append('<table id=table_'+year_sem +' class="table table-bordered"></tbody></table>');
           //--------------------------------------table headings -------------------------------------------------------------//
-          $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tbody><tr style='background-color: #1A4D57;'> <th>Course Code</th><th>Descriptive Title</th><th>Units</th><th>Final</th><th>Credits</th><th>Remarks</th></tr>");
+          $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tbody><tr style='background-color: #DCDEE1;'> <th>Course Code</th><th>Descriptive Title</th><th>Units</th><th>Final</th><th>Credits</th><th>Remarks</th></tr>");
           var total_units = 0.0; var total_credits = 0.0;
           //-------------------------loop as how the number of subjects per sem ------------------------a----------------------//
           for (var j = 0; j < value[a].length; j++) {
@@ -638,13 +626,12 @@ function load_summary(data){
                 }
                 //no grade record //UNPOSTED GRADE
               }else{
-                $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tr> <td>"+value[i][j]['subject']['code']+"</td>"+ "<td>"+value[i][j]['subject']['descriptive_title']+"</td><td>"+units+"</td><td></td><td>0</td><td></td></tr>");
+                $("#table_"+year_sem).append("<tr> <td>"+value[i][j]['subject']['code']+"</td>"+ "<td>"+value[i][j]['subject']['descriptive_title']+"</td><td>"+units+"</td><td></td><td>0</td><td></td></tr>");
               }
             }//else
             total_units += units;
           }//end of for loop sem
-          $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tr style='background-color: #EEEEEE'> <td> "+value[a].length+"Subject(s)</td><td></td><td>"+total_units+"</td><td></td><td>"+total_credits+"</td><td></td><td></td></tr>");
-          $("#div_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append('</tbody></table>');
+          $("#table_"+year_sem).append("<tr style='background-color: #EEEEEE'> <td> "+value[a].length+" Subject(s)</td><td></td><td>"+total_units+"</td><td></td><td>"+total_credits+"</td><td></td></tr>");
         }
         a++;
       }//end of for loop 2 sem
@@ -665,9 +652,11 @@ function student_grade(){
 var grade_route = "{{ route('pdf-view-grade','') }}/"
 function load_table_grades(data){
   $("#acad_term_list").html(""); $("#acad_term_cmb_menu").html(""); $("#div_grade").html("");//#clear containers
-  $("#acad_term_list").append('<a class="list-group-item list-group-item-action list-group-item-info">Academic Year and Term</a>')
+  $("#row_grade").removeClass('hide');
+  $("#acad_term_list").append('<a class="list-group-item list-group-item-action list-group-item-secondary">Academic Year and Term</a>')
   if(data.length != 0){
     $.each(data, function(key, value) {
+      $("#div_main_grade").removeAttr('style');
       var eval = value['eval']; var acad = value['acad']; var flag=true;
       var acad_term_yr = replace(acad['school_year']+"_"+acad['semester']," ","_"); //#impo:jquery can't select with an id containing spaces
       $("#acad_term_list").append('<a id='+acad_term_yr+' onclick="unhide(this.id)" class="list-group-item list-group-item-action list-group-item-light">'+acad['school_year']+" "+acad['semester']+'</a>');
@@ -703,12 +692,12 @@ function load_table_grades(data){
         }
       }//closing of else
       if(flag){gwa = gwa/subj_count; gwa = gwa.toFixed(4);}
-      $("."+acad_term_yr).append("<div  style='border:1px solid #EEEEEE'><table class='table'><tr> <td></td><td>GWA : "+gwa+"<br/><sub>Gen. Weighted Average</sub></td><td>UNITS : "+units+"<br/><sub>Unit Enrolled</sub></th><td>EARNED: "+units_passed+"<br/><sub>Unit(s) Earned</sub></td></table><div class='text-right' style='padding:3%'><a href='"+grade_route + acad['school_year']+"_"+acad['semester']+"' target='_blank' id='btn_"+acad['school_year']+"_"+acad['semester']+"' class='btn btn-info'>Print PDF</a></div></div>");
+      $("."+acad_term_yr).append("<div  style='border:1px solid #EEEEEE'><table class='table'><tr> <td></td><td>GWA : "+gwa+"<br/><sub>Gen. Weighted Average</sub></td><td>UNITS : "+units+"<br/><sub>Unit Enrolled</sub></th><td>EARNED: "+units_passed+"<br/><sub>Unit(s) Earned</sub></td></table><div class='text-right' style='padding:3%'><a href='"+grade_route + acad['school_year']+"_"+acad['semester']+"' target='_blank' id='btn_"+acad['school_year']+"_"+acad['semester']+"' class='btn btn btn-black-bordered'>Print PDF</a></div></div>");
       $("."+acad_term_yr).append("<div style='border:1px solid #EEEEEE; padding: 2%'><p><span class='glyphicon glyphicon-exclamation-sign'></span> WARNING!</p><p>Falsifiction, alteration or tampering of the report generated by the system is considered major and criminal offense, hence, they are punishable by expulsion or dismissal!</p></div>");
 
     });
   }else {
-    notify("Database Request Done", "Request success. No evaluation record of the student is found.");
+    show_desc("#grade_result", "{{ asset('img/icons/grades.png') }}", "No evaluation record of the student is found. Grades is in unavailable.");
   }
 }
 
@@ -794,6 +783,8 @@ function start_ajax(){
     //alert(JSON.stringify(data));
     if(data['result'] == "file_not_recieved"){
       $("#upload_message").html("<span class='glyphicon glyphicon-picture'></span> <span class='fadeIn animated'>File not found! Please try again.</span><hr>");
+    }else if(data['result'] == "image_rectangle"){
+      $("#upload_message").html("<span class='glyphicon glyphicon-picture'></span> <span class='fadeIn animated'>Image invalid. Please try not to upload a rectangle photo.</span><hr>");
     }else if (data['result'] == "file_not_valid"){
       $("#upload_message").html("<span class='glyphicon glyphicon-picture'></span> <span class='fadeIn animated'>File too large. The maximum file size allowed is 512 KB only.</span><hr>");
     }else{
@@ -807,7 +798,7 @@ function start_ajax(){
     //alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
     //alert("JQUERY TEXT STATUS: " + textStatus);
     //alert("ERROR DESCRIPTION: " + errorThrown);
-    xhr_methods(xhr.readyState, xhr.status);
+    //windows.location = status_error ++
   }
   // finished
   request.always = function(){
@@ -865,7 +856,7 @@ function save_qr_data(data){
       qr_id = info['id'];
       var middle_name = (info['middle_name'] != null) ? (info['middle_name']) : ("");
       qr_name = info['first_name']+" "+middle_name+" "+info['last_name'];
-      qr_gender = info['gender'];
+      (info['gender'] != null) ? (qr_gender = info['gender']) : (qr_gender = "---");
     }
   }
 }
@@ -883,7 +874,7 @@ function load_qrcode(data){
 
 function load_linked_acc_info(data){
   $("#container").html('');
-  $("#container").html('<div class="row white-bg text-center" style="padding: 3%;"><div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3" id="div_linked" style="font-weight: bold; font-size: 9pt"><div class="txt-white" style="display:none; background-color: #1A4D57;padding:5%; border-bottom: 5px solid #BDC3C7;"></div></div></div>');
+  $("#container").html('<div class="row white-bg text-center div-shadow-box" style="padding: 3%;"><div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 mx-auto" id="div_linked" style="font-weight: bold; font-size: 9pt"><div class="txt-white" style="display:none; background-color: #1A4D57;padding:5%; border-bottom: 5px solid #BDC3C7;"></div></div></div>');
   // reference = data['reference'];
   pila_info = data['pila_info'];
   linked_settings = data['settings'];
@@ -920,6 +911,7 @@ function student_sched(){
 
 function load_sched_info(data){
   $("#acad_term").html(""); $("#course_section").html("");
+  $("#row_sched").removeClass('hide');
   (data['acad_term']=="no current term") ? ($("#acad_term").append('Current term not set')) : ($("#acad_term").append("A.Y "+data['acad_term']['school_year']));
   (data['section']=="no student record") ? (section = "no section") : (section = data['section']['year_level']+data['section']['section']+"-G"+data['section']['_group']);
   (data['course']=="no curriculum") ? (cur = "no curriculum") : (cur=data['course']['name']);
@@ -929,9 +921,9 @@ function load_sched_info(data){
 function load_table_sched(data){
   $(".scheds").html("");
   if(data[0]['result'] == "no load subjects"){
-    $(".scheds").html("");
-    $("#div_sched").append('No load Subjects');
+    show_desc("#sched_result", "{{ asset( 'img/icons/calendar_stud.png' ) }}", "No schedule found.");
   } else{
+    $("#stud_sched_table").removeAttr('style');
     $.each(data, function(key,value) {
       subject = value['subject'];
       schedule = value['load_group_schedule'];
@@ -961,12 +953,14 @@ function student_history(){
 
 function load_table_eval(data){
   $("#tbl_eval td").remove();
+  $("#row_eval").removeClass('hide');
   if(data[0]['result'] == "Student not found"){
     notify("Database Connection Failed", "Student data not found.");
   }
   if(data[0]['result'] == "No Evaluation History"){
-    $("#tbl_eval").append("<tr class='text-center'><td colspan='9'>No enrollment History found</td></tr>");
+    show_desc("#div_student_eval", "{{ asset( 'img/icons/history.png' ) }}", "No evaluation history found.");
   }else {
+    $("#span_student_eval").removeAttr('style');
     $.each(data, function(key,value) {
       eval = value['eval'];
       acad = value['acad'];

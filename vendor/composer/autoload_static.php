@@ -321,6 +321,7 @@ class ComposerStaticInita5f2d11a04ccab1ebdb1ea118b6afe03
     public static $classMap = array (
         'App\\AcademicTerm' => __DIR__ . '/../..' . '/app/AcademicTerm.php',
         'App\\AccountStudent' => __DIR__ . '/../..' . '/app/AccountStudent.php',
+        'App\\Announcements' => __DIR__ . '/../..' . '/app/Announcements.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Curriculum' => __DIR__ . '/../..' . '/app/Curriculum.php',
         'App\\CurriculumSubject' => __DIR__ . '/../..' . '/app/CurriculumSubject.php',
@@ -333,6 +334,7 @@ class ComposerStaticInita5f2d11a04ccab1ebdb1ea118b6afe03
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\Error' => __DIR__ . '/../..' . '/app/Http/Controllers/Error.php',
         'App\\Http\\Controllers\\Forgot_Password' => __DIR__ . '/../..' . '/app/Http/Controllers/Forgot_Password.php',
         'App\\Http\\Controllers\\Home' => __DIR__ . '/../..' . '/app/Http/Controllers/Home.php',
         'App\\Http\\Controllers\\Linked_Settings' => __DIR__ . '/../..' . '/app/Http/Controllers/Linked_Settings.php',
@@ -340,6 +342,7 @@ class ComposerStaticInita5f2d11a04ccab1ebdb1ea118b6afe03
         'App\\Http\\Controllers\\MonoUtility' => __DIR__ . '/../..' . '/app/Http/Controllers/MonoUtility.php',
         'App\\Http\\Controllers\\Registration' => __DIR__ . '/../..' . '/app/Http/Controllers/Registration.php',
         'App\\Http\\Controllers\\Settings' => __DIR__ . '/../..' . '/app/Http/Controllers/Settings.php',
+        'App\\Http\\Controllers\\Student_Evaluation_History' => __DIR__ . '/../..' . '/app/Http/Controllers/Student_Evaluation_History.php',
         'App\\Http\\Controllers\\Student_Grade' => __DIR__ . '/../..' . '/app/Http/Controllers/Student_Grade.php',
         'App\\Http\\Controllers\\Student_Profile' => __DIR__ . '/../..' . '/app/Http/Controllers/Student_Profile.php',
         'App\\Http\\Controllers\\Student_Schedule' => __DIR__ . '/../..' . '/app/Http/Controllers/Student_Schedule.php',

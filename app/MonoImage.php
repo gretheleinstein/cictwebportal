@@ -20,6 +20,7 @@ class MonoImage
      */
     public static function getFileFromRequest(Request $request, $file_id)
     {
+      //echo $file_id;
         if ($request->hasFile($file_id)) {
             return $request->file($file_id);
         } else {
@@ -75,20 +76,24 @@ class MonoImage
         $image_width = $image_info[0];
         $image_height = $image_info[1];
 
-        if (($image_width == 160) and ($image_height == 160)) {
-            //check if image is 160x160 pixels or 2x2 ata sabi sa acrinop mo
-        } else if (($image_width == $image_height) and ($image_height == $image_width)) {
-            //check if image is a square
-            $img->resize(160, 160, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save($temp_folder . "/" . $image_name);
-        } else {
-            //if rectangle na pahaba sa camera ng phone
-            $img->resize(210, 215, function ($constraint) {
-                $constraint->aspectRatio();
-            })->crop(160, 160, 0, 0)->save($temp_folder . "/" . $image_name);
+        if($image_width > $image_height){
+          $img_error = "image_rectangle";
+          return $img_error;
+        }else{
+          if (($image_width == 160) and ($image_height == 160)) {
+              //check if image is 160x160 pixels or 2x2 ata sabi sa crinop mo
+          } else if (($image_width == $image_height) and ($image_height == $image_width)) {
+              //check if image is a square
+              $img->resize(160, 160, function ($constraint) {
+                  $constraint->aspectRatio();
+              })->save($temp_folder . "/" . $image_name);
+          } else {
+              //if rectangle na pahaba sa camera ng phone
+              $img->resize(210, 215, function ($constraint) {
+                  $constraint->aspectRatio();
+              })->crop(160, 160, 0, 0)->save($temp_folder . "/" . $image_name);
+          }
+          return $img;
         }
-
-        return $img;
     }
 }

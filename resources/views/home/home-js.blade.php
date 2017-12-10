@@ -20,7 +20,7 @@ function load_nav(){
 
 function load_hello(){
   $( "#container-hello" ).load("{{ asset( 'html/home/hello.php' ) }}", function(){
-    $(".first-slide").attr('src', "{{ asset('img/carousel/1.jpg') }}");
+    $(".first-slide").attr('src', "{{ asset('img/carousel/cict2.jpg') }}");
     $(".second-slide").attr('src', "{{ asset('img/carousel/2.jpg') }}");
     $(".third-slide").attr('src', "{{ asset('img/carousel/3.jpg') }}");
     $(".fourth-slide").attr('src', "{{ asset('img/carousel/4.jpg') }}");

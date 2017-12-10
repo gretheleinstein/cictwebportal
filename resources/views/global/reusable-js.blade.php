@@ -3,7 +3,7 @@ var error_route = "{{ route('error-status','') }}/";
 
 function show_desc(id, src, desc){
   $(id).html("");
-  $(id).append('<div class="row flipInX animated"><div class="col-md-5 col-4 text-right"><img class="img-fluid" src="'+src+'"></div><div class="col-md-4 col-8 text-left"><br><p class="mont">'+desc+'</p></div></div>')
+  $(id).append('<div class="row flipInX animated mx-auto"><div class="col-md-5 col-4 text-right "><img class="img-fluid" src="'+src+'"></div><div class="col-md-4 col-8 text-left"><br><p class="mont">'+desc+'</p></div></div>')
 }
 
 function remove_prev(prev, new_id){

@@ -1,4 +1,4 @@
-<div class="row white-bg" style="padding: 3%;">
+<div class="row white-bg div-white-shadow fadeIn animated" style="padding: 3%;">
     <div class="col-lg-12">
       <h5>How is the whole evaluation process?</h5><hr>
     </div>
