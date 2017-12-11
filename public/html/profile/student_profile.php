@@ -134,7 +134,7 @@
     </div>
 
     <div class="col-12 text-center">
-      <br><div class="alert alert-secondary" style="display:none">
+      <br><div class="alert alert-secondary" id="alert-me" style="display:none">
       </div>
     </div>
 

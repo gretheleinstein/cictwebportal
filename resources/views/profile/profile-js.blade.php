@@ -306,9 +306,8 @@ function load_values(data){
     // $("#brgy").val(profile['brgy']);
     // $("#city").val(profile['city']);
     // $("#province").val(profile['province']);
-
     $("#zipcode").val(profile['zipcode']);
-    $("#stud_address").val(profile['student_address']);
+    $("#student_address").val(profile['student_address']);
     $("#ice_name").val(profile['ice_name']);
     $("#ice_contact").val(profile['ice_contact']);
     $("#ice_address").val(profile['ice_address']);
@@ -384,12 +383,12 @@ function student_profile(){
         gender:{
           required: true
         },
-        house_no: {
-          required: true,
-          minlength: 1,
-          pattern: /^\d+(-\d+)*$/,
-          maxlength: 10
-        },
+        // house_no: {
+        //   required: true,
+        //   minlength: 1,
+        //   pattern: /^\d+(-\d+)*$/,
+        //   maxlength: 10
+        // },
         street: {
           minlength: 2,
           maxlength: 25
@@ -399,20 +398,20 @@ function student_profile(){
           minlength: 2,
           maxlength: 10
         },
-        city: {
+        // city: {
+        //   required: true,
+        //   minlength: 2,
+        //   maxlength: 25
+        // },
+        // brgy: {
+        //   required: true,
+        //   minlength: 2,
+        //   maxlength: 25
+        // },
+        student_address: {
           required: true,
           minlength: 2,
-          maxlength: 25
-        },
-        brgy: {
-          required: true,
-          minlength: 2,
-          maxlength: 25
-        },
-        province: {
-          required: true,
-          minlength: 2,
-          maxlength: 25
+          maxlength: 300
         },
         email: {
           required: true,
@@ -476,11 +475,11 @@ function student_profile(){
 function onUpdateProfileSuccess(data){
   show_buttons('#btn_save');
   if(data['result'] == "saved"){
-    show_notif('.alert alert-secondary',"Saved Changes");
+    show_notif('#alert-me',"Saved Changes");
     request_profile_values(load_profile_values);
     request_profile_values(load_values);
   }else{
-    show_notif('.alert alert-secondary',"Alert! Failed to save to database.");
+    show_notif('#alert-me',"Alert! Failed to save to database.");
   }
 }
 //---------------------------------------------------------------------------------------------------------
@@ -550,7 +549,7 @@ function student_settings(){
 
 function onUpdateFlrSuccess(data){
   if(data['result']=="saved"){
-    show_notif('.alert-flr',"Room successfully changed");
+    show_notif('.alert-flr',"Cluster successfully changed");
   }else{
     notify("Database Connection Failed","Failed to save changes to database. Please refresh and try again.");
   }

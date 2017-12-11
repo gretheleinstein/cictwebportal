@@ -8,7 +8,7 @@
     <div class="col-lg-4 col-md-5 col-sm-6 col-12 float-right wow fadeIn animated text-center">
       <div class="card div-white-shadow">
         <div class="card-header" id="custom-card-header">
-          <span class="mont bold gray"><span><i class="fa fa-gears fa-lg"></i></span> Account Settings</span>
+          <span class="mont bold gray"><span><i class="fa fa-gears fa-lg"></i></span> Account Setup</span>
         </div>
         <div class="card-body">
           <p class="card-text txt-orange">PLEASE FILL UP TO CONTINUE</p>

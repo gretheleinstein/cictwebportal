@@ -37,7 +37,7 @@ class Student_Profile extends Controller
 
       $reply['info'] =$student;
       if($student_profile){
-        echo $student_profile->student_address;
+      //  echo $student_profile->student_address;
         #------------------------------------------------------
         //get curriculum info of student
         $curriculum = Curriculum::where('active', '=', '1')

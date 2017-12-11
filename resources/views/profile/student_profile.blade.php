@@ -46,7 +46,7 @@
   <footer class="footer hidden-lg hidden-md hidden-sm col-xs-12 text-center" style="background-color:white; border-top: 1px solid #DBDBDB; " hidden>
   <div class="container">
     <div class="text-center" style="padding-top: 2%">
-      <a href="https://www.facebook.com/monosyncstudioph/" target="_blank" style="font-size:7pt;"><span><img src="{{ asset('img/monosync_logo.jpg') }}" id="monosync_logo_footer" height="15" width="15"/></span> Monosync Studio PH | 2017 </a>
+      <!-- <a href="https://www.facebook.com/monosyncstudioph/" target="_blank" style="font-size:7pt;"><span><img src="{{ asset('img/monosync_logo.jpg') }}" id="monosync_logo_footer" height="15" width="15"/></span> Monosync Studio PH | 2017 </a> -->
       <br><span class="" style="font-size:7pt">"Innovating Possibilities."</span>
     </div>
   </div>

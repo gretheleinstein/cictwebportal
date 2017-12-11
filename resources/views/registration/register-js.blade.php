@@ -74,7 +74,7 @@ function verify_student(post_parameters){
     //  alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
     //  alert("JQUERY TEXT STATUS: " + textStatus);
     //  alert("ERROR DESCRIPTION: " + errorThrown);
-    window.location = error_route + xhr.status;
+    // window.location = error_route + xhr.status;
   }
   // finished
   request.always = function(){
@@ -413,7 +413,7 @@ function create_account_request(post_param, account_data_param){
     //alert("JQUERY TEXT STATUS: " + textStatus);
     //alert("ERROR DESCRIPTION: " + errorThrown);
     btn_clicked_end("#btn_register");
-    window.location = error_route + xhr.status;
+    // window.location = error_route + xhr.status;
   }
   // finished
   request.always = function(){
