@@ -5,6 +5,11 @@ $(document).ready(function() {
 
 function load_nav(){
   $("#container-nav").load("{{ asset('html/navbar/home_nav.php') }}",function(){
+    resize_navbar();
+    // $('#btn-toggle').click(function() {
+    //   alert("1");
+    //     $("#navbar_main").addClass('navbar-darker');
+    //   });
     $("#lnk_register").attr('href',"{{ route('register') }}");
     $("#lnk_login").attr('href',"{{ route('show-login') }}");
     $("#logo_main").attr('src', '{{ asset("img/logo/navnav.png") }}');
@@ -21,7 +26,7 @@ function load_nav(){
 function load_hello(){
   $( "#container-hello" ).load("{{ asset( 'html/home/hello.php' ) }}", function(){
     $(".first-slide").attr('src', "{{ asset('img/carousel/cict2.jpg') }}");
-    $(".second-slide").attr('src', "{{ asset('img/carousel/2.jpg') }}");
+    $(".second-slide").attr('src', "{{ asset('img/carousel/cict3.jpg') }}");
     $(".third-slide").attr('src', "{{ asset('img/carousel/3.jpg') }}");
     $(".fourth-slide").attr('src', "{{ asset('img/carousel/4.jpg') }}");
   });
@@ -64,14 +69,14 @@ function request_announcements(){
 function onRequestAnnouncementSuccess(data){
   if(data == ""){
     $("#tbl_announcements").html("");
-    show_desc("#tbl_announcements", "{{ asset( 'img/icons/megaphone.png' ) }}", "As of now, there are no posted announcements yet.");
+    show_desc("#tbl_announcements", "{{ asset( 'img/icons/megaphone.png' ) }}", "As of now, there are no posted announcements yet.<hr>");
   }else {
     $.each(data, function(key, value) {
       faculty_name = (value['faculty'] != null) ? (value['faculty']['last_name']+", "+value['faculty']['first_name'] +" "+value['faculty']['middle_name']) : ("");
-      $("#card_announcements").append('<div class="card text-left wow fadeInUp animated anno-cards s-light"><div class="card-body anno-cards-body"><h4 class="card-title bold">'+value['all']['title']+'</h4><div class="collapse" id="'+key+'"><p class="card-text">'+value['all']['message']+'</p></div><p class="card-text"><small class="">-'+faculty_name+'</small><a data-toggle="collapse" href="#'+key+'" class="btn btn-black-bordered float-right btn-sm">Read More</a></p></div><div class="card-footer div-black-top-bordered"><small class="">' +value['date_time']+'</small></div></div>')
+      $("#card_announcements").append('<div class="card text-left wow fadeInUp animated anno-cards s-light" style="border:1px solid #EEE"><div class="card-body anno-cards-body"><h4 class="card-title bold">'+ value['all']['title']+'</h4><div class="collapse" id="'+key+'"><p class="card-text">'+value['all']['message']+'</p></div><p class="card-text"><small class=""><i class="fa fa-user-circle-o"></i> '+faculty_name+'</small><a data-toggle="collapse" href="#'+key+'" class="btn btn-black-bordered float-right btn-sm">Read More</a></p></div><div class="card-footer div-black-top-bordered"><small class="">' +value['date_time']+'</small></div></div><br>')
     });
-    if(data.length == 10){
-      $("#card_announcements").append("<a class='btn btn-black-bordered float-right' href='' id='btn_view_more_anno'>View More ></a>");
+    if(data.length == 5){
+      $("#card_announcements").append("<a class='btn btn-black-bordered float-right fadeInUp animated' href='' id='btn_view_more_anno'>View More ></a>");
       $("#btn_view_more_anno").attr('href', "{{ route('show-more-anno') }}");
     }
   }

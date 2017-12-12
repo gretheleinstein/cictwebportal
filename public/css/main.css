@@ -85,6 +85,10 @@
     background-color: #fff; color: black;
  }
 
+ .btn, a{
+   text-decoration: none;
+ }
+
 .btn-black-bordered{
   text-decoration: none; color: white; background-color: #333333; border: 2px solid #333333; border-bottom: 3px solid #CE6F2D;
   -webkit-transition: background .5s ease-in-out;

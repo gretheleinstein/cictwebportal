@@ -150,7 +150,7 @@
     </div>
   </div>
     <div class="row text-center" style="font-size:50pt;">
-      <a href="{{ route('home','hello') }}" class="btn btn-default"> Refresh Page</a>
+      <a href="{{ route('home') }}" class="btn btn-default"> Refresh Page</a>
     </div>
     <hr>
 </div>

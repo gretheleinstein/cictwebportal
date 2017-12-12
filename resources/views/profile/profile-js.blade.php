@@ -122,7 +122,8 @@ function get_request(route, goto_func){
 function click_tab(id,goto_func,loader){
   $(id).click(function(event) {
     clearInterval(clear_linked);
-    loader('#container');
+    //alert(goto_func);
+    // loader('#container');
     goto_func();
   });
 }
@@ -479,7 +480,7 @@ function onUpdateProfileSuccess(data){
     request_profile_values(load_profile_values);
     request_profile_values(load_values);
   }else{
-    show_notif('#alert-me',"Alert! Failed to save to database.");
+    show_notif('#alert-me',"Notification: Failed to save to database. Please check all text fields.");
   }
 }
 //---------------------------------------------------------------------------------------------------------
@@ -570,7 +571,7 @@ function onUpdatePassSuccess(data){
 //---------------------------------------------------------------------------------------------------------
 //-------------------------------------STUDENT SUMMARY-------------------------------------------------------
 function student_summary(){
-  get_request("{{ route('summary-get') }}", load_summary);
+  get_request("{{ route('summary-get') }}", load_stud_summary);
 }
 
 function clicked(id){
@@ -579,12 +580,13 @@ function clicked(id){
   $("#"+div+"").toggle("slideDown");
 }
 
-function load_summary(data){
+function load_stud_summary(data){
+  // alert(data);
   $("#container").html('<div class="row white-bg div-white-shadow fadeIn animated" id="div_summary" style="padding: 3%;"></div>');
     //  alert(data[0]);
   if(data['result'] == 'curriculum_not_set'){ //checks if curriculum is empty
     //if curriculum not set
-    show_desc("#div_summary", "{{ asset('img/icons/curriculum.png') }}", "Curriculum not available. Please complete all procedures to view your grades.");
+    show_desc("#div_summary", "{{ asset('img/icons/curriculum.png') }}", "Curriculum not available. Please complete all procedures to view your curriculum with your grades.");
   }else if(data['result'] == 'no student record'){
     notify("Database Request Done","No student record found. Please refresh and try again.");
   }else{
@@ -696,7 +698,7 @@ function load_table_grades(data){
 
     });
   }else {
-    show_desc("#grade_result", "{{ asset('img/icons/grades.png') }}", "No evaluation record of the student is found. Grades is in unavailable.");
+    show_desc("#grade_result", "{{ asset('img/icons/grades.png') }}", "Grades unavailable. <hr/> No Accepted evaluation record of the student is found. ");
   }
 }
 
@@ -722,7 +724,7 @@ function load_upload(){
     buttons: [
       {
         text: 'Cancel',
-        style: "background-color:#1A4D57; color: white",
+        style: "background-color:#CC6E2D; color: white",
         click: function() {
           $(this).dialog("close");
         }
@@ -743,7 +745,7 @@ function load_upload(){
     if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])))
     {
       $("#image-upload").prop('disabled', true);
-      $("#upload_message").html("<span class='glyphicon glyphicon-picture'></span> <span class='fadeIn animated'>Please select a valid Image File. Only jpeg, jpg and png image's type are allowed</span><hr>");
+      $("#upload_message").html("<i class='fa fa-file-image-o'></span> <span class='fadeIn animated s-light'>Please select a valid image file type. Only jpeg, jpg and png image file type are allowed.</span><hr>");
       return false;
     }else{
       var reader = new FileReader();
@@ -781,11 +783,11 @@ function start_ajax(){
   request.done = function(data, textStatus, xhr){
     //alert(JSON.stringify(data));
     if(data['result'] == "file_not_recieved"){
-      $("#upload_message").html("<span class='glyphicon glyphicon-picture'></span> <span class='fadeIn animated'>File not found! Please try again.</span><hr>");
+      $("#upload_message").html("<i class='fa fa-file-image-o'></i> <span class='fadeIn animated'>File not found! Please try again.</span><hr>");
     }else if(data['result'] == "image_rectangle"){
-      $("#upload_message").html("<span class='glyphicon glyphicon-picture'></span> <span class='fadeIn animated'>Image invalid. Please try not to upload a rectangle photo.</span><hr>");
+      $("#upload_message").html("<i class='fa fa-file-image-o'></i> <span class='fadeIn animated'>Image invalid. Please try not to upload a landscape photo.</span><hr>");
     }else if (data['result'] == "file_not_valid"){
-      $("#upload_message").html("<span class='glyphicon glyphicon-picture'></span> <span class='fadeIn animated'>File too large. The maximum file size allowed is 512 KB only.</span><hr>");
+      $("#upload_message").html("<i class='fa fa-file-image-o'></i> <span class='fadeIn animated'>File too large. The maximum file size allowed is 512 KB only.</span><hr>");
     }else{
       reload_display_photo();
       window.location.reload();
@@ -920,7 +922,7 @@ function load_sched_info(data){
 function load_table_sched(data){
   $(".scheds").html("");
   if(data[0]['result'] == "no load subjects"){
-    show_desc("#sched_result", "{{ asset( 'img/icons/calendar_stud.png' ) }}", "No schedule found.");
+    show_desc("#sched_result", "{{ asset( 'img/icons/calendar_stud.png' ) }}", "Schedule unavailable. <hr/> Schedule not yet posted.");
   } else{
     $("#stud_sched_table").removeAttr('style');
     $.each(data, function(key,value) {
@@ -957,7 +959,7 @@ function load_table_eval(data){
     notify("Database Connection Failed", "Student data not found.");
   }
   if(data[0]['result'] == "No Evaluation History"){
-    show_desc("#div_student_eval", "{{ asset( 'img/icons/history.png' ) }}", "No evaluation history found.");
+    show_desc("#div_student_eval", "{{ asset( 'img/icons/history.png' ) }}", "Enrollment history unavailable. <hr/> No evaluation history found.");
   }else {
     $("#span_student_eval").removeAttr('style');
     $.each(data, function(key,value) {

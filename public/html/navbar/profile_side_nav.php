@@ -2,7 +2,7 @@
   <br><a class="profile-li list-group-item d-inline-block collapsed" style="padding-left:15%; border-bottom: 2px solid #E5E5E5">
       <img id="profile-pic_img" onload="onload_display_picture(this.id)" class="img-fluid rounded-circle" width="100" height="100" alt=""><br><br>
       <span id ="side-bar-name" class="profile-name d-none d-md-block"></span>
-      <span id ="side-bar-id" class="profile-stud-id d-none d-md-block"></span>
+      <span id ="side-bar-id" style="text-decoration: underline; font-weight: bolder" class="profile-stud-id d-none d-md-block"></span>
   </a>
   <span class=" d-none d-lg-block" style="padding-top:1%"><a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#" disabled><span class="d-none d-md-inline">ACCOUNT SETTINGS</span></a></span>
   <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" data-toggle="tooltip" data-placement="right" title="PROFILE" href="#" id="btn_profile_sub" ><i class="fa fa-th-list fa-lg"></i> <span class="d-none d-md-inline">PROFILE</span></a>

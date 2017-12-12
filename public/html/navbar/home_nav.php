@@ -1,12 +1,13 @@
-<nav class="navbar navbar-expand-md fixed-top fadeIn animated navbar-light" id="navbar_main">
-  <a class="navbar-brand" href="#"><img src="" class="img-fluid" id="logo_main"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-md fixed-top fadeIn animated navbar-light navbar-gray" id="navbar_main">
+  <a class="navbar-brand" href="#"><img src="" class="img-fluid" id="logo_main" style="width:310px; height: 100px;"></a>
+  <button class="navbar-toggler" type="button" id="btn-toggle" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
+    <!-- <span class="" id="icon"><i class="fa fa-bars"></i></span> -->
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
     </ul>
-    <ul class="navbar-nav">
+    <ul class="navbar-nav" id="navz">
       <li class="nav-item active">
         <a class="nav-link page-scroll" href="#help-section">GUIDE</a>
       </li>

@@ -81,7 +81,7 @@ class Home extends Controller
     // get all announcements
     $all = Announcements::where('active','=',1)
     ->orderBy('id','DESC')
-    ->take(10)
+    ->take(5)
     ->get();
 
     #------------------------------------------------------

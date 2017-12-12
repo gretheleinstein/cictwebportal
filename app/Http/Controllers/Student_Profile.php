@@ -187,8 +187,14 @@ class Student_Profile extends Controller
       //Route::getByName('get-photo');
       $get_photo = "http://localhost/laravel/cictwebportal/public/media/photo/";
       $display_pic = $get_photo.$student_profile->profile_picture;
-      $get_sem = $academic_term->semester;
-      $get_sy = $academic_term->school_year;
+      if($academic_term){
+        $get_sem = $academic_term->semester;
+        $get_sy = $academic_term->school_year;
+      }else{
+        $get_sem = "---";
+        $get_sy = "---";
+      }
+
 
       #------------------------------------------------------
       $get_sem = $this->convert_to_words($get_sem);

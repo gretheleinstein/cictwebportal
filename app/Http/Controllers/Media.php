@@ -75,8 +75,8 @@ class Media extends Controller
 
         // get supported image formats
         $validator = Validator::make($request->all(), [
-            //'image-file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5000', 5mb
-            'image-file' => 'image|max:5000',
+            //'image-file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2000',2mb
+            'image-file' => 'image|max:2000',
         ]);
 
         // check if the image have passed the required validation
@@ -90,7 +90,7 @@ class Media extends Controller
         $save_image_name = 'profile_' . $cict_id . '.' . $fileExtension;
         #--------------------------------------------------------------------------
         try {
-            // resize image
+            // resize image 
             $img = MonoImage::resizeImage($image, $save_image_name);
             if($img == "image_rectangle"){
               return response()->json(['result' => 'image_rectangle']);

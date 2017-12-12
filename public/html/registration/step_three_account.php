@@ -21,7 +21,7 @@
               <button type="button" id="btn_account" class="btn btn-orange form-control">Next</button>
             </form>
           </div><br><br>
-          <span class="gray bold"> How to recover my account? </span><a id="btn_help-recovery-acc" class="btn btn-black-bordered pull-right">Read More</a>
+          <span class="gray bold"> How to recover my account? </span><a id="btn_help-recovery-acc" href="" class="btn btn-black-bordered pull-right">Read More</a>
         </div>
       </div>
     </div>

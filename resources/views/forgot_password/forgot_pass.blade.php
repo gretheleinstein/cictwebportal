@@ -7,7 +7,7 @@
 <body id="page-top" class="two-half-colour-background">
   <div class="loader" style="position: absolute; top: 50%; left: 50%;">
       <div class="loader-inner square-spin">
-        <div></div>
+        <div style="background-color: #CE6F2D"></div>
       </div>
   </div>
 

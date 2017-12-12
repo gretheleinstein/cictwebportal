@@ -51,7 +51,7 @@
 <!-- tablealways makes new line// -  -->
       <table class="profile">
         <tr><td width="10%" class="label">Name:</td>              <td width="89%" class="info"> {{ $student->last_name.", ".$student->first_name." ".$student->middle_name }} </td></tr><br>
-        <tr><td width="10%" class="label">Address:</td>           <td width="90%" class="info"> {{ "#".$student_profile->house_no." ".$student_profile->street." ".$student_profile->brgy.", ".$student_profile->city.", ".$student_profile->province }} </td></tr><br>
+        <tr><td width="10%" class="label">Address:</td>           <td width="90%" class="info"> {{ $student_profile->student_address }} </td></tr><br>
         <tr><td width="13%" class="label">Contact No.:</td>       <td width="33%" class="info"> {{ $student_profile->mobile }}</td>
             <td width="16%" class="label">E-mail Address:</td>    <td width="38%" class="info"> {{ $student_profile->email }} </td></tr><br>
         <tr><td width="11%" class="label">Guardian:</td>          <td width="43%" class="info"> {{ $student_profile->ice_name }} </td>

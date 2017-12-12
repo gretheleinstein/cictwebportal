@@ -139,8 +139,9 @@ function onCheckSuccess(data){
 }
 function account_login(){
   $( "#container" ).load("{{ asset( 'html/registration/account_exist.php' ) }}", function(){
-    $("#btn_login").attr('href',"{{ route('home','login') }}");
+    $("#btn_login").attr('href',"{{ route('show-login') }}");
     $("#btn_recover_account").attr('href',"{{ route('forgot-pass') }}");
+    $("#btn_register_another").attr('href', "{{ route('register') }}");
   });
 }
 
@@ -148,7 +149,7 @@ function account_login(){
 // pass the id
 function registration_confirm(cict_id){
   $( "#container" ).load("{{ asset( 'html/registration/step_two_confirm.php' ) }}", function(){
-
+    $("#btn_login").attr('href', "{{ route('show-login') }}");
     //----------------------------------------------------------
     $("#frm_confirm").validate({
       rules: {

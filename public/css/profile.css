@@ -16,6 +16,7 @@ body{ background-color:#F4F8F9;font-family: Montserrat; font-size: 9pt;}
 .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
    background-color: #DCDEE1;
 }
+
 .hide{
   display:none;
 }

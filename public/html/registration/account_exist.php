@@ -12,11 +12,18 @@
         </div>
         <div class="card-body">
           <p class="card-text txt-orange">LOGIN TO YOUR ACCOUNT</p>
-          <div id = "div_login">
+          <div id = "div_login" style=" padding-bottom:1%;">
               <a href="#" id="btn_login" class="btn btn-orange form-control">Login</a>
-          </div><hr>
-          <p class="card-text txt-orange">OR</p>
-          <span class="gray bold"> Register another account? </span><a id="btn_register" class="btn btn-black-bordered pull-right">Register</a>
+          </div>
+          <div class="s-light" style="width: 100%; height: 15px; border-bottom: 1px solid #DBDBDB; text-align: center;">
+            <span style="font-size: 20px; background-color: #fff; padding: 0 10px; color:#DBDBDB">
+              OR
+            </span>
+          </div><br>
+          <div id = "">
+              <a href="#" id="btn_recover_account" class="btn btn-black-bordered form-control">Recover Account</a>
+          </div><br>
+          <span class="gray bold"> Register another account? </span><a id="btn_register_another" class="btn btn-orange pull-right">Register</a>
         </div>
       </div>
     </div>

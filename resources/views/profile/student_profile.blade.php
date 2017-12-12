@@ -14,7 +14,7 @@
     <div class="row d-flex d-md-block flex-nowrap wrapper" >
         <div class="col-md-2 col-sm-2 col-2 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar" style="margin-right:2%;">
         </div>
-        <main class="col-md-9 col-sm-12 col-12 float-left px-5 pl-md-2 pt-2 main" style="margin-right:2%; margin-top: 2%" id="container">
+        <main class="col-md-9 scol-12 float-left px-5 pl-md-2 pt-2 main" style="margin-right:2%; margin-top: 2%" id="container">
         </main>
     </div>
   </div>

@@ -15,15 +15,15 @@
 <form id = "frm_student_profile">
   <div class="row white-bg div-white-shadow" style="margin-bottom: 2%;  padding: 3%;">
     <div class="col-lg-3 col-md-3 col-sm-3 col-6" style="border-left:2px solid #CE6F2D">
-      <label for="" class="">Student ID</label><br>
+      <label for="" class="">Student ID / Number</label><br>
       <input type="text" class="span_orange" id="stud-id" value="" disabled>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-6" style="border-left:2px solid #CE6F2D">
-      <label for="" class="">Year/Sec/Group</label><br>
+      <label for="" class="">Year/ Section/ Group</label><br>
       <input type="text" class="span_orange" id="year-sec-gr" value="" disabled>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-6" style="border-left:2px solid #CE6F2D">
-      <label for="" class="">Curriculum</label><br>
+      <label for="" class="">Course Curriculum</label><br>
       <input type="text" class="span_orange" id="curriculum" value="" disabled>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-6" style="border-left:2px solid #CE6F2D">
@@ -37,7 +37,7 @@
       <h6 class="bold">STUDENT PROFILE</h6>
       </div>
       <div class="container col-lg-2 col-md-3 col-sm-3 col-4 float-left" id="div_view_pdf" >
-          <a id="btn_view_pdf" class="btn btn-black-bordered" style="padding: 4%" target="_blank"><i class="fa fa-file-text-o"></i> VIEW PDF</a>
+          <a id="btn_view_pdf" class="btn btn-black-bordered" style="padding: 4%" target="_blank"><i class="fa fa-file-pdf-o"></i> VIEW PDF</a>
       </div>
     <br><br><hr>
     </div>

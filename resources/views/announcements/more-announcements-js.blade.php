@@ -51,7 +51,7 @@ function request_announcements(){
 
 function onRequestAnnouncementSuccess(data){
   if(data == ""){
-    $("#tbl_announcements").append("<tr><td colspan='3'>No announcements<td></tr>");
+    show_desc("#card_announcements", "{{ asset( 'img/icons/megaphone.png' ) }}", "As of now, there are no posted announcements yet.<hr>");
   }else {
     $.each(data, function(key, value) {
       faculty_name = (value['faculty'] != null) ? (value['faculty']['last_name']+", "+value['faculty']['first_name'] +" "+value['faculty']['middle_name']) : ("");
