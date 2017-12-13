@@ -97,8 +97,8 @@
       show_report("417","Expectation Failed","The server cannot meet the requirements of the Expect request-header field.");
 
     @elseif($status === "500")
-      show_report("500","Internal Server Error","Please refresh your browser and try again after a few seconds.")
-
+      // show_report("500","Internal Server Error","Please refresh your browser and try again after a few seconds.")
+      window.location.href = "{{ route('profile') }}";
     @elseif($status === "501")
       show_report("501","Not Implemented","The server either does not recognize the request method, or it lacks the ability to fulfill the request.")
 

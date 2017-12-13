@@ -27,8 +27,8 @@ function load_hello(){
   $( "#container-hello" ).load("{{ asset( 'html/home/hello.php' ) }}", function(){
     $(".first-slide").attr('src', "{{ asset('img/carousel/cict2.jpg') }}");
     $(".second-slide").attr('src', "{{ asset('img/carousel/cict3.jpg') }}");
-    $(".third-slide").attr('src', "{{ asset('img/carousel/3.jpg') }}");
-    $(".fourth-slide").attr('src', "{{ asset('img/carousel/4.jpg') }}");
+    $(".third-slide").attr('src', "{{ asset('img/carousel/cict5.PNG') }}");
+    $(".fourth-slide").attr('src', "{{ asset('img/carousel/1.jpg') }}");
   });
 }
 

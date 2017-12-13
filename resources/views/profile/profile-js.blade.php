@@ -65,6 +65,8 @@ function post_request(route, goto_func, post_parameters, btn_id){
   }
   // success
   request.done = function(data, textStatus, xhr){
+    // alert(JSON.stringify(post_parameters));
+    // alert(JSON.stringify(data));
     btn_clicked_end(btn_id);
     goto_func(data/*$.parseJSON(data)*/);
   }
@@ -103,7 +105,8 @@ function get_request(route, goto_func){
     goto_func(data);
   }
   // failed
-  request.fail = function(xhr, textStatus, errorThrown){
+  request.fail = function(xhr, text
+    Status, errorThrown){
     //  alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
     //  alert("JQUERY TEXT STATUS: " + textStatus);
     //  alert("ERROR DESCRIPTION: " + errorThrown);
