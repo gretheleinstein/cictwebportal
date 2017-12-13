@@ -126,7 +126,7 @@ function click_tab(id,goto_func,loader){
   $(id).click(function(event) {
     clearInterval(clear_linked);
     //alert(goto_func);
-    // loader('#container');
+    loader('#container');
     goto_func();
   });
 }

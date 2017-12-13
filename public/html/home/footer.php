@@ -5,9 +5,10 @@
     <a href="https://www.facebook.com/BulSU.SWITS/" target="_blank" id="link_orgs">SWITS</a><span> | </span><a href="https://www.facebook.com/cursorpub/" target="_blank" id="link_orgs">CURSOR</a><span> | </span><a href="" target="_blank" id="link_orgs">ACTS</a>
   </div>
   <div class="s-light" style="font-size:15px;"><br>
-  </span> <i class="fa fa-phone></i> (044) 797-892 <i class="fa fa-envelope"></i> </span> bulsu_cict@gmail.com <span>
+  </span> <i class="fa fa-phone"></i> (044) 797-892 <i class="fa fa-envelope"></i> </span> bulsu_cict@gmail.com <span>
     <i class="fa fa-map-marker"></i>   Guinhawa, City of Malolos, Bulacan
   </div>
   <hr>
   <p class="s-light"> © College of Information and Communications Technology 2017</p>
+  <p class="s-light"> Web Version 1.0 | Monosync | 2017 | Innovating Possibilities</p>
 </div>
