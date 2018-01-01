@@ -55,7 +55,13 @@
   background: transparent;
 }
 
+.point{
+  cursor:pointer;
+}
 
+#font-md{
+  font-size: 36pt;
+}
 
 .underline{
     text-decoration: underline;
@@ -384,8 +390,11 @@ label.error{ color: #CD2021; font-family: Segoe UI Light;font-size: 9pt;  }
 }
 button:focus {color:white}
 
-.huhu{
-  background-color: red;
+.banner{
+  font-weight: bolder; color: white; text-shadow: 5px 5px #AD4728;
 }
 
+.div-border-orange{
+  background-color: #CE6F2D; border-bottom: 5px solid #AD4728;
+}
 /*------------*/

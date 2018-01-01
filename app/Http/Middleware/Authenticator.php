@@ -25,7 +25,7 @@ class Authenticator
             return redirect()->route('profile-get');
           }
         }else{
-           return redirect()->route('home','hello');
+           return redirect()->route('home');
         }
 
         // proceed request

@@ -6,10 +6,6 @@ $(document).ready(function() {
 function load_nav(){
   $("#container-nav").load("{{ asset('html/navbar/home_nav.php') }}",function(){
     resize_navbar();
-    // $('#btn-toggle').click(function() {
-    //   alert("1");
-    //     $("#navbar_main").addClass('navbar-darker');
-    //   });
     $("#lnk_register").attr('href',"{{ route('register') }}");
     $("#lnk_login").attr('href',"{{ route('show-login') }}");
     $("#logo_main").attr('src', '{{ asset("img/logo/navnav.png") }}');
@@ -34,46 +30,18 @@ function load_hello(){
 
 function announcements(){
   $("#container-announcement").load("{{ asset('html/home/announcement.php') }}", function(){
-    request_announcements();
+    post_request("{{ route('get-all-anno') }}", onRequestAnnouncementSuccess);
   });
 }
 
-function request_announcements(){
-  request = new Request();
-  request.url = "{{ route('get-all-anno') }}";
-  request.type = 'POST';
-  request.replyType = 'json';
-  // start
-  request.begin = function(){
-
-  }
-  // success
-  request.done = function(data, textStatus, xhr){
-    onRequestAnnouncementSuccess(data/*$.parseJSON(data)*/);
-  }
-  // failed
-  request.fail = function(xhr, textStatus, errorThrown){
-    //alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
-    //alert("JQUERY TEXT STATUS: " + textStatus);
-    //alert("ERROR DESCRIPTION: " + errorThrown);
-//    window.location = error_route + xhr.status;
-  }
-  // finished
-  request.always = function(){
-    // this will be called always whether fail or done at the end of this request
-  }
-  // send
-  request.send(); // start the ajax request
-}
-
 function onRequestAnnouncementSuccess(data){
-  if(data == ""){
-    $("#tbl_announcements").html("");
-    show_desc("#tbl_announcements", "{{ asset( 'img/icons/megaphone.png' ) }}", "As of now, there are no posted announcements yet.<hr>");
+  if(data.length == 0){
+    $("#card_announcements").html("");
+    show_desc("#card_announcements", "{{ asset( 'img/icons/megaphone.png' ) }}", "As of now, there are no posted announcements yet.<hr>");
   }else {
     $.each(data, function(key, value) {
-      faculty_name = (value['faculty'] != null) ? (value['faculty']['last_name']+", "+value['faculty']['first_name'] +" "+value['faculty']['middle_name']) : ("");
-      $("#card_announcements").append('<div class="card text-left wow fadeInUp animated anno-cards s-light" style="border:1px solid #EEE"><div class="card-body anno-cards-body"><h4 class="card-title bold">'+ value['all']['title']+'</h4><div class="collapse" id="'+key+'"><p class="card-text">'+value['all']['message']+'</p></div><p class="card-text"><small class=""><i class="fa fa-user-circle-o"></i> '+faculty_name+'</small><a data-toggle="collapse" href="#'+key+'" class="btn btn-black-bordered float-right btn-sm">Read More</a></p></div><div class="card-footer div-black-top-bordered"><small class="">' +value['date_time']+'</small></div></div><br>')
+      faculty_name = (value['faculty'] != null) ? ("<i class='fa fa-user-circle-o'></i> "+value['faculty']['last_name']+", "+value['faculty']['first_name'] +" "+value['faculty']['middle_name']) : ("");
+      $("#card_announcements").append('<div class="card text-left wow fadeInUp animated anno-cards s-light" style="border:1px solid #EEE"><div class="card-body anno-cards-body"><h4 class="card-title bold">'+ value['all']['title']+'</h4><div class="collapse" id="'+key+'"><p class="card-text">'+value['all']['message']+'</p></div><p class="card-text"><small class="">'+faculty_name+'</small><a data-toggle="collapse" href="#'+key+'" class="btn btn-black-bordered float-right btn-sm">Read More</a></p></div><div class="card-footer div-black-top-bordered"><small class="">' +value['date_time']+'</small></div></div><br>')
     });
     if(data.length == 5){
       $("#card_announcements").append("<a class='btn btn-black-bordered float-right fadeInUp animated' href='' id='btn_view_more_anno'>View More ></a>");

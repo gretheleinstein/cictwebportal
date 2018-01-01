@@ -1,3 +1,4 @@
+
 body{ background-color:#F4F8F9;font-family: Montserrat; font-size: 9pt;}
 .navbar-fixed-side{ border: none; padding-bottom: 5%}
 .navbar-fixed-side span{ padding-right: 10%; padding-left: 10%;}
@@ -6,7 +7,7 @@ body{ background-color:#F4F8F9;font-family: Montserrat; font-size: 9pt;}
 .btn-blue:focus{ color: white; }
 .btn-blue{ background-color: white;border-radius: 0; border: 1px solid #CCCCCC; font-size: 9pt; }
 .btn-group .active{ color: white; background-color: #333333; }
-.profile-li{ border-bottom: 1px solid white; padding: 5%; font-size:7pt; }
+.profile-li{ padding: 5%; font-size:7pt; }
 .profile-pic{ color: #556970; width:100px; margin: 0 auto; }
 .white-bg{ background-color: white; }
 .alert-msg{ font-size: 9pt; }
@@ -28,7 +29,7 @@ body{ background-color:#F4F8F9;font-family: Montserrat; font-size: 9pt;}
     z-index: 3;
 }
 #sidebar .list-group {
-    min-width: 400px;
+    min-width: 110px;
     background-color: white;
     min-height: 155vh;
 }
@@ -100,11 +101,13 @@ body{ background-color:#F4F8F9;font-family: Montserrat; font-size: 9pt;}
         transform: translateX(-45px);
         position: fixed;
     }
+    .nav-sub-title{
+      font-size: 8pt;
+    }
 
     #sidebar.show {
         transform: translateX(0);
     }
-
     #sidebar::-webkit-scrollbar{ width: 0px; }
 
     #sidebar, #sidebar .list-group {
@@ -147,4 +150,41 @@ body{ background-color:#F4F8F9;font-family: Montserrat; font-size: 9pt;}
   height: 100%;
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
+}
+
+#side-bar-name{
+  width:115px; word-wrap: break-word;
+}
+
+#side-bar-id{
+  text-decoration: underline; font-weight: bolder; color: #CE6F2D;
+}
+
+@media only screen and (max-width: 1040px) {
+  #sidebar, .list-group{
+    padding: 0;
+  }
+  .nav-sub-title{
+    font-size: 6pt;
+  }
+  #side-bar-id{
+    font-size: 7pt;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #sidebar{
+    margin-right:2%; margin-top: 2%;
+  }
+  #container-profile{
+    margin-left:20px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #sidebar{
+    margin-top: 0;
+    margin-right: 0;
+    padding: 0;
+  }
 }

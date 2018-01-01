@@ -14,7 +14,7 @@
           <p class="card-text txt-orange">PLEASE FILL UP TO CONTINUE</p>
           <div id = "div_verify">
             <form id="frm_verify">
-              <input type="text" class="form-control" id="stud_id" name="stud_id" placeholder="Student ID e.g. 2014100282">
+              <input type="text" autocomplete="off" class="form-control" id="stud_id" name="stud_id" placeholder="Student ID e.g. 2014100282">
               <label for="" class="error" id="stud_id-error-1" style="display: none"></label><br>
               <button type="button" id = "btn_verify" class="btn btn-orange form-control">Next</button>
             </form>

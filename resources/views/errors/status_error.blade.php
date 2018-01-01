@@ -132,27 +132,28 @@
 <div class="container-fluid" style="font-family:Montserrat">
   <div class="row">
     <div class="col-lg-1 col-md-1"><br></div>
-    <div class="col-lg-5 col-md-5 col-sm-6"> <span id="span_404"></span></div>
-    <div class="col-lg-5 col-md-5 col-sm-6" id="span_one">
+    <div class="col-lg-5 col-md-5 col-sm-6 col-12 text-center"> <span id="span_404"></span></div>
+    <div class="col-lg-5 col-md-5 col-sm-6 col-12 text-center" id="span_one">
       <span id="span_sub_one"></span>
     </div>
     <div class="col-lg-1"><br></div>
   </div>
-
+<div class="container">
   <div class="row">
     <div class="col-lg-1" ><br></div>
     <div class="pull-left" id="span_sub_two" >
     </div>
   </div><hr>
   <div class="row">
-    <div class="text-center" id="span_sub_option" >
-      Please try again and click the refresh button below.
+    <div class="col-12 text-center" id="span_sub_option">
+      Please try again and click the refresh button below.<br>
+    </div>
+    <div class="col-12 text-center">
+      <a href="{{ route('home') }}" class="btn btn-orange"> Refresh Page</a>
     </div>
   </div>
-    <div class="row text-center" style="font-size:50pt;">
-      <a href="{{ route('home') }}" class="btn btn-default"> Refresh Page</a>
-    </div>
     <hr>
+</div>
 </div>
 @include('global.js-footer-scripts')
 @include('global.html-end')

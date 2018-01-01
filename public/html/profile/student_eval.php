@@ -3,13 +3,12 @@
   </div>
 <div class="container col-lg-12 fadeIn animated" style=" display:none" id="span_student_eval">
 <h3 class="mont">Enrollment History</h3><hr>
-<table class="table-responsive" style="width:100%; border: 1px solid #EEEEEE">
+<table class="" style="width:100%; border: 1px solid #EEEEEE">
   <tr>
     <td class="text-right" width="25%"><img id="bulsu_logo" src="" width="70" height="70" alt=""></td>
-    <td class="text-center" width="47%"><table class="header">
+    <td class="text-center" width="47%"><table class="header" width="100%">
       <tr><td>BULACAN STATE UNIVERSITY</td></tr>
-      <tr><td style="font-weight: bold">COLLEGE OF INFORMATION AND COMMUNICATIONS TECHNOLOGY</td></tr>
-      <tr><td id="course_section"></td></tr>
+      <tr><td class="bold">COLLEGE OF INFORMATION AND COMMUNICATIONS TECHNOLOGY</td></tr>
     </table></td>
     <td class="text-left" width="25%"><img id="cict_logo" src="" width="70" height="70" alt=""></td>
   </tr>

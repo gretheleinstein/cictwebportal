@@ -1,7 +1,0 @@
-.header { font-size:9pt; text-align: center; table-layout: fixed; }
-.profile{ clear: both; width: 100%; table-layout: fixed; display: inline-table; }
-.sub-header{ table-layout: fixed; text-align: right; vertical-align: bottom;display: inline-table; }
-td.info { border-bottom: 1px solid black; font-size: 8pt; }
-/* tr.highlight td{height: 40px;} Padding and margin not working. Used table instead*/
-.label  { font-weight: bold; font-size: 10pt; }
-#xs-font { font-size: 7pt; }

@@ -102,7 +102,8 @@ class Home extends Controller
       array_push($collection, $single_row);
       }
     //if there are no announcements
-    }else{}
+    }else{
+    }
 
     #------------------------------------------------------
     // send response
@@ -112,7 +113,6 @@ class Home extends Controller
   public function show_more_announcements(){
     return view('announcements.more-announcements');
   }
-
 
     public function get_more_announcements(){
       $collection = array();

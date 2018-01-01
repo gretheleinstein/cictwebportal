@@ -12,9 +12,9 @@
           <div id ="div_confirm" class="panel-body" style="padding: 5%">
                 <form id = "frm_confirm">
                   <label for="" class="segoe bold">RECOVERY QUESTION</label>
-                  <input type="text" name="recovery_question" class="form-control" id="recovery_question" disabled><br>
+                  <input autocomplete="off" type="text" name="recovery_question" class="form-control" id="recovery_question" disabled><br>
                   <label for="" class="segoe bold">ANSWER</label>
-                  <input type="text" name="recovery_answer" class="form-control" id="recovery_answer" name="recovery_answer"/>
+                  <input autocomplete="off" type="text" name="recovery_answer" class="form-control" id="recovery_answer" name="recovery_answer"/>
                   <label for="" class="error" id="recovery_answer-error-1" style="display: none"></label><br>
                   <a href="#" id="btn_login" class="gray"><i class="fa fa-lightbulb-o"></i> Remembered my account.</a>
                   <button type="button" id = "btn_confirm" name = "btn_verify" class="btn btn-orange pull-right" style="width: 35%">Next</button><br>

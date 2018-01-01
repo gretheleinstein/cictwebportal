@@ -14,10 +14,10 @@
           <p class="card-text txt-orange">PLEASE FILL UP TO CONTINUE</p>
           <div id="div_account">
             <form id="frm_register">
-              <input name="username" class="form-control" id="username" placeholder="Username" type="text"/>
+              <input autocomplete="off" name="username" class="form-control" id="username" placeholder="Username" type="text"/>
               <label for="" class="error" id="username-error-1" style="display: none"></label><br>
-              <input name="password" class="form-control" id="password" placeholder="Password" type="password" /><br>
-              <input name="confirm_password" class="form-control" id="confirm_password" placeholder="Confirm Password" type="password" /><br>
+              <input autocomplete="off" name="password" class="form-control" id="password" placeholder="Password" type="password" /><br>
+              <input autocomplete="off" name="confirm_password" class="form-control" id="confirm_password" placeholder="Confirm Password" type="password" /><br>
               <button type="button" id="btn_account" class="btn btn-orange form-control">Next</button>
             </form>
           </div><br><br>

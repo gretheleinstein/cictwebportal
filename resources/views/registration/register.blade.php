@@ -4,18 +4,19 @@
 </head>
 
 <body id="page-top" class="bg-orange"> <!-- Navigation -->
-  <div class="loader" style="position: fixed; top: 50%; left: 50%;">
-       <div class="loader-inner ball-grid-pulse">
-         <div></div>
-         <div></div>
-         <div></div>
-         <div></div>
-         <div></div>
-         <div></div>
-         <div></div>
-         <div></div>
-         <div></div>
-       </div>
+  <br>
+  <div class="loader" style="position: absolute; top: 50%; left: 46%;">
+    <div class="loader-inner ball-grid-pulse">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </div>
 
 <div id="container-nav">

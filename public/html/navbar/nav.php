@@ -1,4 +1,15 @@
-<div class="container-fluid">
+<script>
+if($(window).width() < 450){
+  $("#logo").width('150px');
+  $("#logo").height('50px');
+  $("#nav-nav").append('<br><br><br><br>');
+}else{
+  $("#logo").width('270px');
+  $("#logo").height('90px');
+  $("#nav-nav").append('<br><br><br><br><br><br>');
+}
+</script>
+<div class="container-fluid" id="nav-nav">
   <div class="row">
     <nav class="navbar navbar-expand-md fixed-top fadeIn animated navbar-light" id="navbar_sub">
       <a class="navbar-brand" href="#"><img src="" class="img-fluid" id="logo" width="250" height="150"></a>
@@ -24,21 +35,8 @@
           <li class="nav-item">
             <a class="nav-link underline" href="#" id="lnk_login" >LOGIN </a>
           </li>
-          <!-- <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              ACCOUNT
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#" id="lnk_register">Sign Up</a>
-              <a class="dropdown-item" href="#" id="login-form">Log In</a>
-            </div>
-          </li> -->
         </ul>
-        <!-- <form class="form-inline mt-2 mt-md-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search Faculty Schedule" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form> -->
     </div>
     </nav>
   </div>
-</div><br><br><br><br><br>
+</div>

@@ -1,12 +1,12 @@
-<div class="container-fluid fadeIn animated" style="background-color: #CE6F2D; border-bottom: 5px solid #AD4728;" >
-    <br><br><h1 class="text-center mont" style="font-weight: bolder; color: white; text-shadow: 5px 5px #AD4728">SEARCH SCHEDULE</h1> <br>
+<div class="container-fluid fadeIn animated div-border-orange">
+    <br><br><h1 class="text-center mont banner">SEARCH SCHEDULE</h1> <br>
 </div>
 
 <div class="container-fluid wow fadeIn animated" style=" padding-top:6%;">
   <div class="row">
       <div class="container col-lg-5">
       <div class="input-group">
-        <input id="txt_faculty_name" name="txt_faculty_name" value="" class="form-control" placeholder="Search Faculty Name">
+        <input id="txt_faculty_name" name="txt_faculty_name" value="" class="form-control pl-2" style="padding: 0;" placeholder="Search Faculty Name">
         <input id="txt_faculty_id" name="txt_faculty_id" value="" type="hidden">
         &nbsp;<button type="button" id="btn_search_faculty" name="btn_search_faculty" class="btn btn-orange">Search</button>
       </div>

@@ -3,18 +3,25 @@
 @include('global.html-header')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/pic_modal.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/curriculum.css') }}">
 </head>
+
+<script type="text/javascript">
+$(window).resize(function(event) {
+  if($(window).width() > 691){
+    $("#sidebar").addClass('show');
+  }
+});
+</script>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" class="bg-orange"> <!-- Navigation -->
     <div id="container-nav">
     </div>
 
   <div class="container-fluid">
-    <div class="row d-flex d-md-block flex-nowrap wrapper" >
-        <div class="col-md-2 col-sm-2 col-2 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar" style="margin-right:2%;">
+    <div class="row d-flex d-md-block flex-nowrap wrapper" id="container-profile" >
+        <div class="col-md-2 col-sm-2 col-2 col-1 float-left collapse width show" id="sidebar">
         </div>
-        <main class="col-md-9 scol-12 float-left px-5 pl-md-2 pt-2 main" style="margin-right:2%; margin-top: 2%" id="container">
+        <main class="col-md-9 col-12 px-4 main float-left "  id="container" style="margin-top: 2%;">
         </main>
     </div>
   </div>
@@ -26,19 +33,6 @@
           <div></div>
       </div>
   </div>
-
-<!--
-  <div class= "container-fluid">
-    <div class="row">
-    <div class="col-lg-1"><br></div>
-      <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12" id="container-side-nav" style="padding-right:2.5%;" >
-      </div>
-
-    <div class="col-lg-8 col-md-10 col-sm-9 col-xs-12" id="container" style="padding-left:2.5%;">
-    </div>
-    <div class="col-lg-1"><br></div>
-  </div>
-</div><br/> -->
 
 @include('global.reusable-js')
 @include('profile.profile-js')

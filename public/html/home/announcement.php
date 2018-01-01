@@ -4,18 +4,7 @@
 <div class="container">
   <div class="row">
     <div class="container col-lg-8" id="card_announcements">
-
     </div> <!--container-->
   </div>
 </div>
 <br><br>
-
-
-  <!-- -columns -->
-  <!-- <div class="card text-center">
-    <div class="card-body">
-      <h4 class="card-title">Card title</h4>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div> -->

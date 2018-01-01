@@ -1,5 +1,5 @@
-<div class="container-fluid slideInUp animated" style="background-color: #CE6F2D; border-bottom: 5px solid #AD4728;" >
-  <br><br><h1 class="text-center mont" id="anno_title">ANNOUNCEMENTS</h1> <br>
+<div class="container-fluid slideInUp animated div-border-orange">
+  <br><h1 class="text-center mont" id="anno_title">ANNOUNCEMENTS</h1> <br>
 </div><br>
 <div class="containerz">
   <div class="row">

@@ -15,42 +15,14 @@ function load_nav(){
   });
 }
 
+var searched_name = "";
 function teacher_finder(){
   $("#container-teacher-finder").load("{{ asset('html/teacher_finder/teacher_finder.php') }}", function(){
     $("#bulsu_logo").attr('src', "{{ asset( 'img/logo/BULSU_LOGO.png' ) }}");
     $("#cict_logo").attr('src', "{{ asset( 'img/logo/CICT_LOGO.png' ) }}");
     show_desc("#search_desc", "{{ asset( 'img/icons/search.png' ) }}", "Looking for your instructor? Search for his/her name and click on suggested names. e.g. Samson");
-    request_faculty_name();
+    post_request("{{ route('get-faculty-name') }}", onRequestFacultySuccess);
   });
-}
-
-var searched_name = "";
-function request_faculty_name(){
-  request = new Request();
-  request.url = "{{ route('get-faculty-name') }}";
-  request.type = 'POST';
-  request.replyType = 'json';
-  // start
-  request.begin = function(){
-
-  }
-  // success
-  request.done = function(data, textStatus, xhr){
-    onRequestFacultySuccess(data/*$.parseJSON(data)*/);
-  }
-  // failed
-  request.fail = function(xhr, textStatus, errorThrown){
-    //alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
-    //alert("JQUERY TEXT STATUS: " + textStatus);
-    //alert("ERROR DESCRIPTION: " + errorThrown);
-    window.location = error_route + xhr.status;
-  }
-  // finished
-  request.always = function(){
-    // this will be called always whether fail or done at the end of this request
-  }
-  // send
-  request.send(); // start the ajax request
 }
 
 function onRequestFacultySuccess(data){
@@ -117,7 +89,7 @@ function onRequestFacultySchedSuccess(data){
   if(data[0]['result'] == "No faculty matched"){
     show_desc("#search_desc", "{{ asset( 'img/icons/fox.png' ) }}", "Aww! Sorry! No results matched your search. Faculty name does not exists.");
   }else if(data[0]['result'] == "No load_group"){
-    show_desc("#search_desc", "{{ asset( 'img/icons/calendar.png' ) }}", "Faculty schedule not yet posted. How about try another one?");
+    show_desc("#search_desc", "{{ asset( 'img/icons/calendar.png' ) }}", "Faculty schedule not yet posted. How about try searching for another one?");
   }else{
     $.each(data, function(key,value) {
       subject = value['subject'];

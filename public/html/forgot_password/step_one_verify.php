@@ -12,7 +12,7 @@
           <div id ="div_verify" class="panel-body" style="padding: 5%">
               <form id = "frm_verify">
                   <label for="" class="segoe bold">USERNAME</label>
-                  <input type="text" class="form-control input-lg" id="stud_username" name="stud_username">
+                  <input autocomplete="off" type="text" class="form-control input-lg" id="stud_username" name="stud_username">
                   <label for="" class="error" id="stud_username-error-1" style="display: none"></label><br>
                   <a href="#" id="btn_login" class="gray"><i class="fa fa-lightbulb-o"></i> Remembered my account.</a>
                   <button type="button" id="btn_verify" name = "btn_verify" class="btn btn-orange pull-right" style="width: 35%;">Next</button><br>

@@ -1,6 +1,76 @@
 <script type = "text/javascript">
 var error_route = "{{ route('error-status','') }}/";
 
+//--------------------------------REUSABLE GET REQUESTS---------------------------------------
+//--------------------------------------------------------------------------------------------
+function get_request(route, goto_func){
+  // settings
+  request = new Request();
+  request.url = route;
+  request.type = 'GET';
+  request.replyType = 'json';
+  // start
+  request.begin = function(){
+  }
+  // success
+  request.done = function(data, textStatus, xhr){
+    //alert(data);
+    goto_func(data);
+  }
+  // failed
+  request.fail = function(xhr, textStatus, errorThrown){
+    //  alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
+    //  alert("JQUERY TEXT STATUS: " + textStatus);
+    //  alert("ERROR DESCRIPTION: " + errorThrown);
+    //window.location = error_route + xhr.status;
+  }
+  // finished
+  request.always = function(){
+    // this will be called always whether fail or done at the end of this request
+  }
+  // send
+  request.send(); // start the ajax request
+}
+
+
+//--------------------------------REUSABLE GET REQUESTS---------------------------------------
+//--------------------------------------------------------------------------------------------
+function post_request(route, goto_func, post_parameters, btn_id){
+  request = new Request();
+  request.url = route;
+  request.type = 'POST';
+  request.data = post_parameters;
+  request.replyType = 'json';
+  // start
+  request.begin = function(){
+    btn_clicked_start(btn_id);
+  }
+  // success
+  request.done = function(data, textStatus, xhr){
+    // alert(JSON.stringify(post_parameters));
+    // alert(JSON.stringify(data));
+    btn_clicked_end(btn_id);
+    goto_func(data/*$.parseJSON(data)*/);
+  }
+  // failed
+  request.fail = function(xhr, textStatus, errorThrown){
+    //alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
+    //alert("JQUERY TEXT STATUS: " + textStatus);
+    //alert("ERROR DESCRIPTION: " + errorThrown);
+    window.location = error_route + xhr.status;
+    btn_clicked_end(btn_id);
+  }
+  // finished
+  request.always = function(){
+    // this will be called always whether fail or done at the end of this request
+    btn_clicked_end(btn_id);
+  }
+  // send
+  request.send(); // start the ajax request
+}
+
+
+
 function show_desc(id, src, desc){
   $(id).html("");
   $(id).append('<div class="row flipInX animated mx-auto"><div class="col-md-5 col-4 text-right "><img class="img-fluid" src="'+src+'"></div><div class="col-md-4 col-8 text-left"><br><p class="mont">'+desc+'</p></div></div>')

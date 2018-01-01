@@ -105,8 +105,7 @@ function get_request(route, goto_func){
     goto_func(data);
   }
   // failed
-  request.fail = function(xhr, text
-    Status, errorThrown){
+  request.fail = function(xhr, textStatus, errorThrown){
     //  alert("STATUS AND READY STATE: " + xhr.status + "-" +xhr.readyState);
     //  alert("JQUERY TEXT STATUS: " + textStatus);
     //  alert("ERROR DESCRIPTION: " + errorThrown);
@@ -204,41 +203,6 @@ function student_help(){
 
 //--------------------------------------LOAD NAVABAR VALUES------------------------------------------------
 //---------------------------------------------------------------------------------------------------------
-
-var newImg1 = document.createElement("img");
-function side_nav_collapse_load_values(data){
-  info = data['info'];
-  $("#side-bar-name_sub").html(info['first_name'] +" "+info['last_name']);
-  $("#side-bar-id_sub").html("STUDENT ID: " + info['id']);
-  profile = data['profile'];
-  load_display_picture_sub("#profile-pic_sub");
-}
-
-function load_display_picture_sub(id){
-  $(id).attr('src',"{{ asset('img/load-2.gif') }}");
-  var _img = $(id);
-  newImg1.id = "profile-pic_sub";
-  newImg1.src = get_photo+profile['profile_picture'];
-  newImg1.className = 'img-fluid rounded-circle text-center';
-  newImg1.style.border="1px solid #EEEEEE";
-  newImg1.width="100";
-  newImg1.height="100";
-  //newImg1.onload=onload_display_picture_sub('profile-pic_sub');
-}
-
-function onload_display_picture_sub(id){
-  if(newImg1.src.includes("NONE")){
-    newImg1.src = "{{ asset('img/icons/img.png') }}";
-  }else{
-    var _img = $(id);
-    _img.src = newImg1.src;
-  }
-  //$("#"+id).replaceWith(newImg1);
-  setTimeout(function() {
-    $("#"+id).replaceWith(newImg1);
-  },1000) ;
-}
-
 var newImg2 = document.createElement("img");
 function side_nav_load_values(data){
   info = data['info'];
@@ -255,27 +219,36 @@ function load_display_picture(id){
   newImg2.src = get_photo+profile['profile_picture'];
   newImg2.className = 'img-fluid rounded-circle text-center';
   newImg2.style.border="1px solid #EEEEEE";
-  newImg2.width="100";
-  newImg2.height="100";
-  //  newImg2.onload=onload_display_picture('profile-pic_img');
+  newImg2.width="120";
+  newImg2.height="120";
+  newImg2.onload=onload_display_picture('profile-pic_img');
 }
 
 function onload_display_picture(id){
-  if(newImg2.src.includes("NONE")){
-    newImg2.src = "{{ asset('img/icons/img.png') }}";
-  }else{
+  // if(newImg2.src.includes("NONE")){
+  //   newImg2.src = "{{ asset('img/icons/img.png') }}";
+  // }else{
+  //   var _img = $(id);
+  //   _img.src = newImg2.src;
+  // }
+  // //  $("#"+id).replaceWith(newImg2);
+  // setTimeout(function() {
+  //   $("#"+id).replaceWith(newImg2);
+  // },1000) ;
+  var k = newImg2.src;
+   if(k.indexOf("NONE") === -1){
     var _img = $(id);
-    _img.src = newImg2.src;
-  }
-
-  //  $("#"+id).replaceWith(newImg2);
+   _img.src = newImg2.src;
+   }else{
+     newImg2.src = "{{ asset('img/icons/img.png') }}";
+   }
   setTimeout(function() {
     $("#"+id).replaceWith(newImg2);
-  },1000) ;
+  },1000);
+  $("#btn_change_pic").prop('disabled', false);
 }
 
 //---------------------------------------------------------------------------------------------------------
-
 var newImg3 = document.createElement("img");
 function load_values(data){
   if(data['student']== "No student"){
@@ -292,6 +265,8 @@ function load_values(data){
     $("#stud-id").val(info['id']);
     if((info['year_level']!=null) && (info['section']!=null) && (info['_group']!=null)){
       $("#year-sec-gr").val(info['year_level']+info['section']+"-G"+info['_group']);
+    }else if(info['year_level']!=null){
+      $("#year-sec-gr").val(info['year_level']);
     }else {
       $("#year-sec-gr").val("---");
     }
@@ -305,11 +280,6 @@ function load_values(data){
     update_profile_picture("#display-pic");
     $("#contact_no").val(data['profile']['mobile']);
     $("#email").val(profile['email']);
-    // $("#house_no").val(profile['house_no']);
-    // $("#street").val(profile['street']);
-    // $("#brgy").val(profile['brgy']);
-    // $("#city").val(profile['city']);
-    // $("#province").val(profile['province']);
     $("#zipcode").val(profile['zipcode']);
     $("#student_address").val(profile['student_address']);
     $("#ice_name").val(profile['ice_name']);
@@ -328,8 +298,8 @@ function load_values(data){
   }
 }
 
-function OnUp(){
-  alert("sas");
+function onUp(){
+  alert("fail");
 }
 
 function update_profile_picture(id){
@@ -344,13 +314,14 @@ function update_profile_picture(id){
 }
 
 function onload_profile_photo(id){
-  if(newImg3.src.includes("NONE")){
-    newImg3.src = "{{ asset('img/icons/img.png') }}";
-  }else{
+  //$("newImg3.src:contains('NONE')").attr('src', "{{ asset('img/icons/img.png') }}");
+  var k = newImg3.src;
+   if(k.indexOf("NONE") === -1){
     var _img = $(id);
-    _img.src = newImg3.src;
-  }
-  //$("#"+id).replaceWith(newImg3);
+   _img.src = newImg3.src;
+   }else{
+     newImg3.src = "{{ asset('img/icons/img.png') }}";
+   }
   setTimeout(function() {
     $("#"+id).replaceWith(newImg3);
   },1000);
@@ -603,12 +574,12 @@ function load_stud_summary(data){
           //--------------------------------------change to words ------------------------------------------------------------//
           var year_word = change_to_words(value[i][0]['cur']['year']); var sem_word = change_to_words(value[i][0]['cur']['semester']);
           //-------------------------------append title, div and table ---------------------------------------------------------//
-          var year_sem = value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester'];
-          $("#div_summary").append("<div class='container col-lg-12 summary_heading' onclick='clicked(this.id)' id=term_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']+">"+year_word+" Year "+sem_word+" Semester"+"<hr></div>");
+          var year_sem = value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']+"_"+key;
+          $("#div_summary").append("<div class='container col-lg-12 summary_heading' onclick='clicked(this.id)' id=term_"+year_sem+">"+year_word+" Year "+sem_word+" Semester"+"<hr></div>");
           $("#div_summary").append("<div class='container col-lg-12'><div class='table-responsive' id=div_"+year_sem+" style='display:none'></div></div>"); //div creation
-          $("#div_"+year_sem).append('<table id=table_'+year_sem +' class="table table-bordered"></tbody></table>');
+          $("#div_"+year_sem).append('<table id=table_'+year_sem+' class="table table-bordered"></tbody></table>');
           //--------------------------------------table headings -------------------------------------------------------------//
-          $("#table_"+value[i][0]['cur']['year']+"_"+value[i][0]['cur']['semester']).append("<tbody><tr style='background-color: #DCDEE1;'> <th>Course Code</th><th>Descriptive Title</th><th>Units</th><th>Final</th><th>Credits</th><th>Remarks</th></tr>");
+          $("#table_"+year_sem).append("<tbody><tr style='background-color: #DCDEE1;'> <th>Course Code</th><th>Descriptive Title</th><th>Units</th><th>Final</th><th>Credits</th><th>Remarks</th></tr>");
           var total_units = 0.0; var total_credits = 0.0;
           //-------------------------loop as how the number of subjects per sem ------------------------a----------------------//
           for (var j = 0; j < value[a].length; j++) {
@@ -663,8 +634,9 @@ function load_table_grades(data){
       $("#div_main_grade").removeAttr('style');
       var eval = value['eval']; var acad = value['acad']; var flag=true;
       var acad_term_yr = replace(acad['school_year']+"_"+acad['semester']," ","_"); //#impo:jquery can't select with an id containing spaces
-      $("#acad_term_list").append('<a id='+acad_term_yr+' onclick="unhide(this.id)" class="list-group-item list-group-item-action list-group-item-light">'+acad['school_year']+" "+acad['semester']+'</a>');
-      $("#acad_term_cmb_menu").append('<li><a id='+acad_term_yr+' onclick="unhide(this.id)">'+acad['school_year']+" "+acad['semester']+'</a></li>');
+      acad_term_yr = acad_term_yr+"_"+key;
+      $("#acad_term_list").append('<a id='+acad_term_yr+' href="#" onclick="unhide(this.id)" class="list-group-item list-group-item-action point">'+acad['school_year']+" "+acad['semester']+'</a>');
+      $("#acad_term_cmb_menu").append('<li><a id='+acad_term_yr+' href="#" class="point" onclick="unhide(this.id)">'+acad['school_year']+" "+acad['semester']+'</a></li>');
 
       if(key == 0){
         $("#div_grade").append('<div class="div_list '+acad_term_yr+'"><div class="table-responsive"><table id=tbl_'+acad_term_yr+' class="table table-striped table-bordered"></table></div></div>');
@@ -816,7 +788,6 @@ function start_ajax(){
 
 function reload_display_photo(){
   $("#modal").dialog("close");
-  request_profile_values(side_nav_collapse_load_values);
   request_profile_values(side_nav_load_values);
   request_profile_values(load_values);
 
@@ -842,7 +813,7 @@ function student_linked_account(){
   request_profile_values(save_qr_data);
   clear_linked = setInterval(function() {
     get_request("{{ route('check-number', ['cict_id'=>session('SES_CICT_ID')]) }}", load_linked_acc_info);
-  },3000);
+  },1000);
   //  });
 }
 
@@ -866,37 +837,36 @@ function save_qr_data(data){
 }
 
 function load_qrcode(data){
-  $("#div_linked").append('<h4>Reference Code</h4><img id="qrcode" style = "height: 200px; width: 200px; border: 1px solid #EEEEEE" src=""><hr/>');
+  $("#div_linked").append('<span id="font-md">Reference Code</span><br/><img id="qrcode" style = "height: 200px; width: 200px; border: 1px solid #EEEEEE" src=""><br>');
   $("#qrcode").attr('src',"qrclient/qrclient.php?content=LINKED_NONE_"+qr_code);
   $("#div_linked").append("<p>STUDENT ID: "+qr_id+"</p>");
   $("#div_linked").append("<p>NAME: "+qr_name+"</p><hr/>");
-  $("#div_linked").append("<div id='div_linked_sub' class='col-lg-8 col-lg-offset-2 text-left'></div>");
-  $("#div_linked_sub").append("<p><span class='glyphicon glyphicon-education'></span> CURRICULUM: "+ qr_cur+"</p>");
-  $("#div_linked_sub").append("<p><span class='glyphicon glyphicon-user'></span> GENDER: "+ qr_gender+"</p>");
-  $("#div_linked_sub").append("<p><span class='glyphicon glyphicon-phone'></span> IMEI: None</p><hr/>");
+  $("#div_linked").append("<div id='div_linked_sub' class='col-lg-8 col-lg-offset-2 text-left'></div><hr/>");
+  $("#div_linked_sub").append("<p><i class='fa fa-list-alt'></i> CURRICULUM: "+ qr_cur+"</p>");
+  $("#div_linked_sub").append("<p><i class='fa fa-venus-mars'></i> GENDER: "+ qr_gender+"</p>");
+  $("#div_linked_sub").append("<p><i class='fa fa-phone-square'></i> &nbsp;IMEI: None</p>");
 }
 
 function load_linked_acc_info(data){
   $("#container").html('');
-  $("#container").html('<div class="row white-bg text-center div-shadow-box" style="padding: 3%;"><div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 mx-auto" id="div_linked" style="font-weight: bold; font-size: 9pt"><div class="txt-white" style="display:none; background-color: #1A4D57;padding:5%; border-bottom: 5px solid #BDC3C7;"></div></div></div>');
-  // reference = data['reference'];
+  $("#container").html('<div class="row text-center div-white-shadow" style="padding: 3%;"><div class="col-lg-6 col-md-8 mx-auto" id="div_linked" style="font-weight: bold; font-size: 9pt;"></div></div>');
   pila_info = data['pila_info'];
   linked_settings = data['settings'];
   if(data['pila_status'] == "yes"){
-    $("#div_linked").append('<h6>Currently Serving:</h6>');
-    $("#div_linked").append(data['called']);
-    $("#div_linked").append("<div id='div_linked_sub' class='col-lg-8 col-lg-offset-2 text-left'></div>");
-    $("#div_linked_sub").append('<hr/><h6>Reference Details</h6>');
-    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<span class='glyphicon glyphicon-menu-hamburger'></span> Reference No. #"+pila_info['floor_number']+"</p>");
-    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<span class='glyphicon glyphicon-blackboard'></span> Room assignment "+pila_info['floor_assignment']+"</p>"); //linked_settings['floor_'+pila_info['floor_assignment']+'_name']
-    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<span class='glyphicon glyphicon-calendar'></span> Accepted "+ new Date(pila_info['request_accepted']).toLocaleString() +"</p>");
+    $("#div_linked").append('<h5>Currently Serving:</h5>');
+    $("#div_linked").append('<h2>'+data['called']+'<h2>');
+    $("#div_linked").append("<div id='div_linked_sub' class='text-left col-lg-8 mx-auto'></div>");
+    $("#div_linked_sub").append('<br/><hr/><h6><i class="fa fa-file-archive-o"></i> Reference Details</h6>');
+    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<i class='fa fa-address-book-o'></i> Reference No. #"+pila_info['floor_number']+"</p>");
+    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<i class='fa fa-building-o'></i> Room assignment "+pila_info['floor_assignment']+"</p>"); //linked_settings['floor_'+pila_info['floor_assignment']+'_name']
+    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<i class='fa fa-buysellads'></i> Accepted "+ new Date(pila_info['request_accepted']).toLocaleString() +"</p>");
     var var_request_called;
     if(pila_info['request_called'] == null){ var_request_called="UNCALLED"; }else{ var_request_called = pila_info['request_called']}
-    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<span class='glyphicon glyphicon-bullhorn'></span> Called "+var_request_called+"</p>");
+    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<i class='fa fa-bell-o'></i> Called "+var_request_called+"</p>");
     var var_request_validity;
     if(pila_info['request_validity'] == null){ var_request_validity="VALID"; }else{ var_request_validity = new Date(pila_info['request_validity']).toLocaleString()}
-    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<span class='glyphicon glyphicon-warning-sign'></span> Expiration "+var_request_validity+"</p><hr/>");
-    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<span class='glyphicon glyphicon-warning-bullhorn'></span> Announcement</p><p>"+data['announcement']+"</p>");
+    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<i class='fa fa-bell-slash-o'></i> Expiration "+var_request_validity+"</p>");
+    $("#div_linked_sub").append("<br/><hr/><h6>&nbsp;&nbsp;<i class='fa fa-bullhorn'></i> Announcement</h6><p>"+data['announcement']+"</p>");
   }else {
     load_qrcode();
   }
@@ -919,7 +889,7 @@ function load_sched_info(data){
   (data['acad_term']=="no current term") ? ($("#acad_term").append('Current term not set')) : ($("#acad_term").append("A.Y "+data['acad_term']['school_year']));
   (data['section']=="no student record") ? (section = "no section") : (section = data['section']['year_level']+data['section']['section']+"-G"+data['section']['_group']);
   (data['course']=="no curriculum") ? (cur = "no curriculum") : (cur=data['course']['name']);
-  $("#course_section").append( cur+ " " + section)
+  $("#course_section").append( cur+ " " + section);
 }
 
 function load_table_sched(data){

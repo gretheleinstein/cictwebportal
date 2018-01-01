@@ -8,8 +8,8 @@
             <p class="lead">Evaluation at a whole new level. Download and install to your android devices to get started.</p>
             <a class="btn btn-orange" id="btn_dl_app" style="text-decoration: none;">GET THE APP</a>
           </div>
-          <div class="col-md-5 order-md-2 fadeInUp">
-            <img class="featurette-image img-fluid mx-auto" id="android-pic" alt="" style="width:330px" src="">
+          <div class="col-md-5 order-md-2 fadeInUp mx-auto">
+            <img class="featurette-image img-fluid" id="android-pic" alt="" style="width:330px" src="">
           </div>
         </div>
       </div>

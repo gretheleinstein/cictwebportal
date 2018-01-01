@@ -1,7 +1,12 @@
 @include('global.html-start')
 <head>
 @include('global.html-header')
-
+<style media="screen">
+  input{
+    padding: 0;
+    border: 2px solid red;
+  }
+</style>
 <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
 </head>
 

@@ -2,13 +2,11 @@
 $(document).ready(function() {
 $(window).scroll(function() {
     if(($(".navbar").offset().top < 50)&&($(window).width() > 870)){
-      // alert("me");
         $("#navbar_main").removeClass('navbar-darker');
         $("#navbar_main").addClass("navbar-gray");
         $("#logo_main").width('310px');
         $("#logo_main").height('100px');
     }else if(($(".navbar").offset().top < 50)&&($(window).width() < 870)){
-      // alert("meh");
         $("#navbar_main").addClass("cc");
         $("#navbar_main").removeClass('navbar-darker');
         $("#navbar_main").addClass("navbar-gray");

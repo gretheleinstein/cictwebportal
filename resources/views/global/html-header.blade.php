@@ -11,7 +11,7 @@
    <!-- css files -->
    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap/v4/bootstrap.min.css') }}">
    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap/v4/font-awesome.min.css') }}">
-   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap/animate.css') }}">
+   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap/v4/animate.css') }}">
    <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery/jquery-ui.min.css') }}">
    <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
    <link rel="stylesheet" type="text/css" href="{{ asset('css/loaders.css') }}">
@@ -20,8 +20,8 @@
    <script type = "text/javascript" src="{{ asset('js/jquery/jquery.validate.js') }}"></script>
    <script type = "text/javascript" src="{{ asset('js/jquery/additional-methods.js') }}"></script>
    <script type = "text/javascript" src="{{ asset('js/jquery/jquery.serialize-object.min.js') }}"></script>
-   <script src="{{ asset('js/mono-ajax.js') }}"></script>
-   <script src="{{ asset('js/bootstrap/wow.min.js') }}"></script>
+   <script type = "text/javascript" src="{{ asset('js/mono-ajax.js') }}"></script>
+   <script type = "text/javascript" src="{{ asset('js/bootstrap/wow.min.js') }}"></script>
       <script>
           new WOW().init();
       </script>

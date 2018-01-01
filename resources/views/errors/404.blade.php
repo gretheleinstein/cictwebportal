@@ -20,11 +20,12 @@
       Would you like to go back to the homepage?
     </div>
   </div>
-
-    <div class="row text-center" style="font-size:50pt;">
-      <a href="{{ route('home','hello') }}" class="btn btn-default"> Go back to Homepage</a>
+  <div class="container">
+  <hr>
+      <div class="col-12 text-center">
+        <a href="{{ route('home') }}" class="btn btn-orange"> Go back to homepage</a>
+      </div>
     </div>
-    <hr>
 </div>
 @include('global.js-footer-scripts')
 @include('global.html-end')
