@@ -24,6 +24,8 @@ Route::get('show_token',function(){
 Route::get('page_not_found','Error@show_404')->name('error-404');
 //STATUS CODE
 Route::get('status_error/{status}','Error@show_status_error')->name('error-status');
+//DISCONNECTED
+Route::get('disconnected','Error@show_disconnected')->name('disconnected');
 
 // ROUTES FOR GUEST USERS
 Route::group(['middleware' => ['cict.guest']], function () {

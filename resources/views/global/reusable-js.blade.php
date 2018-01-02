@@ -1,4 +1,13 @@
 <script type = "text/javascript">
+$(document).ready(function() {
+  if (navigator.onLine) {
+    // Online
+  }else{
+    // Disconnected
+    window.location.href = "{{ route('disconnected') }}";
+  }
+});
+
 var error_route = "{{ route('error-status','') }}/";
 
 //--------------------------------REUSABLE GET REQUESTS---------------------------------------
