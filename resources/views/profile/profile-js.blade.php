@@ -858,9 +858,13 @@ function load_linked_acc_info(data){
     var var_request_called;
     if(pila_info['request_called'] == null){ var_request_called="UNCALLED"; }else{ var_request_called = pila_info['request_called']}
     $("#div_linked_sub").append("<p>&nbsp;&nbsp;<i class='fa fa-bell-o'></i> Called "+var_request_called+"</p>");
+    if(pila_info['called_by'] == null){ var_called_by="--"; }else{ var_called_by = pila_info['called_by']}
+    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<i class='fa fa-user-circle'></i> Evaluator "+var_called_by+"</p>");
+    if(pila_info['called_on_terminal'] == null){ var_called_on_terminal="--"; }else{ var_called_on_terminal = pila_info['called_on_terminal']}
+    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<i class='fa fa-television'></i> Terminal "+var_called_on_terminal+"</p>");
     var var_request_validity;
     if(pila_info['request_validity'] == null){ var_request_validity="VALID"; }else{ var_request_validity = new Date(pila_info['request_validity']).toLocaleString()}
-    $("#div_linked_sub").append("<p>&nbsp;&nbsp;<i class='fa fa-bell-slash-o'></i> Expiration "+var_request_validity+"</p>");
+    // $("#div_linked_sub").append("<p>&nbsp;&nbsp;<i class='fa fa-bell-slash-o'></i> Expiration "+var_request_validity+"</p>");
     $("#div_linked_sub").append("<br/><hr/><h6>&nbsp;&nbsp;<i class='fa fa-bullhorn'></i> Announcement</h6><p>"+data['announcement']+"</p>");
   }else {
     load_qrcode();
