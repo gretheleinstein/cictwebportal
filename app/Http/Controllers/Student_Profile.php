@@ -200,13 +200,13 @@ class Student_Profile extends Controller
       $get_sem = $this->convert_to_words($get_sem);
       $view =\View::make('pdf.student_profile_pdf', ['student' => $student, 'student_profile' => $student_profile, 'display_pic' => $display_pic, 'sem' =>  $get_sem, 'sy' => $get_sy ]);
       $html_content = $view->render();
-      //  PDF::new TCPDF('L', 'mm', array(210,97), true, 'UTF-8', false);
+      // $PDF = new TCPDF('L', 'mm', array(210,97), true, 'UTF-8', false);
       PDF::SetTitle($student->last_name.', '.$student->first_name.' '.$student->middle_name);
       //  PDF::SetMargins(25,17,25, true);
-      //  $resolution= array(165, 172);
-      //  PDF::AddPage('P', $resolution);
+      $resolution= array(170,210);
+      PDF::AddPage('L', $resolution);
       PDF::SetFont('gothic');
-      PDF::AddPage();
+      // PDF::AddPage();
       PDF::writeHTML($html_content, true, false, true, false, '');
       PDF::Output($student->last_name.', '.$student->first_name.' '.$student->middle_name.'.pdf');
     }

@@ -36,7 +36,7 @@
         <tr>
           <td width="65%" height="120">
           <table class="sub-header">
-            <tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr>
+            <tr><td></td></tr><tr><td></td></tr><tr><td></td></tr>
             <tr><td style="font-weight: bold">NEW STUDENT PROFILE</td></tr>
             <tr><td width="50%"></td><td width="20%" class="info" style="font-size: 9pt; text-align:center;">{{ $sem }}</td><td width="17%">Sem S.Y.</td><td width="20%" class="info" style="font-size: 9pt; text-align:center">{{ $sy }}</td></tr>
           </table></td>
