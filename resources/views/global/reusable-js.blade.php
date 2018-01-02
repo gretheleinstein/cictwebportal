@@ -69,7 +69,20 @@ function post_request(route, goto_func, post_parameters, btn_id){
   request.send(); // start the ajax request
 }
 
-
+function show_hide_password(btn_id, icon_id, input_name){
+  $(btn_id).click(function(event) {
+    $(function(){
+      $(icon_id).toggleClass("fa-eye-slash");
+      if($('input[name="'+input_name+'"]').attr("type") == "password"){
+        $('input[name="'+input_name+'"]').removeAttr('type');
+        $('input[name="'+input_name+'"]').attr('type','text')
+      }else{
+        $('input[name="'+input_name+'"]').removeAttr('type');
+        $('input[name="'+input_name+'"]').attr('type','password');
+      }
+    });
+  });
+}
 
 function show_desc(id, src, desc){
   $(id).html("");

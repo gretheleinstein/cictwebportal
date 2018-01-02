@@ -14,9 +14,9 @@
           <p class="card-text txt-orange">PLEASE FILL UP TO CONTINUE</p>
           <div id = "div_confirm">
             <form id="frm_confirm">
-              <input type = "text" name="last_name" id="last_name" class="form-control" placeholder="Last Name"> <br>
-              <input type = "text" name="first_name" id="first_name" class="form-control" placeholder="First Name"> <br>
-              <input type = "text" name="middle_name" id="middle_name" class="form-control" placeholder="Middle Name"> <br>
+              <input type = "text" name="last_name" id="last_name" class="form-control" placeholder="Last Name" autocomplete="off"> <br>
+              <input type = "text" name="first_name" id="first_name" class="form-control" placeholder="First Name" autocomplete="off"> <br>
+              <input type = "text" name="middle_name" id="middle_name" class="form-control" placeholder="Middle Name" autocomplete="off"> <br>
               <button type="button" id="btn_confirm" class="btn btn-orange form-control">Next</button>
             </form><br>
           </div>

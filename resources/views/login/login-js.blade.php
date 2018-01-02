@@ -9,6 +9,7 @@ function login_form(){
     $("#lnk_forgot_pass").attr('href',"{{ route('forgot-pass') }}");
     $("#btn_dl_app_login").attr('href',"{{ route('get-app') }}");
     $("#btn_home").attr('href',"{{ route('home') }}");
+    show_hide_password("#span_view_pass","#icon_pass", "password");
 
     $("form").validate({
       rules: {
@@ -28,6 +29,13 @@ function login_form(){
         },
         password: {
           required: "Please enter your password.",
+        }
+      },
+      errorPlacement: function(error, element) {
+        if (element.attr("name") == "password") {
+          error.insertAfter(".pass");
+        } else {
+          error.insertAfter(element);
         }
       },
     }); //end of validate */

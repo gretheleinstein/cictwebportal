@@ -241,7 +241,8 @@ function onConfirmSuccess(data, cict_id){
 
 function registration_account(cict_id){
   $( "#container" ).load("{{ asset( 'html/registration/step_three_account.php' ) }}", function(){
-
+    show_hide_password("#span_view_pass","#icon_pass", "password");
+    show_hide_password("#span_view_confirm_pass","#icon_confirm_pass", "confirm_password");
     //----------------------------------------------------------
     $("#frm_register").validate({
       rules: {
@@ -263,6 +264,15 @@ function registration_account(cict_id){
       messages: {
         confirm_password: {
           equalTo: "Please enter your correct password again.",
+        }
+      },
+      errorPlacement: function(error, element) {
+        if (element.attr("name") == "password") {
+          error.insertAfter(".pass");
+        } else if (element.attr("name") == "confirm_password") {
+          error.insertAfter(".confirm_pass");
+        } else {
+          error.insertAfter(element);
         }
       },
     }); //end of validate
@@ -327,6 +337,8 @@ function onCheckUsernameSuccess(data, account_data){
 function registration_secure(account_data){
   // account_data is json
   $( "#container" ).load("{{ asset( 'html/registration/step_four_secure.php' ) }}", function(){
+    show_hide_password("#span_view_ans","#icon_ans", "recovery_answer");
+    show_hide_password("#span_view_confirm_ans","#icon_confirm_ans", "confirm_recovery_answer");
 
     //----------------------------------------------------------
     $("#frm_setup_acc").validate({
@@ -345,7 +357,16 @@ function registration_secure(account_data){
         confirm_recovery_answer: {
           equalTo: "Please confirm your recovery answer.",
         }
-      }
+      },
+      errorPlacement: function(error, element) {
+        if (element.attr("name") == "recovery_answer") {
+          error.insertAfter(".ans");
+        }else if (element.attr("name") == "confirm_recovery_answer") {
+          error.insertAfter(".confirm_ans");
+        } else {
+          error.insertAfter(element);
+        }
+      },
     }); //end of validate
     //----------------------------------------------------------
 

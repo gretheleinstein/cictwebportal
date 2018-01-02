@@ -14,10 +14,14 @@
       </div>
       <div class="card-body">
         <p class="card-text txt-orange">PLEASE LOGIN TO CONTINUE.</p>
-        <form id = "frm_login">
+        <form id="frm_login">
           <input autocomplete="off" name="username" class="form-control input" id="username" placeholder="Username" type="text"/>
           <label id="username-error-1" class="error" style="display: none"></label><br>
-          <input autocomplete="off" name="password" class="form-control input" id="password" placeholder="Password" type="password" />
+          <div class="input-group pass">
+            <input autocomplete="off" name="password" class="form-control input" id="password" placeholder="Password" type="password" />
+            <span class="input-group-addon" id="span_view_pass"><i id="icon_pass" class="fa fa-eye"></i>
+            </span>
+          </div>
           <label id="password-error-1" class="error" style="display: none"></label><br>
           <button type="button" name="btn_signin" id="btn_signin" class="btn btn-orange s-light form-control">SIGN IN</button>
         </form>

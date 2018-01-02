@@ -24,8 +24,14 @@
                        <option>What is your favorite spot in BulSU?</option>
                        <option>Where is your dream destination?</option>
                    </select><br>
-                   <input type="password" name="recovery_answer" class="form-control" id="recovery_answer" name="recovery_answer" placeholder="Answer" /><br>
-                   <input type="password" name="confirm_recovery_answer" class="form-control" id="confirm_recovery_answer" name="confirm_recovery_answer" placeholder="Confirm Answer" /><br>
+                   <div class="input-group ans">
+                     <input autocomplete="off" type="password" name="recovery_answer" class="form-control" id="recovery_answer" name="recovery_answer" placeholder="Answer" /><br>
+                     <span class="input-group-addon" id="span_view_ans"><i id="icon_ans" class="fa fa-eye"></i></span>
+                   </div><br>
+                   <div class="input-group confirm_ans">
+                     <input autocomplete="off" type="password" name="confirm_recovery_answer" class="form-control" id="confirm_recovery_answer" name="confirm_recovery_answer" placeholder="Confirm Answer" />
+                     <span class="input-group-addon" id="span_view_confirm_ans"><i id="icon_confirm_ans" class="fa fa-eye"></i></span>
+                   </div><br>
                    <button type="button" id="btn_register" class="btn btn-orange form-control" name="button">Next</button>
                  </form>
             </div><br>

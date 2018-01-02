@@ -358,31 +358,11 @@ function student_profile(){
         gender:{
           required: true
         },
-        // house_no: {
-        //   required: true,
-        //   minlength: 1,
-        //   pattern: /^\d+(-\d+)*$/,
-        //   maxlength: 10
-        // },
-        street: {
-          minlength: 2,
-          maxlength: 25
-        },
         zipcode: {
           digits: true,
           minlength: 2,
           maxlength: 10
         },
-        // city: {
-        //   required: true,
-        //   minlength: 2,
-        //   maxlength: 25
-        // },
-        // brgy: {
-        //   required: true,
-        //   minlength: 2,
-        //   maxlength: 25
-        // },
         student_address: {
           required: true,
           minlength: 2,
@@ -483,6 +463,10 @@ function student_settings(){
     }); //end of btn click
     onKeyPress('#floor_assignment','#btn_save_flr');
 
+    show_hide_password("#span_old_pass","#icon_old_pass", "old_password");
+    show_hide_password("#span_view_pass","#icon_pass", "new_password");
+    show_hide_password("#span_confirm_pass","#icon_confirm_pass", "confirm_new_password");
+
     $("#frm_change_password").validate({
       rules: {
         old_password: {
@@ -506,7 +490,18 @@ function student_settings(){
         confirm_new_password: {
           equalTo: "Please enter your correct new password again.",
         }
-      }
+      },
+      errorPlacement: function(error, element) {
+        if (element.attr("name") == "old_password") {
+          error.insertAfter(".old_pass");
+        } else if (element.attr("name") == "new_password") {
+          error.insertAfter(".pass");
+        } else if (element.attr("name") == "confirm_new_password") {
+          error.insertAfter(".confirm_pass");
+        } else {
+          error.insertAfter(element);
+        }
+      },
     }); //end of validate
 
     $("#btn_save").click(function(){

@@ -16,8 +16,14 @@
             <form id="frm_register">
               <input autocomplete="off" name="username" class="form-control" id="username" placeholder="Username" type="text"/>
               <label for="" class="error" id="username-error-1" style="display: none"></label><br>
-              <input autocomplete="off" name="password" class="form-control" id="password" placeholder="Password" type="password" /><br>
-              <input autocomplete="off" name="confirm_password" class="form-control" id="confirm_password" placeholder="Confirm Password" type="password" /><br>
+              <div class="input-group pass">
+                <input autocomplete="off" name="password" class="form-control" id="password" placeholder="Password" type="password" />
+                <span class="input-group-addon" id="span_view_pass"><i id="icon_pass" class="fa fa-eye"></i></span>
+              </div><br>
+              <div class="input-group confirm_pass">
+                <input autocomplete="off" name="confirm_password" class="form-control" id="confirm_password" placeholder="Confirm Password" type="password" />
+                <span class="input-group-addon" id="span_view_confirm_pass"><i id="icon_confirm_pass" class="fa fa-eye"></i></span>
+              </div><br>
               <button type="button" id="btn_account" class="btn btn-orange form-control">Next</button>
             </form>
           </div><br><br>
